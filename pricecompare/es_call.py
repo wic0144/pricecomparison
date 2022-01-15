@@ -1,7 +1,7 @@
 from django.http import response
 from elasticsearch import Elasticsearch 
 from elasticsearch_dsl import Search, Q 
-db = "last_compare"
+db = "product"
 
 def esearchDataSize(Name=""):      
     client = Elasticsearch()      
@@ -42,25 +42,46 @@ def esearchAll():
 def esearch(Name=""):      
     client = Elasticsearch()      
     #q = Q("match", Name=Name, minimum_should_match=0.9)
-    q = Q('bool',
-        should=[Q('match', Name=Name)],minimum_should_match=1
-    )
+    # q = Q('bool',
+    #     should=[Q('match', Name=Name)],minimum_should_match=1
+    # )
 
-    s = Search(using=client, index=db).query(q)[0:100]
+    response = client.search(
+                index=db,
+                body={
+                        "size":100,
+                        "query": {
+                            "match": {
+                            "Name": {
+                                "query": "Samsung Galaxy Tab A7 Lite 3/32G",
+                                "minimum_should_match": "95%"
+                            }
+                            }
+                        }
+                    }
+                )
+    #s = Search(using=client, index=db).query(q)[0:100]
 
     class Data:
         def _init_(self, data, compareSize):
             self.data = None
             self.compareSize = None
 
-    response = s.execute()
+    #response = s.execute()
 
+    print(response["hits"]["hits"][1]["_id"])
     data = []
-    for hit in response:
+    for hit in response["hits"]["hits"]:
         item = Data()
-        item.data = hit
-        item.compareSize = len(esearchCompare(id=hit.meta.id))
+        item.data = hit["_source"]
+        item.compareSize = len(esearchCompare(id=hit["_id"]))
         data.append(item)
+    # data = []
+    # for hit in response["hits"]["hits"]:
+    #     item = Data()
+    #     item.data = hit["_source"]
+    #     item.compareSize = len(esearchCompare(id=hit.meta.id))
+    #     data.append(item)
 
     #print('Total %s hits found.' % response.hits.total)   
     #search = get_results(response)       
