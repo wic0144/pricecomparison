@@ -1,0 +1,221 @@
+/* Explanation in JS tab */
+@charset "UTF-8";
+/* Cool font from Google Fonts! */
+@import url("https://fonts.googleapis.com/css?family=Raleway:900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@100;400&display=swap");
+
+body {
+  margin: 0px;
+  font-family: "Prompt", sans-serif;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+:root {
+  --star-size: 60px;
+  --star-color: #fff;
+  --star-background: #fc0;
+}
+
+.stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times;
+  line-height: 1;
+}
+.stars::before {
+  content: "★★★★★";
+  letter-spacing: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--star-background) var(--percent),
+    var(--star-color) var(--percent)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#container {
+  /* Center the text in the viewport. */
+  /* position: absolute;
+  margin: auto;
+  width: 100vw;
+  height: 80pt;
+  top: 0;
+  bottom: 0; */
+
+  /* This filter is a lot of the magic, try commenting it out to see how the morphing works! */
+  filter: url(#threshold) blur(0.6px);
+}
+
+/* Your average text styling */
+#text1,
+#text2 {
+  position: absolute;
+  width: 100%;
+  display: inline-block;
+  font-family: "Prompt", sans-serif;
+  font-size: 80pt;
+
+  text-align: center;
+
+  user-select: none;
+}
+
+.card-title {
+  /* -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  margin: 15px 0 10px 0;
+  display: -webkit-box;
+  height: 42px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: initial;
+  color: #333f48; */
+  font-size: 16px;
+  margin: 15px 0 10px 0;
+  display: -webkit-box;
+  height: 42px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: initial;
+  color: #333f48;
+}
+
+/* Float Shadow */
+.float-shadow {
+  display: inline-block;
+  position: relative;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.float-shadow:before {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  content: "";
+  top: 100%;
+  left: 5%;
+  height: 10px;
+  width: 90%;
+  opacity: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0) 80%
+  );
+  /* W3C */
+  transition-duration: 0.3s;
+  transition-property: transform opacity;
+}
+.float-shadow:hover {
+  transform: translateY(-5px);
+  /* move the element up by 5px */
+}
+.float-shadow:hover:before {
+  opacity: 1;
+  transform: translateY(5px);
+  /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
+}
+/* Outline Outward */
+.outline-outward {
+  display: inline-block;
+  position: relative;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.outline-outward:before {
+  content: "";
+  position: absolute;
+  border: #ececec solid 4px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition-duration: 0.3s;
+  transition-property: top right bottom left;
+}
+.outline-outward:hover:before {
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
+}
+.rating-score-text {
+  display: inline-block;
+  position: relative;
+  font-size: 12px;
+  white-space: nowrap;
+  max-width: 95px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+  font-family: "Prompt", sans-serif;
+}
+.rating-score-text--bold {
+  font-size: 16px;
+  font-weight: 450;
+}
+.count-rate {
+  color: #737a82;
+  font-weight: 400;
+}
+.product-compare {
+  background-color: rgba(29, 118, 219, 0.2) !important;
+  border: 0;
+  color: #4779e4;
+  display: block;
+}
+
+.btn-product {
+  font-weight: 500;
+  font-size: 14px;
+}
+.btn-product {
+  background-color: #1e7be5;
+  border: 0;
+  color: #fff;
+  transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+}
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.lost {
+  background: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
