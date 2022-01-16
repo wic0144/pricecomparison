@@ -24,6 +24,20 @@
             <form action="/search" method="get">
                 <div class="input-group mb-3">
                     <input type="text" name="name" class="form-control" value="{{search_item}}">
+                    <select type="submit" name="category" class="btn btn-secondary" value="{{category_selected}}">
+                        <option value="all">หมวดหมู่ทั้งหมด</option>
+                        <option value="{{category_selected}}" style="display:none" selected>{% if category_selected == 'all'%}หมวดหมู่ทั้งหมด{% else %}{{category_selected}}{% endif %}</option>
+                        <option value="โทรศัพท์มือถือและแท็บเล็ต">โทรศัพท์มือถือและแท็บเล็ต</option>
+                        <option value="อุปกรณ์เสริมโทรศัพท์มือถือและแท็บเล็ต">อุปกรณ์เสริมโทรศัพท์มือถือและแท็บเล็ต</option>
+                        <option value="คอมพิวเตอร์และแล็ปท็อป">คอมพิวเตอร์และแล็ปท็อป</option>
+                        <option value="อุปกรณ์จัดเก็บข้อมูล">อุปกรณ์จัดเก็บข้อมูล</option>
+                        <option value="อุปกรณ์เชื่อมต่ออินเทอร์เน็ตและโปรแกรม">อุปกรณ์เชื่อมต่ออินเทอร์เน็ตและโปรแกรม</option>
+                        <option value="อุปกรณ์เสริมคอมพิวเตอร์">อุปกรณ์เสริมคอมพิวเตอร์</option>
+                        <option value="ชิ้นส่วนคอมพิวเตอร์">ชิ้นส่วนคอมพิวเตอร์</option>
+                        <option value="กล้อง">กล้อง</option>
+                        <option value="อุปกรณ์เสริมกล้อง">อุปกรณ์เสริมกล้อง</option>
+                        <option value="อุปกรณ์สำหรับเกมเมอร์">อุปกรณ์สำหรับเกมเมอร์</option>
+                    </select>
                     <input type="submit" value="Search" class="btn btn-outline-secondary"></input>
                 </div>
             </form>
@@ -50,7 +64,7 @@
                 </li>
             </ul>
         </div>
-        <div class="dropdown" style="margin-right: 5px;">
+        <!-- <div class="dropdown" style="margin-right: 5px;">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 ราคา
@@ -67,8 +81,8 @@
                         href="{%url 'search_product'%}?name={{search_item}}&page={{num}}&sort=score">คะแนนรีวิว</a>
                 </li>
             </ul>
-        </div>
-        <div class="dropdown" style="margin-right: 5px;">
+        </div> -->
+        <!-- <div class="dropdown" style="margin-right: 5px;">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 ยอดนิยม
@@ -85,7 +99,7 @@
                         href="{%url 'search_product'%}?name={{search_item}}&page={{num}}&sort=score">คะแนนรีวิว</a>
                 </li>
             </ul>
-        </div>
+        </div> -->
     </div>
     <div class="row">
         {%for product in page.object_list%}
@@ -95,7 +109,7 @@
 
                 <div class="card-body ">
                     <p class="card-title">{{product.data.Name}}</p>
-                    <p class="card-text">ราคา : {{product.data.Price|floatformat:0}} ฿</p>
+                    <p class="card-text " style="color:#1b1a19;">ราคา : {{product.data.Price|floatformat:0}} ฿</p>
 
                     <div>{%if product.data.Platform == "Shopee" %}
                         <img src="https://ustatic.priceza.com/img/logo/shopee.jpg" alt="" width="30%"
@@ -127,7 +141,7 @@
                 <div
                     class="card-footer justify-content-center bg-primary align-content-center product-compare text-center">
 
-                    <div class="btn"><a href="product_compare/{{product.data.meta.id}}"
+                    <div class="btn"><a href="product_compare/{{product.id}}"
                             style="text-decoration: none; ">{{product.compareSize}}
                             ร้านค้า</a></div>
                 </div>
