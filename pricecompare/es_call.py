@@ -1,7 +1,28 @@
 from django.http import response
 from elasticsearch import Elasticsearch 
 from elasticsearch_dsl import Search, Q 
-db = "last_compare"
+db = "productcate"
+
+def category():      
+    client = Elasticsearch()      
+
+    response = client.search(
+                index=db,
+                body={
+                    "size": 0,
+                    "aggs" : {
+                        "langs" : {
+                            "terms" : { "field" : "Subcategory",  "size" : 500 }
+                        }
+                    }
+                    }
+                )
+
+
+    categoryList = ['all']
+    for hit in response['aggregations']['langs']['buckets']:
+        categoryList.append(hit["key"]) 
+    return categoryList  
 
 def esearchDataSize(Name=""):      
     client = Elasticsearch()      
@@ -16,51 +37,126 @@ def esearchDataSize(Name=""):
     #search = get_results(response)        
     return size  
 
-def esearchAll():      
+def esearchAll(categoryMenu="all"):      
     client = Elasticsearch()
-    q = Q("match_all")
-    s = Search(using=client, index=db).query(q)[0:100]          
-
+    # q = Q("match_all")
+    # s = Search(using=client, index=db).query(q)[0:100]
+    if(categoryMenu=="all"):       
+        response = client.search(
+            index=db,
+            body={
+                    "size":100,
+                    "query": {
+                        "match_all": {}
+                    }
+                }
+            )
+    else:
+        response = client.search(
+            index=db,
+            body={
+                "size":100,
+                "query": {
+                    "term": {
+                        "Subcategory": categoryMenu
+                    }
+                }
+                }
+            )
+    # class Data:
+    #     def _init_(self, data, compareSize):
+    #         self.data = None
+    #         self.compareSize = None
     class Data:
         def _init_(self, data, compareSize):
+            self.id = None
             self.data = None
             self.compareSize = None
-
-    response = s.execute()
-
-    data = []
-    for hit in response:
+    data=[]
+    for hit in response["hits"]["hits"]:
         item = Data()
-        item.data = hit
-        item.compareSize = len(esearchCompare(id=hit.meta.id))
+        item.id = hit['_id']
+        item.data = hit["_source"]
+        item.compareSize = len(esearchCompare(id=hit["_id"]))
         data.append(item)
+    # data = []
+    # for hit in response:
+    #     item = Data()
+    #     item.data = hit
+    #     item.compareSize = len(esearchCompare(id=hit.meta.id))
+    #     data.append(item)
 
     #print('Total %s hits found.' % response.hits.total)   
     #search = get_results(response)        
     return data  
 
-def esearch(Name=""):      
+def esearch(Name="",categoryMenu="all"):      
     client = Elasticsearch()      
     #q = Q("match", Name=Name, minimum_should_match=0.9)
-    q = Q('bool',
-        should=[Q('match', Name=Name)],minimum_should_match=1
-    )
-
-    s = Search(using=client, index=db).query(q)[0:100]
+    # q = Q('bool',
+    #     should=[Q('match', Name=Name)],minimum_should_match=1
+    # )
+    if(categoryMenu=="all"): 
+        response = client.search(
+                    index=db,
+                    body={
+                            "size":100,
+                            "query": {
+                                "match": {
+                                "Name": {
+                                        "query": Name,
+                                        "minimum_should_match": "95%"
+                                    }
+                                }
+                            }
+                        }
+                    )
+    else:
+        response = client.search(
+                    index=db,
+                    body={
+                        "size":100,
+                        "query": {
+                            "bool" : { 
+                            "must": [
+                                {"match": {
+                                "Name": {
+                                    "query": Name,
+                                    "minimum_should_match": "95%"
+                                }
+                                } 
+                                },
+                                {"match": {
+                                "Subcategory": categoryMenu
+                                }}
+                            ]
+                            }
+                        }
+                        }
+                    )
+    #s = Search(using=client, index=db).query(q)[0:100]
 
     class Data:
         def _init_(self, data, compareSize):
             self.data = None
             self.compareSize = None
 
-    response = s.execute()
+    #response = s.execute()
 
-    data = []
-    for hit in response:
+    #print(response["hits"]["hits"][1]["_id"])
+    data=[]
+    for hit in response["hits"]["hits"]:
         item = Data()
-        item.data = hit
-        item.compareSize = len(esearchCompare(id=hit.meta.id))
+        item.id = hit['_id']
+        item.data = hit["_source"]
+        item.compareSize = len(esearchCompare(id=hit["_id"]))
         data.append(item)
+    # data = []
+    # for hit in response["hits"]["hits"]:
+    #     item = Data()
+    #     item.data = hit["_source"]
+    #     item.compareSize = len(esearchCompare(id=hit.meta.id))
+    #     data.append(item)
 
     #print('Total %s hits found.' % response.hits.total)   
     #search = get_results(response)       

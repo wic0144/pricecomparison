@@ -11,6 +11,11 @@ def index(request):
 def search_product(request): 
     name = request.GET['name']
     try:
+        categoryMenu = request.GET['category']
+    except:
+        categoryMenu = "all"
+    #categoryMenu  = request.GET['selectedcategory']
+    try:
         page_num = request.GET['page']
     except:
         page_num = 1
@@ -20,25 +25,23 @@ def search_product(request):
         sort = "relevant"
     sort_name = "ความสอดคล้อง"
     if(name):
-        response = esearch(Name=name)
+        response = esearch(Name=name,categoryMenu=categoryMenu)
     else:
-        response = esearchAll()
-
+        response = esearchAll(categoryMenu=categoryMenu)
+ 
     if(sort == "asc"):
-        response = sorted(response, key=lambda x: x.data.Price, reverse=False)
+        response = sorted(response, key=lambda x: x.data["Price"], reverse=False)
         sort_name = "ราคาต่ำ->ราคาสูง"
     elif(sort == "desc"):
-        response = sorted(response, key=lambda x: x.data.Price, reverse=True)
+        response = sorted(response, key=lambda x: x.data["Price"], reverse=True)
         sort_name = "ราคาสูง->ราคาต่ำ"
     elif(sort == "score"):
-        response = sorted(response, key=lambda x: x.data.Score, reverse=True)
+        response = sorted(response, key=lambda x: x.data["Score"], reverse=True)
         sort_name = "คะแนนรีวิวสินค้า"
     product_paginator = Paginator(response,54)
  
-
     page = product_paginator.get_page(page_num)
     
-    # print(response[0].data.URL)
     return render(request,'product.html',
     {
         'products':response,
@@ -47,7 +50,8 @@ def search_product(request):
         'page':page,
         'counts':product_paginator.count,
         'sort':sort,
-        'sort_name':sort_name
+        'sort_name':sort_name,
+        'category_selected':categoryMenu
     })
 
 def product_compare(request,product_id): 
