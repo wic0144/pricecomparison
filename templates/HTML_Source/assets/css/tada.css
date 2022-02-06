@@ -1,0 +1,6 @@
+.fancybox-overlay .qsmodal{
+  display:block;
+}
+.st-ui-search-input, .st-default-search-input{
+  background:none!important;  
+}
