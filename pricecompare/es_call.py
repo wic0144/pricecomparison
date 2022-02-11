@@ -1,7 +1,7 @@
 from django.http import response
 from elasticsearch import Elasticsearch 
 from elasticsearch_dsl import Search, Q 
-db = "productcate"
+db = "result_analyzer_thai"
 
 def category():      
     client = Elasticsearch()      
@@ -73,6 +73,7 @@ def esearchAll(categoryMenu="all"):
             self.data = None
             self.compareSize = None
     data=[]
+    
     for hit in response["hits"]["hits"]:
         item = Data()
         item.id = hit['_id']
@@ -87,10 +88,11 @@ def esearchAll(categoryMenu="all"):
     #     data.append(item)
 
     #print('Total %s hits found.' % response.hits.total)   
-    #search = get_results(response)        
-    return data  
+    #search = get_results(response)   
+       
+    return data
 
-def esearch(Name="",categoryMenu="all"):      
+def esearch(Name="",categoryMenu="all",Page=0):      
     client = Elasticsearch()      
     #q = Q("match", Name=Name, minimum_should_match=0.9)
     # q = Q('bool',
@@ -99,22 +101,58 @@ def esearch(Name="",categoryMenu="all"):
     if(categoryMenu=="all"): 
         response = client.search(
                     index=db,
-                    body={
-                            "size":100,
+                    # body={
+                    #         "size":100,
+                    #         "query": {
+                    #             "match": {
+                    #             "Name": {
+                    #                     "query": Name,
+                    #                     "minimum_should_match": "95%"
+                    #                 }
+                    #             }
+                    #         }
+                    #     }
+                    # )
+                    body={ 
+                            "from" : (int(Page)-1)*(60), 
+                            "size" : 60,
+                            "track_total_hits":True, 
                             "query": {
-                                "match": {
+                                "fuzzy": {
                                 "Name": {
-                                        "query": Name,
-                                        "minimum_should_match": "95%"
-                                    }
+                                    "value": Name,
+                                    "fuzziness": "AUTO",
+                                    "max_expansions": 50,
+                                    "prefix_length": 0,
+                                    "transpositions": True,
+                                    "rewrite": "constant_score"
+                                }
                                 }
                             }
-                        }
-                    )
+                        })
     else:
         response = client.search(
                     index=db,
-                    body={
+                    # body={
+                    #     "size":100,
+                    #     "query": {
+                    #         "bool" : { 
+                    #         "must": [
+                    #             {"match": {
+                    #             "Name": {
+                    #                 "query": Name,
+                    #                 "minimum_should_match": "95%"
+                    #             }
+                    #             } 
+                    #             },
+                    #             {"match": {
+                    #             "Subcategory": categoryMenu
+                    #             }}
+                    #         ]
+                    #         }
+                    #     }
+                    #     }
+                     body={
                         "size":100,
                         "query": {
                             "bool" : { 
@@ -145,6 +183,8 @@ def esearch(Name="",categoryMenu="all"):
 
     #print(response["hits"]["hits"][1]["_id"])
     data=[]
+    total = response["hits"]['total']['value']
+    
     for hit in response["hits"]["hits"]:
         item = Data()
         item.id = hit['_id']
@@ -159,8 +199,9 @@ def esearch(Name="",categoryMenu="all"):
     #     data.append(item)
 
     #print('Total %s hits found.' % response.hits.total)   
-    #search = get_results(response)       
-    return data  
+    #search = get_results(response)  
+    dataALL = {"data":data,"total":total}       
+    return dataALL  
 
 def esearchCompare(id=""):      
     client = Elasticsearch()
@@ -168,14 +209,10 @@ def esearchCompare(id=""):
     qOne = Q("term", _id=id)
     sOne = Search(using=client, index=db).query(qOne)
     base = sOne.execute()
-    if (base[0].thToken=="NULL"):
-        thToken = ""
+    if (base[0].Token=="NULL"):
+        Token = ""
     else:
-        thToken = base[0].thToken
-    if (base[0].enToken=="NULL"):
-        enToken = base[0].enToken
-    else:
-        enToken = base[0].enToken        
+        Token = base[0].Token 
     response = client.search(
                 index=db,
                 body={
@@ -186,22 +223,17 @@ def esearchCompare(id=""):
                             {"match":{
                             "Name":{
                                 "query": base[0].Name,
-                                "minimum_should_match": "70%"
+                                "minimum_should_match": "100%"
                             }
                             }},
                             {"match":{
-                            "thToken":{
-                                "query": thToken ,
-                                "minimum_should_match": "50%"
+                            "Name":{
+                                "query": base[0].Name ,
+                                "minimum_should_match": "100%"
                             }
 
-                            }},
-                            {"match":{
-                                "enToken":{
-                                "query": enToken ,
-                                "minimum_should_match": "95%"
-                                }
                             }}
+                        
                         ]
                         }
                     }

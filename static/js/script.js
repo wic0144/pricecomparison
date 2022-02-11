@@ -2,6 +2,7 @@
   This pen cleverly utilizes SVG filters to create a "Morphing Text" effect. Essentially, it layers 2 text elements on top of each other, and blurs them depending on which text element should be more visible. Once the blurring is applied, both texts are fed through a threshold filter together, which produces the "gooey" effect. Check the CSS - Comment the #container rule's filter out to see how the blurring works!
 */
 $(document).ready(function () {
+
   $.ajax({
     url: "https://shopee.co.th/api/v2/flash_sale/flash_sale_get_items?offset=0&limit=16&sort_soldout=true&need_personalize=true&with_dp_items=true",
     context: document.body,
@@ -13,17 +14,91 @@ $(document).ready(function () {
       $.each(data.data.items, function (index, value) {
         // console.log(data);
         console.log(value.itemid);
-        var html = '<li class="list-group-item carousel-item' + index + '" >' +
-          '<div class="card border-0" style="width: 8rem;" >' +
-          ' <img src="https://cf.shopee.co.th/file/' + value.image + '" class="card-img-top" alt="...">' +
-          '<div class="card-body">' +
-          // '<h5 class="card-title">' + value.name + '</h5>' +
-          '<p class="card-text">' + value.price / 100000 + '</p>' +
-          // ' <a href="#" class="btn btn-primary">Go somewhere</a>' +
-          '   </div>' +
-          '    </div>' +
-          '   </li > ';
-        $('#flashsale').append(html);
+        // var html = '<li class="list-group-item carousel-item' + index + '" >' +
+        //   '<div class="card border-0" style="width: 8rem;" >' +
+        //   ' <img src="https://cf.shopee.co.th/file/' + value.image + '" class="card-img-top" alt="...">' +
+        //   '<div class="card-body">' +
+        //   // '<h5 class="card-title">' + value.name + '</h5>' +
+        //   '<p class="card-text">' + value.price / 100000 + '</p>' +
+        //   // ' <a href="#" class="btn btn-primary">Go somewhere</a>' +
+        //   '   </div>' +
+        //   '    </div>' +
+        //   '   </li > ';
+
+
+        var html2 =
+
+          // '<div class="owl-item">' +
+
+          '<div class="grid__item">' +
+          ' <div class="grid__item_wrapper">' +
+          '<div class="grid__image product-image">' +
+          '<a href="./product.html">' +
+          '<img src="https://cf.shopee.co.th/file/' + value.image + '"' +
+          'alt="Demo Product Sample">' +
+          '</a>' +
+          '<div class="quickview">' +
+          '<div class="product-ajax-cart hidden-xs hidden-sm">' +
+          '<div data-handle="consequuntur-magni-dolores"' +
+          'class="quick_shop-div">' +
+          '<a href="#quick-shop-modal" class="btn quick_shop">' +
+          '<i class="fa fa-eye" title="Quick View"></i>' +
+          '</a>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '<div class="rating-star">' +
+          '<span class="spr-badge" id="spr_badge_3008529987"' +
+          'data-rating="0.0">' +
+          '<span class="spr-starrating spr-badge-starrating">' +
+          '<i class="spr-icon spr-icon-star-empty" style=""></i>' +
+          '<i class="spr-icon spr-icon-star-empty" style=""></i>' +
+          '<i class="spr-icon spr-icon-star-empty" style=""></i>' +
+          '<i class="spr-icon spr-icon-star-empty" style=""></i>' +
+          '<i class="spr-icon spr-icon-star-empty" style=""></i>' +
+          '</span>' +
+          '<span class="spr-badge-caption">No reviews </span>' +
+          '</span>' +
+          '</div>' +
+          '<p class="h6 product-title">' +
+          '<a href="./product.html">Demo Product Sample</a>' +
+          '</p>' +
+          '<p class="product-price">' +
+          '<strong>On Sale</strong>' +
+          '<span class="money" data-currency-usd="$19.99">' + value.price / 100000 + '</span>' +
+          '<span class="visually-hidden">Regular price</span>' +
+
+          '</p>' +
+          '<ul class="action-button">' +
+          '<li class="add-to-cart-form">' +
+          '<form action="#" method="post" enctype="multipart/form-data"' +
+          'id="AddToCartForm" class="form-vertical">' +
+          ' <div class="effect-ajax-cart">' +
+          '<input type="hidden" name="quantity" value="1">' +
+          '<button type="submit" name="add" id="AddToCart"' +
+          'class="btn btn-1 add-to-cart" title="Buy Now">' +
+          '<span id="AddToCartText"><i' +
+          ' class="fa fa-shopping-cart"></i> Buy' +
+          'Now</span>' +
+          ' </button>' +
+          '</div>' +
+          '</form>' +
+          ' </li>' +
+          '<li class="wishlist">' +
+          '<a class="wish-list btn" href="./wish-list.html"><i' +
+          'class="fa fa-heart" title="Wishlist"></i></a>' +
+          '</li>' +
+          '<li class="email">' +
+          '<a target="_blank" class="btn email-to-friend" href="#"><i' +
+          ' class="fa fa-envelope"' +
+          'title="Email to friend"></i></a>' +
+          '</li>' +
+          ' </ul>' +
+          '</div>' +
+          '</div>' +
+          '</div>';
+        // $('.home-products-slider-test').append(html2);
       }
 
       );

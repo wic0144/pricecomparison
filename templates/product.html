@@ -111,7 +111,8 @@
                     <p class="card-title">{{product.data.Name}}</p>
                     <p class="card-text " style="color:#1b1a19;">ราคา : {{product.data.Price|floatformat:0}} ฿</p>
 
-                    <div>{%if product.data.Platform == "Shopee" %}
+                    <div>
+                        {%if product.data.Platform == "Shopee" %}
                         <img src="https://ustatic.priceza.com/img/logo/shopee.jpg" alt="" width="30%"
                             style="display: inline;">
                         {%elif product.data.Platform == "Lazada"%}

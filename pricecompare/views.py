@@ -1,4 +1,5 @@
 from typing import Match
+import math
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from .es_call import *
@@ -11,7 +12,7 @@ def index(request):
 def search_product(request): 
     name = request.GET['name']
     try:
-        categoryMenu = request.GET['category']
+        categoryMenu = request.GET['collection']
     except:
         categoryMenu = "all"
     #categoryMenu  = request.GET['selectedcategory']
@@ -19,13 +20,14 @@ def search_product(request):
         page_num = request.GET['page']
     except:
         page_num = 1
+        
     try:
         sort = request.GET['sort']
     except:
         sort = "relevant"
     sort_name = "ความสอดคล้อง"
     if(name):
-        response = esearch(Name=name,categoryMenu=categoryMenu)
+        response = esearch(Name=name,categoryMenu=categoryMenu,Page=page_num)
     else:
         response = esearchAll(categoryMenu=categoryMenu)
  
@@ -38,20 +40,23 @@ def search_product(request):
     elif(sort == "score"):
         response = sorted(response, key=lambda x: x.data["Score"], reverse=True)
         sort_name = "คะแนนรีวิวสินค้า"
-    product_paginator = Paginator(response,54)
- 
-    page = product_paginator.get_page(page_num)
     
-    return render(request,'product.html',
+ 
+    
+    
+    total = math.ceil(int(response['total'])/60)
+    return render(request,'collection.html',
     {
-        'products':response,
+        'products':response['data'],
         'search_item':name,
-        'size':product_paginator.page_range,
-        'page':page,
-        'counts':product_paginator.count,
+        # 'size':product_paginator.page_range,
+        # 'page':page,
+        # 'counts':product_paginator.count,
         'sort':sort,
         'sort_name':sort_name,
-        'category_selected':categoryMenu
+        'category_selected':categoryMenu,
+        'page_num':page_num,
+        'total':total
     })
 
 def product_compare(request,product_id): 
