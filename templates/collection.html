@@ -494,7 +494,6 @@
 									</select>
 								</div>
 								<div class="collections-selector">
-									{% csrf_token %}
 									<select class="single-option-selector" data-option="collection-option" id="collection-option" name="platform" value="{{platform_selected}}">
 										<!-- <select type="submit" name="category" class="btn btn-secondary" value="{{category_selected}}"> -->
 										<option value="{{platform_selected}}" style="display:none" selected>
@@ -502,7 +501,7 @@
 											{% else %}{{platform_selected}}
 											{%endif %}</option> 
 										<option value="all">แพลตฟอร์มทั้งหมด</option>
-										<option value="JDcentral">JDcentral</option>
+										<option value="JDCentral">JDCentral</option>
 										<option value="Lazada">Lazada</option>
 										<option value="Shopee">Shopee</option>
 										<!-- </select> -->
@@ -1784,7 +1783,7 @@
 			var product_compare = $(this).data('todo').compare;
 			var modalImg = document.getElementById("main_image");
 			var modalHref = document.getElementById("checkOn");
-			var modalCompare = $(".modal-body #compareOn")
+			var modalCompare = document.getElementById("compareOn");
 			if(product_compare<=1){
 				$('#compareOn').hide();
 			}

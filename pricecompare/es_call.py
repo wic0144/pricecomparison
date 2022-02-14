@@ -27,7 +27,7 @@ def categoryAll():
     return categoryList  
 
 #ตัวค้นหาหลัก
-def esearch(Name="",categoryMenu="",Page=1,sort="relevant",platform=""):
+def esearch(Name="",categoryMenu="all",Page=1,sort="relevant",platform="all"):
     client = Elasticsearch()
     if(sort=="relevant"):
         field = "_score"
@@ -42,42 +42,18 @@ def esearch(Name="",categoryMenu="",Page=1,sort="relevant",platform=""):
         field = "Price"
         sort_select = "desc"
 
-    if(Name):
-         query_body = {"bool" : { "should": [{"match": {"Name": {"query": Name,"fuzziness": "1"}} },{"match": {"Category": categoryMenu}},{"match": {"Platform": platform}}]}}
-    else :
-        if (categoryMenu=="all" and platform=="all"):
-            query_body = {"match_all": {}}
-        elif (categoryMenu=="all" or platform=='all'):
-            if (categoryMenu!="all" and platform== 'all'):
-                query_body = {"bool" : { "should": [{"match": {"Category": categoryMenu}}]}}
-            elif (categoryMenu=="all" and platform != 'all'):
-                query_body = {"bool" : { "should": [{"match": {"Platform": platform}}]}}
-        else:
-            query_body = {"bool" : { "should": [{"match": {"Category": categoryMenu}},{"match": {"Platform": platform}}]}}
-            
 
-        
-        
+    zero_term_name = "none"
+    array_query = []
+    if(categoryMenu!="all"):
+        array_query.append({"match": {"Category": {"query": categoryMenu}}})
+    if(platform!="all"):
+        array_query.append({"match": {"Platform": {"query": platform}}})
+    if(Name==""):
+        zero_term_name = "all"
+    array_query.append({"match": {"Name": {"query": Name,"fuzziness": "1","zero_terms_query":zero_term_name}}})
 
-
-    # if(categoryMenu=="all" and platform=="all" and Name==""):
-    #     query_body = {"match_all": {}}
-
-
-    # elif(categoryMenu=="all" and platform=="all" and Name!=""):
-    #     query_body = {"bool" : 
-    #     { "should": 
-    #     [{"must": 
-    #     {"Name": 
-    #     {"query": Name,
-    #     "fuzziness": "1"}} }]}}
-
-    # elif (categoryMenu == "all"):
-    #     query_body = {"bool" : { "should": [{"match": {"Name": {"query": Name,"fuzziness": "1"}} },{"match": {"Platform": platform}}]}}
-    # elif(platform == "all"):
-    #     query_body = {"bool" : { "should": [{"match": {"Name": {"query": Name,"fuzziness": "1"}} },{"match": {"Category": categoryMenu}}]}}
-    # else:
-    #     query_body = {"bool" : { "should": [{"match": {"Name": {"query": Name,"fuzziness": "1"}} },{"match": {"Category": categoryMenu}},{"match": {"Platform": platform}}]}} 
+    query_body = {"bool" : { "must": array_query}}
     q_body={
         "from" : (int(Page)-1)*(60), 
         "size" : 60,
@@ -94,7 +70,7 @@ def esearch(Name="",categoryMenu="",Page=1,sort="relevant",platform=""):
     }
 
     response = client.search(index=db,body=q_body)
-
+    
     class Data:
         def _init_(self, data, compareSize):
             self.data = None
