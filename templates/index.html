@@ -480,32 +480,28 @@
 							</div>
 						</div>
 						<div class="site-header__search">
-							<form action="/search" method="get" class="input-group search-bar">
+							<form action="/search?sort=relevant" method="get" class="input-group search-bar">
 								<div class="collections-selector">
-									<select class="single-option-selector" data-option="collection-option"
-										id="collection-option" name="collection">
+									<select class="single-option-selector" data-option="collection-option" id="collection-option" name="category" value="{{category_selected}}">
 										<!-- <select type="submit" name="category" class="btn btn-secondary" value="{{category_selected}}"> -->
 										<option value="all">หมวดหมู่ทั้งหมด</option>
-										<!-- <option value="{{category_selected}}" style="display:none" selected>
-											{%if category_selected == 'all'%}หมวดหมู่ทั้งหมด
-											{% else %}{{category_selected}}
-											{%endif %}</option> -->
-										<option value="โทรศัพท์มือถือและแท็บเล็ต">โทรศัพท์มือถือและแท็บเล็ต</option>
-										<option value="อุปกรณ์เสริมโทรศัพท์มือถือและแท็บเล็ต">
-											อุปกรณ์เสริมโทรศัพท์มือถือและแท็บเล็ต</option>
-										<option value="คอมพิวเตอร์และแล็ปท็อป">คอมพิวเตอร์และแล็ปท็อป</option>
-										<option value="อุปกรณ์จัดเก็บข้อมูล">อุปกรณ์จัดเก็บข้อมูล</option>
-										<option value="อุปกรณ์เชื่อมต่ออินเทอร์เน็ตและโปรแกรม">
-											อุปกรณ์เชื่อมต่ออินเทอร์เน็ตและโปรแกรม</option>
-										<option value="อุปกรณ์เสริมคอมพิวเตอร์">อุปกรณ์เสริมคอมพิวเตอร์</option>
-										<option value="ชิ้นส่วนคอมพิวเตอร์">ชิ้นส่วนคอมพิวเตอร์</option>
-										<option value="กล้อง">กล้อง</option>
-										<option value="อุปกรณ์เสริมกล้อง">อุปกรณ์เสริมกล้อง</option>
-										<option value="อุปกรณ์สำหรับเกมเมอร์">อุปกรณ์สำหรับเกมเมอร์</option>
+										{% for cate in category_all%}
+											<option value="{{cate}}">{{cate}}</option>
+										{% endfor %}
+									</select>
+								</div>
+								<div class="collections-selector">
+									<select class="single-option-selector" data-option="collection-option" id="collection-option" name="platform" value="{{platform_selected}}">
+										<!-- <select type="submit" name="category" class="btn btn-secondary" value="{{category_selected}}"> -->
+										<option value="all">แพลตฟอร์มทั้งหมด</option>
+										<option value="JDcentral">JDcentral</option>
+										<option value="Lazada">Lazada</option>
+										<option value="Shopee">Shopee</option>
 										<!-- </select> -->
 									</select>
 								</div>
-								<input type="hidden" name="type" value="product">
+								<input type="hidden" name="sort" value="relevant">
+								<input type="hidden" name="page" value="1">
 								<input type="search" name="name" value="" placeholder="Search our store"
 									class="input-group-field st-default-search-input" aria-label="Search our store">
 								<span class="input-group-btn">

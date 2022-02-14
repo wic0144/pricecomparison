@@ -127,7 +127,7 @@
 				</div>
 				<ul class="mobile-nav__sublist megamenu__dropdown mobile_megamenu_1">
 					<li class="nav-sampletext grid__item small-one-whole">
-						<a href="#"><img src="./assets/images/logo-b.png" alt=""></a>
+						<a href="#"><img src="{% static './assets/images/logo-b.png' %}" alt=""></a>
 						<p>
 							Lorem ipsum dolor sit amet, quod fabellas hendrerit per eu, mea populo epicuri et, ea possim
 							numquam mea.
@@ -232,13 +232,14 @@
 		</div>
 		<div id="CartContainer">
 			<form action="./cart.html" method="post" novalidate="" class="cart ajaxcart">
+				{% csrf_token %}
 				<div class="ajaxcart__inner">
 					<div class="ajaxcart__product">
 						<div class="ajaxcart__row" data-line="1">
 							<div class="grid">
 								<div class="grid__item one-quarter">
 									<a href="./product.html" class="ajaxcart__product-image"><img
-											src="assets/images/demo1_cart1.jpg" alt=""></a>
+											src="{% static 'assets/images/demo1_cart1.jpg' %}" alt=""></a>
 								</div>
 								<div class="grid__item three-quarters">
 									<p>
@@ -279,7 +280,7 @@
 							<div class="grid">
 								<div class="grid__item one-quarter">
 									<a href="./product.html" class="ajaxcart__product-image"><img
-											src="assets/images/demo1_cart2.jpg" alt=""></a>
+											src="{% static 'assets/images/demo1_cart2.jpg' %}" alt=""></a>
 								</div>
 								<div class="grid__item three-quarters">
 									<p>
@@ -320,7 +321,7 @@
 							<div class="grid">
 								<div class="grid__item one-quarter">
 									<a href="./product.html" class="ajaxcart__product-image"><img
-											src="assets/images/demo1_cart3.jpg" alt=""></a>
+											src="{% static 'assets/images/demo1_cart3.jpg' %}" alt=""></a>
 								</div>
 								<div class="grid__item three-quarters">
 									<p>
@@ -394,13 +395,13 @@
 			<div id="ads-banner" class="grid--full grid--table">
 				<div class="ads-banner-slider owl-carousel">
 					<div class="ads-item">
-						<img src="./assets/images/ads1.png" alt="ads banner 1">
+						<img src="{% static './assets/images/ads1.png' %}" alt="ads banner 1">
 					</div>
 					<div class="ads-item">
-						<img src="./assets/images/ads2.png" alt="ads banner 2">
+						<img src="{% static './assets/images/ads2.png' %}" alt="ads banner 2">
 					</div>
 					<div class="ads-item">
-						<img src="./assets/images/ads3.png" alt="ads banner 3">
+						<img src="{% static './assets/images/ads3.png' %}" alt="ads banner 3">
 					</div>
 				</div>
 			</div>
@@ -476,30 +477,39 @@
 							</div>
 						</div>
 						<div class="site-header__search">
-							<form action="/search" method="get" class="input-group search-bar">
+							<form action="/search?sort=relevant" method="get" class="input-group search-bar">
+								{% csrf_token %}
 								<div class="collections-selector">
-									<select class="single-option-selector" data-option="collection-option"
-										id="collection-option" name="collection" value="{{category_selected}}">
-										<option value="all">หมวดหมู่ทั้งหมด</option>
-										<!-- <option value="{{category_selected}}" style="display:none" selected>
+									<select class="single-option-selector" data-option="collection-option" id="collection-option" name="category" value="{{category_selected}}">
+										<!-- <select type="submit" name="category" class="btn btn-secondary" value="{{category_selected}}"> -->
+										<option value="{{category_selected}}" style="display:none" selected>
 											{%if category_selected == 'all'%}หมวดหมู่ทั้งหมด
 											{% else %}{{category_selected}}
-											{%endif %}</option> -->
-										<option value="โทรศัพท์มือถือและแท็บเล็ต">โทรศัพท์มือถือและแท็บเล็ต</option>
-										<option value="อุปกรณ์เสริมโทรศัพท์มือถือและแท็บเล็ต">
-											อุปกรณ์เสริมโทรศัพท์มือถือและแท็บเล็ต</option>
-										<option value="คอมพิวเตอร์และแล็ปท็อป">คอมพิวเตอร์และแล็ปท็อป</option>
-										<option value="อุปกรณ์จัดเก็บข้อมูล">อุปกรณ์จัดเก็บข้อมูล</option>
-										<option value="อุปกรณ์เชื่อมต่ออินเทอร์เน็ตและโปรแกรม">
-											อุปกรณ์เชื่อมต่ออินเทอร์เน็ตและโปรแกรม</option>
-										<option value="อุปกรณ์เสริมคอมพิวเตอร์">อุปกรณ์เสริมคอมพิวเตอร์</option>
-										<option value="ชิ้นส่วนคอมพิวเตอร์">ชิ้นส่วนคอมพิวเตอร์</option>
-										<option value="กล้อง">กล้อง</option>
-										<option value="อุปกรณ์เสริมกล้อง">อุปกรณ์เสริมกล้อง</option>
-										<option value="อุปกรณ์สำหรับเกมเมอร์">อุปกรณ์สำหรับเกมเมอร์</option>
+											{%endif %}</option> 
+										<option value="all">หมวดหมู่ทั้งหมด</option>
+										{% for cate in category_all%}
+											<option value="{{cate}}">{{cate}}</option>
+										{% endfor %}
+										<!-- </select> -->
 									</select>
 								</div>
-								<input type="hidden" name="type" value="product">
+								<div class="collections-selector">
+									{% csrf_token %}
+									<select class="single-option-selector" data-option="collection-option" id="collection-option" name="platform" value="{{platform_selected}}">
+										<!-- <select type="submit" name="category" class="btn btn-secondary" value="{{category_selected}}"> -->
+										<option value="{{platform_selected}}" style="display:none" selected>
+											{%if platform_selected == 'all'%}แพลตฟอร์มทั้งหมด
+											{% else %}{{platform_selected}}
+											{%endif %}</option> 
+										<option value="all">แพลตฟอร์มทั้งหมด</option>
+										<option value="JDcentral">JDcentral</option>
+										<option value="Lazada">Lazada</option>
+										<option value="Shopee">Shopee</option>
+										<!-- </select> -->
+									</select>
+								</div>
+								<input type="hidden" name="sort" value="relevant">
+								<input type="hidden" name="page" value="1">
 								<input type="search" name="name" value="{{search_item}}" placeholder="Search our store"
 									class="input-group-field st-default-search-input" aria-label="Search our store">
 								<span class="input-group-btn">
@@ -541,6 +551,7 @@
 									<div id="lightboxlogin">
 										<form method="post" action="./login.html" id="customer_login"
 											accept-charset="UTF-8">
+											{% csrf_token %}
 											<input type="hidden" value="customer_login" name="form_type"><input
 												type="hidden" name="utf8" value="?">
 											<div id="bodyBox">
@@ -576,6 +587,7 @@
 											We will send you an email to reset your password.
 										</p>
 										<form method="post" action="recover.html" accept-charset="UTF-8">
+											{% csrf_token %}
 											<input type="hidden" value="recover_customer_password"
 												name="form_type"><input type="hidden" name="utf8" value="?">
 											<p>
@@ -596,6 +608,7 @@
 									<div id="create_accountBox" style="display:none;">
 										<h3>Create Account</h3>
 										<div class="form-vertical">
+											{% csrf_token %}
 											<form method="post" action="./account.html" id="create_customer"
 												accept-charset="UTF-8">
 												<input type="hidden" value="create_customer" name="form_type"><input
@@ -716,7 +729,7 @@
 							</a>
 							<ul class="site-nav__dropdown megamenu__dropdown megamenu_1">
 								<li class="nav-sampletext grid__item large--one-quarter">
-									<a href="./index.html"><img src="assets/images/logo-b.png" alt=""></a>
+									<a href="./index.html"><img src="{% static 'assets/images/logo-b.png' %}" alt=""></a>
 									<p>
 										Lorem ipsum dolor sit amet, quod fabellas hendrerit per eu, mea populo epicuri
 										et, ea possim numquam mea.
@@ -837,15 +850,11 @@
 							<div class="section-header__right section-sorting">
 								<div class="form-horizontal">
 									<label for="SortBy">Sort by</label>
-									<select name="SortBy" id="SortBy">
-										<option value="manual">Featured</option>
-										<option value="best-selling">Best Selling</option>
-										<option value="title-ascending">Alphabetically, A-Z</option>
-										<option value="title-descending">Alphabetically, Z-A</option>
-										<option value="price-ascending">Price, low to high</option>
-										<option value="price-descending">Price, high to low</option>
-										<option value="created-descending">Date, new to old</option>
-										<option value="created-ascending">Date, old to new</option>
+									<select name="SortBy" id="SortBy" onchange="location = this.value" >
+										<option value="{%url 'search_product' %}?category={{category_selected}}&name={{search_item}}&page={{page_num}}&sort=score">Relevant</option>
+										<option value="{%url 'search_product' %}?category={{category_selected}}&name={{search_item}}&page={{page_num}}&sort=asc">Price, low to high</option>
+										<option value="{%url 'search_product' %}?category={{category_selected}}&name={{search_item}}&page={{page_num}}&sort=desc">Price, high to low</option>
+										<option value="{%url 'search_product' %}?category={{category_selected}}&name={{search_item}}&page={{page_num}}&sort=score">Score, high to low</option>
 									</select>
 								</div>
 								<div class="collection-view">
@@ -877,7 +886,11 @@
 										<div class="quickview">
 											<div class="product-ajax-cart hidden-xs hidden-sm">
 												<div data-handle="consequuntur-magni-dolores" class="quick_shop-div">
-													<a href="#quick-shop-modal" class="btn quick_shop">
+													<a href="#quick-shop-modal" class="btn quick_shop" data-todo='{"name":"{{product.data.Name}}",
+													"image":"{{product.data.Image}}","price":"{{product.data.Price}}","compare":"{{product.compareSize}}",
+													"platform":"{{product.data.Platform}}","category":"{{product.data.Category}}","review":"{{product.data.Review}}",
+													"score":"{{product.data.Score}}","url":"{{product.data.URL}}","id":"{{product.id}}"
+													}'>
 														<i class="fa fa-eye" title="Quick View"></i>
 													</a>
 												</div>
@@ -929,30 +942,29 @@
 									</div>
 									<ul class="action-button">
 										<li class="add-to-cart-form">
-											<form action="#" method="post" enctype="multipart/form-data"
-												id="AddToCartForm" class="form-vertical">
+
 												<div class="effect-ajax-cart">
 
-													<input type="hidden" name="quantity" value="1">
-													{%if product.compareSize > 1 %}
-													<button type="submit" name="add" id="AddToCart"
-														class="btn btn-1 add-to-cart" title="Buy Now">
-														<span id="AddToCartText"><i class="fa fa-shopping-cart"></i> <a
-																href="{{product.data.URL}}" class="text-light"
-																style="text-decoration: none; ">เช็คราคา</a></span>
-													</button>
+													<!-- <input type="hidden" name="quantity" value="1"> -->
+													{%if product.compareSize <= 1 %}
+													<a href="{{product.data.URL}}" class="text-light" style="text-decoration: none;" target="_blank">
+														<button name="add" id="AddToCart"
+															class="btn btn-1 add-to-cart" title="Buy Now" >
+															<span id="AddToCartText"><i class="fa fa-shopping-cart"></i> เช็คราคา</span>
+														</button>
+													</a>
 													{%else%}
-													<button type="submit" name="add" id="AddToCart"
-														class="btn btn-1 add-to-cart" title="Buy Now">
-														<span id="AddToCartText"><i class="fa fa-shopping-cart"></i>
-															<a href="product_compare/{{product.id}}"
-																style="text-decoration: none; ">{{product.compareSize}}
-																ร้านค้า</a>
-														</span>
-													</button>
+													<a href="product/{{product.id}}" style="text-decoration: none; ">
+														<button name="add" id="AddToCart"
+															class="btn btn-1 add-to-cart" title="Buy Now">
+															<span id="AddToCartText"><i class="fa fa-shopping-cart"></i>
+																{{product.compareSize}}
+																	ร้านค้า
+															</span>
+														</button>
+													</a>
 													{% endif %}
 												</div>
-											</form>
 										</li>
 										<li class="wishlist">
 											<a class="wish-list btn" href="./wish-list.html"><i class="fa fa-heart"
@@ -1027,7 +1039,7 @@
 											<p class="title cfc4" data-toggle="collapse" data-target="#cfc4">
 												Color<span class="ficon"><i class="fa fa-minus"></i></span>
 											</p>
-											<ul id="cfc4" class="collapse in color_filter">
+											<!-- <ul id="cfc4" class="collapse in color_filter">
 												<li class="swatch-tag "><span
 														style="background-color: red; background-image: url('assets/images/red.png');"><a
 															href="./collection.html"></a></span></li>
@@ -1043,7 +1055,7 @@
 												<li class="swatch-tag "><span
 														style="background-color: yellow; background-image: url('assets/images/yellow.png');"><a
 															href="./collection.html"></a></span></li>
-											</ul>
+											</ul> -->
 										</div>
 										<div class="tag-group" id="coll-filter-1">
 											<p class="title cfc1" data-toggle="collapse" data-target="#cfc1">
@@ -1140,7 +1152,7 @@
 												<div class="grid__item_wrapper">
 													<div class="grid__image product-image">
 														<a href="./product.html" class="grid__image product-image">
-															<img src="assets/images/demo1_qs1_100x100.jpg"
+															<img src="{% static 'assets/images/demo1_qs1_100x100.jpg' %}"
 																alt="Consequuntur magni dolores">
 														</a>
 														<div class="quickview">
@@ -1189,6 +1201,7 @@
 														<li class="add-to-cart-form">
 															<form action="#" method="post" enctype="multipart/form-data"
 																id="AddToCartForm" class="form-vertical">
+																{% csrf_token %}
 																<div class="effect-ajax-cart">
 																	<input type="hidden" name="quantity" value="1">
 																	<button type="submit" name="add" id="AddToCart"
@@ -1217,7 +1230,7 @@
 												<div class="grid__item_wrapper">
 													<div class="grid__image product-image">
 														<a href="./product.html" class="grid__image product-image">
-															<img src="assets/images/demo1_qs2_100x100.jpg"
+															<img src="{% static 'assets/images/demo1_qs2_100x100.jpg' %}"
 																alt="Corporis suscipit laboriosam">
 														</a>
 														<div class="quickview">
@@ -1263,6 +1276,7 @@
 														<li class="add-to-cart-form">
 															<form action="#" method="post" enctype="multipart/form-data"
 																id="AddToCartForm" class="form-vertical">
+																{% csrf_token %}
 																<div class="effect-ajax-cart">
 																	<input type="hidden" name="quantity" value="1">
 																	<button type="submit" name="add" id="AddToCart"
@@ -1291,7 +1305,7 @@
 												<div class="grid__item_wrapper">
 													<div class="grid__image product-image">
 														<a href="./product.html" class="grid__image product-image">
-															<img src="assets/images/demo1_qs3_100x100.jpg"
+															<img src="{% static 'assets/images/demo1_qs3_100x100.jpg' %}"
 																alt="Cras in nunc ipsum">
 														</a>
 														<div class="quickview">
@@ -1340,6 +1354,7 @@
 														<li class="add-to-cart-form">
 															<form action="#" method="post" enctype="multipart/form-data"
 																id="AddToCartForm" class="form-vertical">
+																{% csrf_token %}
 																<div class="effect-ajax-cart">
 																	<input type="hidden" name="quantity" value="1">
 																	<button class="btn btn-1 select-option"
@@ -1365,7 +1380,7 @@
 								</div>
 							</div>
 							<div class="sb-wrapper slider-banner-wrapper clearfix" data-animate="" data-delay="0">
-								<img src="assets/images/sb-banner.png" alt="">
+								<img src="{% static 'assets/images/sb-banner.png' %}" alt="">
 							</div>
 						</div>
 					</div>
@@ -1379,6 +1394,7 @@
 						newsletter program</h3>
 					<form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
 						target="_blank" class="input-group">
+						{% csrf_token %}
 						<input type="email" value="" placeholder="Enter your email here ..." name="EMAIL" id="mail"
 							class="input-group-field" aria-label="email@example.com">
 						<span class="input-group-btn">
@@ -1628,8 +1644,8 @@
 		tada_newsletter = true;
 	</script>
 
-	<script src="assets/js/modernizr.min.js" type="text/javascript"></script>
-	<script src="assets/js/timber.js" type="text/javascript"></script>
+	<script src="{% static 'assets/js/modernizr.min.js' %}" type="text/javascript"></script>
+	<script src="{% static 'assets/js/timber.js' %}" type="text/javascript"></script>
 
 	<div id="quick-shop-modal" class="modal quick-shop" style="display:none;">
 		<div class="modal-dialog fadeIn">
@@ -1640,20 +1656,20 @@
 					<div class="grid__item one-half qs-product-image">
 						<div id="quick-shop-image" class="product-image-wrapper">
 							<div id="featuted-image" class="main-image featured">
-								<img class="img-zoom img-responsive image-fly" src="assets/images/demo1_qs_480x480.jpg"
-									data-zoom-image="assets/images/demo1_qs_480x480.jpg" alt="">
+								<img class="img-zoom img-responsive image-fly" src="{% static 'assets/images/demo1_qs_480x480.jpg' %}"
+									data-zoom-image="{% static 'assets/images/demo1_qs_480x480.jpg' %}" alt="{% static 'assets/images/demo1_qs_480x480.jpg' %}" id="main_image">
 							</div>
 							<div id="gallery_main_qs" class="product-image-thumb scroll scroll-mini">
 								<div class="qs-vertical-slider product-single__thumbnails">
 									<a class="image-thumb active thumb__element"><img
-											src="assets/images/demo1_qs1_100x100.jpg" alt="" /></a>
-									<a class="image-thumb thumb__element"><img src="assets/images/demo1_qs2_100x100.jpg"
+											src="{% static 'assets/images/demo1_qs1_100x100.jpg' %}" alt="" /></a>
+									<a class="image-thumb thumb__element"><img src="{% static 'assets/images/demo1_qs2_100x100.jpg' %}"
 											alt="" /></a>
-									<a class="image-thumb thumb__element"><img src="assets/images/demo1_qs3_100x100.jpg"
+									<a class="image-thumb thumb__element"><img src="{% static 'assets/images/demo1_qs3_100x100.jpg' %}"
 											alt="" /></a>
-									<a class="image-thumb thumb__element"><img src="assets/images/demo1_qs4_100x100.jpg"
+									<a class="image-thumb thumb__element"><img src="{% static 'assets/images/demo1_qs4_100x100.jpg' %}"
 											alt="" /></a>
-									<a class="image-thumb thumb__element"><img src="assets/images/demo1_qs5_100x100.jpg"
+									<a class="image-thumb thumb__element"><img src="{% static 'assets/images/demo1_qs5_100x100.jpg' %}"
 											alt="" /></a>
 								</div>
 							</div>
@@ -1663,7 +1679,7 @@
 					</div>
 					<div class="grid__item one-half qs-product-information">
 						<div id="quick-shop-container">
-							<h3 id="quick-shop-title"><a href="./product.html">Corporis suscipit laboriosam</a></h3>
+							<h3 id="quick-shop-title"><a href="./product.html" id="titel_product"></a></h3>
 							<div class="rating-star">
 								<span class="shopify-product-reviews-badge" data-id="3008529923"></span>
 							</div>
@@ -1679,8 +1695,9 @@
 							</div>
 							<form action="#" method="post" class="variants" id="AddToCartForm"
 								enctype="multipart/form-data">
+								{% csrf_token %}
 								<div id="quick-shop-price-container" class="detail-price">
-									<span class="price"><span class="money">$89.00</span></span>
+									<span class="price"><span class="money" id="product_money">$89.00</span></span>
 								</div>
 								<div class="quantity-wrapper clearfix">
 									<label class="wrapper-title">Quantity</label>
@@ -1721,8 +1738,10 @@
 									</div>
 								</div>
 								<div class="others-bottom">
-									<input id="AddToCart" class="btn btn-1 small add-to-cart" type="submit" name="add"
-										value="Buy Now">
+									<a href="" id="checkOn" class="btn btn-1 small add-to-cart" name="add"
+										value="Buy Now">Buy Now</a>
+									<a href="" id="compareOn" class="btn btn-1 small add-to-cart" name="add"
+										value="Compare Now">Hello</a>
 								</div>
 							</form>
 						</div>
@@ -1751,17 +1770,46 @@
 
 	</script>
 	<script type="text/javascript">
+		 $(document).on("click", ".quick_shop", function () {
+			$('#compareOn').show();
+			var imglink = $(this).data('todo').image;
+			var product_name = $(this).data('todo').name;
+			var product_price = $(this).data('todo').price;
+			var product_url = $(this).data('todo').url;
+			var product_category = $(this).data('todo').category;
+			var product_platform = $(this).data('todo').platform;
+			var product_review = $(this).data('todo').review;
+			var product_score = $(this).data('todo').score;
+			var product_id = $(this).data('todo').id;
+			var product_compare = $(this).data('todo').compare;
+			var modalImg = document.getElementById("main_image");
+			var modalHref = document.getElementById("checkOn");
+			var modalCompare = $(".modal-body #compareOn")
+			if(product_compare<=1){
+				$('#compareOn').hide();
+			}
+			$(".modal-body #compareOn").text('เปรียบเทียบร้านค้า '+product_compare+ ' ร้านค้า');
+			$(".modal-body #titel_product").text(product_name);
+			$(".modal-body #product_money").text(product_price);
+			modalHref.href = product_url;
+			modalCompare.href = 'product/'+product_id;
+			modalImg.src = imglink;
+			// $(".modal-body #main_image").src('https://img.jd.co.th/n1/jfs/t16/91/3587828062/86780/15a3fb93/5f3e0287N2043045c.jpg!q50.jpg.dpg');
+		});
+	</script>
+
+	<script type="text/javascript">
 		$(function () {
 			window.pagObj = $('#pagination').twbsPagination({
 				startPage: parseInt("{{page_num}}"),
-				totalPages: "{{total}}",
+				totalPages: parseInt("{{total}}"),
 				visiblePages: 10,
 				onPageClick: function (event, page) {
 					console.info(page + ' (from options)');
 				}
 			}).on('page', function (event, page) {
 				console.info(page + ' (from event listening)');
-				location.href = '?name={{search_item}}&page=' + page;
+				location.href = '?category={{category_selected}}&name={{search_item}}&page='+page+'&sort={{sort}}';
 			});
 		});
 	</script>

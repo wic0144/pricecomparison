@@ -1,9 +1,10 @@
 from django.http import response
 from elasticsearch import Elasticsearch 
 from elasticsearch_dsl import Search, Q 
-db = "result_analyzer_thai"
+db = "products"
 
-def category():      
+#ตัว aggregate หา category ทั้งหมดที่ไม่ซ้ำกันที่อยู่ใน db มีจำนวนรวมของข้อมูลของแต่ละ category ด้วย
+def categoryAll():      
     client = Elasticsearch()      
 
     response = client.search(
@@ -12,176 +13,60 @@ def category():
                     "size": 0,
                     "aggs" : {
                         "langs" : {
-                            "terms" : { "field" : "Subcategory",  "size" : 500 }
+                            "terms" : { "field" : "Category",  "size" : 500 }
                         }
                     }
                     }
                 )
 
 
-    categoryList = ['all']
+    categoryList = []
     for hit in response['aggregations']['langs']['buckets']:
         categoryList.append(hit["key"]) 
     return categoryList  
 
-def esearchDataSize(Name=""):      
-    client = Elasticsearch()      
-    q = Q("match", Name=Name)
-    s = Search(using=client, index=db).query(q)[0:2000] 
-
-    response = s.execute()
-    size = len(response)
-    print(size)
-
-    #print('Total %s hits found.' % response.hits.total)   
-    #search = get_results(response)        
-    return size  
-
-def esearchAll(categoryMenu="all"):      
+#ตัวค้นหาหลัก
+def esearch(Name="",categoryMenu="",Page=1,sort="relevant",platform=""):
     client = Elasticsearch()
-    # q = Q("match_all")
-    # s = Search(using=client, index=db).query(q)[0:100]
-    if(categoryMenu=="all"):       
-        response = client.search(
-            index=db,
-            body={
-                    "size":100,
-                    "query": {
-                        "match_all": {}
+    if(sort=="relevant"):
+        field = "_score"
+        sort_select = "desc"
+    elif(sort=="asc"):
+        field = "Price"
+        sort_select = "asc"
+    elif(sort=="score"):
+        field = "Score"
+        sort_select = "desc"
+    else:
+        field = "Price"
+        sort_select = "desc"
+
+    if (categoryMenu == "all"):
+        query_body = {"match_all": {}}
+    else:
+        query_body = {"bool" : { "should": [{"match": {"Name": {"query": Name,"fuzziness": "1"}} },{"match": {"Category": categoryMenu}},{"match": {"Platform": platform}}]}} 
+    q_body={
+        "from" : (int(Page)-1)*(60), 
+        "size" : 60,
+        "track_total_hits":True, 
+        "query":query_body
+        ,
+                "sort": [
+                {
+                    field: {
+                        "order": sort_select
                     }
                 }
-            )
-    else:
-        response = client.search(
-            index=db,
-            body={
-                "size":100,
-                "query": {
-                    "term": {
-                        "Subcategory": categoryMenu
-                    }
-                }
-                }
-            )
-    # class Data:
-    #     def _init_(self, data, compareSize):
-    #         self.data = None
-    #         self.compareSize = None
-    class Data:
-        def _init_(self, data, compareSize):
-            self.id = None
-            self.data = None
-            self.compareSize = None
-    data=[]
-    
-    for hit in response["hits"]["hits"]:
-        item = Data()
-        item.id = hit['_id']
-        item.data = hit["_source"]
-        item.compareSize = len(esearchCompare(id=hit["_id"]))
-        data.append(item)
-    # data = []
-    # for hit in response:
-    #     item = Data()
-    #     item.data = hit
-    #     item.compareSize = len(esearchCompare(id=hit.meta.id))
-    #     data.append(item)
+        ]
+    }
 
-    #print('Total %s hits found.' % response.hits.total)   
-    #search = get_results(response)   
-       
-    return data
-
-def esearch(Name="",categoryMenu="all",Page=0):      
-    client = Elasticsearch()      
-    #q = Q("match", Name=Name, minimum_should_match=0.9)
-    # q = Q('bool',
-    #     should=[Q('match', Name=Name)],minimum_should_match=1
-    # )
-    if(categoryMenu=="all"): 
-        response = client.search(
-                    index=db,
-                    # body={
-                    #         "size":100,
-                    #         "query": {
-                    #             "match": {
-                    #             "Name": {
-                    #                     "query": Name,
-                    #                     "minimum_should_match": "95%"
-                    #                 }
-                    #             }
-                    #         }
-                    #     }
-                    # )
-                    body={ 
-                            "from" : (int(Page)-1)*(60), 
-                            "size" : 60,
-                            "track_total_hits":True, 
-                            "query": {
-                                "fuzzy": {
-                                "Name": {
-                                    "value": Name,
-                                    "fuzziness": "AUTO",
-                                    "max_expansions": 50,
-                                    "prefix_length": 0,
-                                    "transpositions": True,
-                                    "rewrite": "constant_score"
-                                }
-                                }
-                            }
-                        })
-    else:
-        response = client.search(
-                    index=db,
-                    # body={
-                    #     "size":100,
-                    #     "query": {
-                    #         "bool" : { 
-                    #         "must": [
-                    #             {"match": {
-                    #             "Name": {
-                    #                 "query": Name,
-                    #                 "minimum_should_match": "95%"
-                    #             }
-                    #             } 
-                    #             },
-                    #             {"match": {
-                    #             "Subcategory": categoryMenu
-                    #             }}
-                    #         ]
-                    #         }
-                    #     }
-                    #     }
-                     body={
-                        "size":100,
-                        "query": {
-                            "bool" : { 
-                            "must": [
-                                {"match": {
-                                "Name": {
-                                    "query": Name,
-                                    "minimum_should_match": "95%"
-                                }
-                                } 
-                                },
-                                {"match": {
-                                "Subcategory": categoryMenu
-                                }}
-                            ]
-                            }
-                        }
-                        }
-                    )
-    #s = Search(using=client, index=db).query(q)[0:100]
+    response = client.search(index=db,body=q_body)
 
     class Data:
         def _init_(self, data, compareSize):
             self.data = None
             self.compareSize = None
 
-    #response = s.execute()
-
-    #print(response["hits"]["hits"][1]["_id"])
     data=[]
     total = response["hits"]['total']['value']
     
@@ -191,28 +76,31 @@ def esearch(Name="",categoryMenu="all",Page=0):
         item.data = hit["_source"]
         item.compareSize = len(esearchCompare(id=hit["_id"]))
         data.append(item)
-    # data = []
-    # for hit in response["hits"]["hits"]:
-    #     item = Data()
-    #     item.data = hit["_source"]
-    #     item.compareSize = len(esearchCompare(id=hit.meta.id))
-    #     data.append(item)
 
-    #print('Total %s hits found.' % response.hits.total)   
-    #search = get_results(response)  
     dataALL = {"data":data,"total":total}       
-    return dataALL  
-
+    return dataALL 
+ 
+#ตัวเปรียบเที่ยบสินค้า
 def esearchCompare(id=""):      
     client = Elasticsearch()
 
     qOne = Q("term", _id=id)
     sOne = Search(using=client, index=db).query(qOne)
     base = sOne.execute()
-    if (base[0].Token=="NULL"):
-        Token = ""
+    if (base[0].thToken=="NULL"):
+        thToken = ""
     else:
-        Token = base[0].Token 
+        thToken = base[0].thToken
+
+    if (base[0].enToken=="NULL"):
+        enToken = ""
+    else:
+        enToken = base[0].enToken
+
+    if (base[0].Category == "NULL"):
+        cat = ""
+    else:
+        cat = base[0].Category
     response = client.search(
                 index=db,
                 body={
@@ -223,17 +111,28 @@ def esearchCompare(id=""):
                             {"match":{
                             "Name":{
                                 "query": base[0].Name,
-                                "minimum_should_match": "100%"
+                                "minimum_should_match": "70%"
                             }
                             }},
                             {"match":{
-                            "Name":{
-                                "query": base[0].Name ,
-                                "minimum_should_match": "100%"
+                            "thToken":{
+                                "query": thToken ,
+                                "minimum_should_match": "50%"
                             }
 
+                            }},
+                            {"match":{
+                                "enToken":{
+                                "query": enToken ,
+                                "minimum_should_match": "95%"
+                                }
+                            }},
+                            {"match":{
+                                "Category":{
+                                "query": cat ,
+                                "minimum_should_match": "100%"
+                                }
                             }}
-                        
                         ]
                         }
                     }

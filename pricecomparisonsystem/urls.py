@@ -20,5 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('search', views.search_product,name="search_product"),
-    path('product_compare/<product_id>/', views.product_compare),
+    path('product/<product_id>/', views.product),
 ]

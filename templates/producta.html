@@ -1,0 +1,199 @@
+<!-- <STYLE>
+    A {
+        text-decoration: none;
+    }
+</STYLE> -->
+
+{% extends 'layout.html' %}
+{% block title %}
+<title>Product</title>
+{%endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<!-- <h1>Page Number : {{page.number}}{{page.num_pages}}</h1> -->
+
+{%if counts %}
+
+{%endif%}
+{%if counts %}
+
+<div class="container">
+    <div class="row mt-5 mt-4">
+        <div class="col justify-content-center">
+            <form action="/search" method="get">
+                <div class="input-group mb-3">
+                    <input type="text" name="name" class="form-control" value="{{search_item}}">
+                    <select type="submit" name="category" class="btn btn-secondary" value="{{category_selected}}">
+                        <option value="all">หมวดหมู่ทั้งหมด</option>
+                        <option value="{{category_selected}}" style="display:none" selected>{% if category_selected == 'all'%}หมวดหมู่ทั้งหมด{% else %}{{category_selected}}{% endif %}</option>
+                        <option value="โทรศัพท์มือถือและแท็บเล็ต">โทรศัพท์มือถือและแท็บเล็ต</option>
+                        <option value="อุปกรณ์เสริมโทรศัพท์มือถือและแท็บเล็ต">อุปกรณ์เสริมโทรศัพท์มือถือและแท็บเล็ต</option>
+                        <option value="คอมพิวเตอร์และแล็ปท็อป">คอมพิวเตอร์และแล็ปท็อป</option>
+                        <option value="อุปกรณ์จัดเก็บข้อมูล">อุปกรณ์จัดเก็บข้อมูล</option>
+                        <option value="อุปกรณ์เชื่อมต่ออินเทอร์เน็ตและโปรแกรม">อุปกรณ์เชื่อมต่ออินเทอร์เน็ตและโปรแกรม</option>
+                        <option value="อุปกรณ์เสริมคอมพิวเตอร์">อุปกรณ์เสริมคอมพิวเตอร์</option>
+                        <option value="ชิ้นส่วนคอมพิวเตอร์">ชิ้นส่วนคอมพิวเตอร์</option>
+                        <option value="กล้อง">กล้อง</option>
+                        <option value="อุปกรณ์เสริมกล้อง">อุปกรณ์เสริมกล้อง</option>
+                        <option value="อุปกรณ์สำหรับเกมเมอร์">อุปกรณ์สำหรับเกมเมอร์</option>
+                    </select>
+                    <input type="submit" value="Search" class="btn btn-outline-secondary"></input>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="d-flex flex-row mt-3 mb-3">
+        <div class="dropdown" style="margin-right: 5px;">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                {{sort_name}}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item"
+                        href="{%url 'search_product'%}?name={{search_item}}&page={{num}}&sort=relevant">ความสอดคล้อง</a>
+                </li>
+                <li><a class="dropdown-item"
+                        href="{%url 'search_product'%}?name={{search_item}}&page={{num}}&sort=asc">ราคาต่ำ->ราคาสูง</a>
+                </li>
+                <li><a class="dropdown-item"
+                        href="{%url 'search_product'%}?name={{search_item}}&page={{num}}&sort=desc">ราคาสูง->ราคาต่ำ</a>
+                </li>
+                <li><a class="dropdown-item"
+                        href="{%url 'search_product'%}?name={{search_item}}&page={{num}}&sort=score">คะแนนรีวิว</a>
+                </li>
+            </ul>
+        </div>
+        <!-- <div class="dropdown" style="margin-right: 5px;">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                ราคา
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                <li><a class="dropdown-item"
+                        href="{%url 'search_product'%}?name={{search_item}}&page={{num}}&sort=asc">ราคาต่ำ->ราคาสูง</a>
+                </li>
+                <li><a class="dropdown-item"
+                        href="{%url 'search_product'%}?name={{search_item}}&page={{num}}&sort=desc">ราคาสูง->ราคาต่ำ</a>
+                </li>
+                <li><a class="dropdown-item"
+                        href="{%url 'search_product'%}?name={{search_item}}&page={{num}}&sort=score">คะแนนรีวิว</a>
+                </li>
+            </ul>
+        </div> -->
+        <!-- <div class="dropdown" style="margin-right: 5px;">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                ยอดนิยม
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                <li><a class="dropdown-item"
+                        href="{%url 'search_product'%}?name={{search_item}}&page={{num}}&sort=asc">ราคาต่ำ->ราคาสูง</a>
+                </li>
+                <li><a class="dropdown-item"
+                        href="{%url 'search_product'%}?name={{search_item}}&page={{num}}&sort=desc">ราคาสูง->ราคาต่ำ</a>
+                </li>
+                <li><a class="dropdown-item"
+                        href="{%url 'search_product'%}?name={{search_item}}&page={{num}}&sort=score">คะแนนรีวิว</a>
+                </li>
+            </ul>
+        </div> -->
+    </div>
+    <div class="row">
+        {%for product in page.object_list%}
+        <div class="col-3 mt-2 mb-2">
+            <div class="card h-100 border-1 rounded-3 float-shadow">
+                <img src="{{product.data.Image}}" alt="..." width="100%">
+
+                <div class="card-body ">
+                    <p class="card-title">{{product.data.Name}}</p>
+                    <p class="card-text " style="color:#1b1a19;">ราคา : {{product.data.Price|floatformat:0}} ฿</p>
+
+                    <div>
+                        {%if product.data.Platform == "Shopee" %}
+                        <img src="https://ustatic.priceza.com/img/logo/shopee.jpg" alt="" width="30%"
+                            style="display: inline;">
+                        {%elif product.data.Platform == "Lazada"%}
+                        <img src="https://ustatic.priceza.com/img/logo/lazada_white.jpg" alt="" width="30%"
+                            style="display: inline;">
+                        {%elif product.data.Platform == "JDCentral" %}
+                        <img src="https://ustatic.priceza.com/img/logo/central_new.png" alt="" width="30%"
+                            style="display: inline;">
+                        {%else%}
+                        ไม่พบPlatform
+                        {% endif %}
+                        <span>
+                            <i class="fa fa-star text2" style="font-size:19px;color:#ffa400; ">
+                                <span class="rating-score-text">{{product.data.Score|floatformat:1}}
+
+                                    <span class="count-rate">({{product.data.Review}})</span></span>
+                            </i>
+                        </span>
+                    </div>
+
+
+                    <!-- <p class="card-text">Platform : {{product.data.Platform}}</p> -->
+
+
+                </div>
+                {%if product.compareSize > 1 %}
+                <div
+                    class="card-footer justify-content-center bg-primary align-content-center product-compare text-center">
+
+                    <div class="btn"><a href="product_compare/{{product.id}}"
+                            style="text-decoration: none; ">{{product.compareSize}}
+                            ร้านค้า</a></div>
+                </div>
+                {%else%}
+                <div class="card-footer justify-content-center align-content-center bg-primary text-center">
+                    <div class="btn"><a href="{{product.data.URL}}" class="text-light"
+                            style="text-decoration: none; ">เช็คราคา</a></div>
+
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {%endfor%}
+
+    </div>
+    <div class="row">
+        <nav aria-label="..." class="mt-4 justify-content-end align-content-end">
+            <ul class="pagination">
+                {%if page.has_previous %}
+                <li class="page-item"><a class="page-link"
+                        href="{%url 'search_product'%}?name={{search_item}}&page={{page.previous_page_number}}">Previous
+                        Page</a></li>
+                {%endif%}
+                {%for num in size%}
+                <li class="page-item {%if page.number is num%}active{%endif%}"><a class="page-link"
+                        href="{%url 'search_product'%}?name={{search_item}}&page={{num}}">{{num}}</a></li>
+                {%endfor%}
+
+                {%if page.has_next %}
+                <li class="page-item"><a class="page-link"
+                        href="{%url 'search_product'%}?name={{search_item}}&page={{page.next_page_number}}">Next
+                        Page</a>
+                    {%endif%}
+            </ul>
+        </nav>
+    </div>
+    <!-- <a href="product_compare/{{product.data.meta.id}}">{{product.meta.id}}</a>
+    <a href="product_compare/{{product.data.meta.id}}"><img src="{{product.data.Image}}" alt=""></a>
+    <p>{{product.data.meta.id}}</p>
+    <p>{{product.data.Name}}</p>
+    <p>{{product.data.Price}}</p>
+    <p>Score : {{product.data.Score}}</p>
+    <p>Review : {{product.data.Review}}</p> -->
+
+
+
+    {% else %}
+    <h1 class="lost justify-content-center align-content-center">" ไม่มี Product ดังกล่าว "</h1>
+    {%endif%}
+
+    {%endblock %}
+
+
+</div>
