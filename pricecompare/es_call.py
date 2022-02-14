@@ -41,8 +41,14 @@ def esearch(Name="",categoryMenu="",Page=1,sort="relevant",platform=""):
         field = "Price"
         sort_select = "desc"
 
-    if (categoryMenu == "all"):
+    if(categoryMenu=="all" and platform=="all" and Name==""):
         query_body = {"match_all": {}}
+    elif(categoryMenu=="all" and platform=="all" and Name!=""):
+        query_body = {"bool" : { "should": [{"must": {"Name": {"query": Name,"fuzziness": "1"}} }]}}
+    elif (categoryMenu == "all"):
+        query_body = {"bool" : { "should": [{"match": {"Name": {"query": Name,"fuzziness": "1"}} },{"match": {"Platform": platform}}]}}
+    elif(platform == "all"):
+        query_body = {"bool" : { "should": [{"match": {"Name": {"query": Name,"fuzziness": "1"}} },{"match": {"Category": categoryMenu}}]}}
     else:
         query_body = {"bool" : { "should": [{"match": {"Name": {"query": Name,"fuzziness": "1"}} },{"match": {"Category": categoryMenu}},{"match": {"Platform": platform}}]}} 
     q_body={
