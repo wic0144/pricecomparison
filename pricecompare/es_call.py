@@ -16,16 +16,58 @@ def categoryAll():
                         "langs" : {
                             "terms" : { "field" : "Category",  "size" : 500 }
                         }
-                    }
+                        }
                     }
                 )
 
 
-    categoryList = []
+    class CategoryData:
+        def _init_(self, data, compareSize):
+            self.category = None
+            self.total = None
+    categoryList=[]
+    total = response["hits"]['total']['value']
+    
     for hit in response['aggregations']['langs']['buckets']:
-        categoryList.append(hit["key"]) 
-    return categoryList  
+        item = CategoryData()
+        item.category = hit["key"]
+        item.total = hit["doc_count"]
+        categoryList.append(item)
+    return categoryList 
 
+def categoryCollection(category="",size=10):      
+    client = Elasticsearch()      
+    response = client.search(
+                index=db,
+                body={
+                    "track_total_hits":True,
+                    "size": size, 
+                    "query": {
+                        "term": {
+                        "Category": {
+                            "value": category
+                        }
+                        }
+                    }
+                    }
+                )
+
+    class CollectionData:
+        def _init_(self, data, compareSize):
+            self.category = None
+            self.collection = None
+            self.total = None
+
+    collectionList=[]
+    total = response["hits"]['total']['value']
+    
+    for hit in response["hits"]["hits"]:
+        item = CollectionData()
+        item.category = category
+        item.total = total
+        item.collection = hit["_source"]
+        collectionList.append(item)
+    return collectionList 
 #ตัวค้นหาหลัก
 def esearch(Name="",categoryMenu="all",Page=1,sort="relevant",platform="all"):
     client = Elasticsearch()
@@ -60,7 +102,7 @@ def esearch(Name="",categoryMenu="all",Page=1,sort="relevant",platform="all"):
         "track_total_hits":True, 
         "query":query_body
         ,
-                "sort": [
+        "sort": [
                 {
                     field: {
                         "order": sort_select
@@ -158,6 +200,12 @@ def esearchCompare(id=""):
         data_list.append(data["_source"])
     return data_list
 
+def product_collection_set(size=10,category=""): 
+    results = []  
+    for hit in response: 
+        result_tuple = (hit.Name + ' ' + str(hit.Price))    
+        results.append(result_tuple)  
+    return results
 
 def get_results(response): 
     results = []  

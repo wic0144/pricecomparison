@@ -486,8 +486,8 @@
 									<select class="single-option-selector" data-option="collection-option" id="collection-option" name="category" value="{{category_selected}}">
 										<!-- <select type="submit" name="category" class="btn btn-secondary" value="{{category_selected}}"> -->
 										<option value="all">หมวดหมู่ทั้งหมด</option>
-										{% for cate in category_all%}
-											<option value="{{cate}}">{{cate}}</option>
+										{% for cate in category_all %}
+											<option value="{{cate.category}}">{{cate.category}}</option>
 										{% endfor %}
 									</select>
 								</div>

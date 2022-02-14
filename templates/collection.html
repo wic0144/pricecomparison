@@ -488,7 +488,7 @@
 											{%endif %}</option> 
 										<option value="all">หมวดหมู่ทั้งหมด</option>
 										{% for cate in category_all%}
-											<option value="{{cate}}">{{cate}}</option>
+											<option value="{{cate.category}}">{{cate.category}}</option>
 										{% endfor %}
 										<!-- </select> -->
 									</select>
@@ -850,10 +850,16 @@
 								<div class="form-horizontal">
 									<label for="SortBy">Sort by</label>
 									<select name="SortBy" id="SortBy" onchange="location = this.value" >
-										<option value="{%url 'search_product' %}?category={{category_selected}}&name={{search_item}}&page={{page_num}}&sort=score">Relevant</option>
-										<option value="{%url 'search_product' %}?category={{category_selected}}&name={{search_item}}&page={{page_num}}&sort=asc">Price, low to high</option>
-										<option value="{%url 'search_product' %}?category={{category_selected}}&name={{search_item}}&page={{page_num}}&sort=desc">Price, high to low</option>
-										<option value="{%url 'search_product' %}?category={{category_selected}}&name={{search_item}}&page={{page_num}}&sort=score">Score, high to low</option>
+										<option style="display:none" selected>
+												{%if sort == 'relevant' %}Relevant
+												{% elif sort == 'asc' %}Price, low to high
+												{% elif sort == 'desc' %}Price, high to low
+												{% else %}Score, high to low
+												{%endif%}</option>
+										<option value="{%url 'search_product' %}?category={{category_selected}}&platform={{platform_selected}}&name={{search_item}}&page={{page_num}}&sort=relevant">Relevant</option>
+										<option value="{%url 'search_product' %}?category={{category_selected}}&platform={{platform_selected}}&name={{search_item}}&page={{page_num}}&sort=asc">Price, low to high</option>
+										<option value="{%url 'search_product' %}?category={{category_selected}}&platform={{platform_selected}}&name={{search_item}}&page={{page_num}}&sort=desc">Price, high to low</option>
+										<option value="{%url 'search_product' %}?category={{category_selected}}&platform={{platform_selected}}&name={{search_item}}&page={{page_num}}&sort=score">Score, high to low</option>
 									</select>
 								</div>
 								<div class="collection-view">
@@ -957,8 +963,7 @@
 														<button name="add" id="AddToCart"
 															class="btn btn-1 add-to-cart" title="Buy Now">
 															<span id="AddToCartText"><i class="fa fa-shopping-cart"></i>
-																{{product.compareSize}}
-																	ร้านค้า
+																เปรียบเทียบ {{product.compareSize}} ร้านค้า
 															</span>
 														</button>
 													</a>
@@ -1808,7 +1813,7 @@
 				}
 			}).on('page', function (event, page) {
 				console.info(page + ' (from event listening)');
-				location.href = '?category={{category_selected}}&name={{search_item}}&page='+page+'&sort={{sort}}';
+				location.href = '?category={{category_selected}}&platform={{platform_selected}}&name={{search_item}}&page='+page+'&sort={{sort}}';
 			});
 		});
 	</script>

@@ -9,8 +9,24 @@ from django.http import JsonResponse
 # Create your views here.
 
 def index(request):
+    
     category_all=categoryAll()
-    return render(request,'index.html',{'category_all':category_all})
+    #category_all[0].category จะเอา ชื่อ category นั้น
+    #category_all[0].total จะเอาจำนวนของ category นั้น
+
+    collection_list = []
+    category_collection1=categoryCollection(category="โทรศัพท์มือถือและแท็บเล็ต",size=10)
+    category_collection2=categoryCollection(category="อุปกรณ์เสริมคอมพิวเตอร์",size=10)
+    collection_list.append(category_collection1)
+    collection_list.append(category_collection2)
+    #category_collection[0][0].category เอาชื่อ categoryของ collection นั้น
+    #category_collection[0][0].collection data ของ category ที่ส่งไป อยากได้เท่าไหร่กำหนด size หรือ category เอา
+    #ส่วนตัวแปรมีไรบ้างดูใน categoryCollection()
+
+    #print(collection_list[0][0].category) โทรศัพท์มือถือและแท็บเล็ต
+    #print(collection_list[1][0].collection) อุปกรณ์เสริมคอมพิวเตอร์
+
+    return render(request,'index.html',{'category_all':category_all,'collection_list':collection_list})
 
 def search_product(request): 
     name = request.GET['name']
@@ -33,7 +49,9 @@ def search_product(request):
         sort = "relevant"
     sort_name = "ความสอดคล้อง"
     
-    if(sort == "asc"):
+    if(sort == "relevant"):
+        sort_name="ความสอดคล้อง"
+    elif(sort == "asc"):
         # data= sorted(data, key=lambda x: x.data["Price"], reverse=False)
         sort_name = "ราคาต่ำ->ราคาสูง"
     elif(sort == "desc"):
@@ -46,6 +64,7 @@ def search_product(request):
     response = esearch(Name=name,categoryMenu=categoryMenu,Page=page_num,sort=sort,platform=pf)
 
     data = response['data']
+    print(response['total'])
     total = math.ceil(int(response['total'])/60.0)
     if(total>150):
         total = 150
