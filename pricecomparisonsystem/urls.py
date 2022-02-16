@@ -20,5 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('search', views.search_product,name="search_product"),
+    path('todays-deals', views.todays_deals),
+    path('BI-REPORT', views.BI_REPORT),
     path('product/<product_id>/', views.product),
 ]

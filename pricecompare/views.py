@@ -15,18 +15,23 @@ def index(request):
     #category_all[0].total จะเอาจำนวนของ category นั้น
 
     collection_list = []
-    category_collection1=categoryCollection(category="โทรศัพท์มือถือและแท็บเล็ต",size=10)
-    category_collection2=categoryCollection(category="อุปกรณ์เสริมคอมพิวเตอร์",size=10)
+    category_collection1=categoryCollection(category="โทรศัพท์มือถือและแท็บเล็ต",size=5)
+    category_collection2=categoryCollection(category="คอมพิวเตอร์และแล็ปท็อป",size=5)
+    category_collection3=categoryCollection(category="กล้อง",size=5)
+    category_collection4=categoryCollection(category="อุปกรณ์สำหรับเกมเมอร์",size=5)
     collection_list.append(category_collection1)
     collection_list.append(category_collection2)
+    collection_list.append(category_collection3)
+    collection_list.append(category_collection4)
+
     #category_collection[0][0].category เอาชื่อ categoryของ collection นั้น
-    #category_collection[0][0].collection data ของ category ที่ส่งไป อยากได้เท่าไหร่กำหนด size หรือ category เอา
+    # #data ของ category ที่ส่งไป อยากได้เท่าไหร่กำหนด size หรือ category เอา
     #ส่วนตัวแปรมีไรบ้างดูใน categoryCollection()
 
     #print(collection_list[0][0].category) โทรศัพท์มือถือและแท็บเล็ต
-    #print(collection_list[1][0].collection) อุปกรณ์เสริมคอมพิวเตอร์
+    # print(collection_list[0]) #อุปกรณ์เสริมคอมพิวเตอร์
 
-    return render(request,'index.html',{'category_all':category_all,'collection_list':collection_list})
+    return render(request,'index.html',{'category_all':category_all,'collection_list':collection_list,'category_selected':"all",'platform_selected':"all"})
 
 def search_product(request): 
     name = request.GET['name']
@@ -94,3 +99,10 @@ def product(request,product_id):
             'main_product_url':main_product_url,
             'compares':compares
             })
+
+def todays_deals(request):
+    return render(request,'todays-deals.html')\
+
+        
+def BI_REPORT(request):
+    return render(request,'lookbook.html')

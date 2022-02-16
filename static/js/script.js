@@ -12,35 +12,21 @@ $(document).ready(function () {
       // console.log(data.data);
 
       $.each(data.data.items, function (index, value) {
-        // console.log(data);
-        console.log(value.itemid);
-        // var html = '<li class="list-group-item carousel-item' + index + '" >' +
-        //   '<div class="card border-0" style="width: 8rem;" >' +
-        //   ' <img src="https://cf.shopee.co.th/file/' + value.image + '" class="card-img-top" alt="...">' +
-        //   '<div class="card-body">' +
-        //   // '<h5 class="card-title">' + value.name + '</h5>' +
-        //   '<p class="card-text">' + value.price / 100000 + '</p>' +
-        //   // ' <a href="#" class="btn btn-primary">Go somewhere</a>' +
-        //   '   </div>' +
-        //   '    </div>' +
-        //   '   </li > ';
+
+        console.log(value);
 
 
-        var html2 =
 
-          // '<div class="owl-item">' +
-
-          '<div class="grid__item">' +
-          ' <div class="grid__item_wrapper">' +
+        var html2 = '<div class="grid__item large--one-fifth medium--one-quarter">' +
+          '	<div class="grid__item_wrapper">' +
           '<div class="grid__image product-image">' +
           '<a href="./product.html">' +
-          '<img src="https://cf.shopee.co.th/file/' + value.image + '"' +
-          'alt="Demo Product Sample">' +
+          '<img src="https://cf.shopee.co.th/file/' + value.image + '"alt="Demo Product Sample">' +
           '</a>' +
+          '<span class="sale-icon">ลด ' + value.discount + '</span>' +
           '<div class="quickview">' +
           '<div class="product-ajax-cart hidden-xs hidden-sm">' +
-          '<div data-handle="consequuntur-magni-dolores"' +
-          'class="quick_shop-div">' +
+          '<div data-handle="consequuntur-magni-dolores"class="quick_shop-div">' +
           '<a href="#quick-shop-modal" class="btn quick_shop">' +
           '<i class="fa fa-eye" title="Quick View"></i>' +
           '</a>' +
@@ -49,8 +35,7 @@ $(document).ready(function () {
           '</div>' +
           '</div>' +
           '<div class="rating-star">' +
-          '<span class="spr-badge" id="spr_badge_3008529987"' +
-          'data-rating="0.0">' +
+          '<span class="spr-badge" id="spr_badge_3008529987" data-rating="0.0">' +
           '<span class="spr-starrating spr-badge-starrating">' +
           '<i class="spr-icon spr-icon-star-empty" style=""></i>' +
           '<i class="spr-icon spr-icon-star-empty" style=""></i>' +
@@ -62,43 +47,49 @@ $(document).ready(function () {
           '</span>' +
           '</div>' +
           '<p class="h6 product-title">' +
-          '<a href="./product.html">Demo Product Sample</a>' +
+          '<a href="./product.html">' + value.name + '</a>' +
           '</p>' +
           '<p class="product-price">' +
           '<strong>On Sale</strong>' +
-          '<span class="money" data-currency-usd="$19.99">' + value.price / 100000 + '</span>' +
+          '<span class="money" >฿ ' + value.price / 100000 + '</span>' +
           '<span class="visually-hidden">Regular price</span>' +
-
+          '<s><span class="money" >฿ ' + value.price_before_discount / 100000 + '</span></s>' +
           '</p>' +
+
+          '<div class="list-mode-description">' +
+          'Quisque vel enim quis purus ultrices consequat, sed tincidunt massa blandit' +
+          'ipsum interdum tristique cras dictum, lacus eu molestie elementum nulla est' +
+          'auctor. Etiam dan lorem quis ligula elementum porttitor quisem. Duis eget' +
+          'purus urna fusce sed scelerisque ante. Lorem ipsum dolor sit amet' +
+          'consectetur...' +
+          '</div>' +
           '<ul class="action-button">' +
-          '<li class="add-to-cart-form">' +
+          '	<li class="add-to-cart-form">' +
           '<form action="#" method="post" enctype="multipart/form-data"' +
-          'id="AddToCartForm" class="form-vertical">' +
-          ' <div class="effect-ajax-cart">' +
+          '	id="AddToCartForm" class="form-vertical">' +
+          '	<div class="effect-ajax-cart">' +
           '<input type="hidden" name="quantity" value="1">' +
-          '<button type="submit" name="add" id="AddToCart"' +
-          'class="btn btn-1 add-to-cart" title="Buy Now">' +
-          '<span id="AddToCartText"><i' +
-          ' class="fa fa-shopping-cart"></i> Buy' +
-          'Now</span>' +
-          ' </button>' +
+          '	<button type="submit" name="add" id="AddToCart"' +
+          '	class="btn btn-1 add-to-cart" title="Buy Now">' +
+          '<span id="AddToCartText"><i class="fa fa-shopping-cart"></i>' +
+          '	Buy Now</span>' +
+          '</button>' +
           '</div>' +
           '</form>' +
-          ' </li>' +
+          '	</li>' +
           '<li class="wishlist">' +
-          '<a class="wish-list btn" href="./wish-list.html"><i' +
-          'class="fa fa-heart" title="Wishlist"></i></a>' +
+          '<a class="wish-list btn" href="./wish-list.html"><i class="fa fa-heart"' +
+          '	title="Wishlist"></i></a>' +
           '</li>' +
           '<li class="email">' +
           '<a target="_blank" class="btn email-to-friend" href="#"><i' +
-          ' class="fa fa-envelope"' +
-          'title="Email to friend"></i></a>' +
+          'class="fa fa-envelope" title="Email to friend"></i></a>' +
           '</li>' +
-          ' </ul>' +
-          '</div>' +
+          '</ul>' +
           '</div>' +
           '</div>';
-        // $('.home-products-slider-test').append(html2);
+
+        $('.sale-products').append(html2);
       }
 
       );
