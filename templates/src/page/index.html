@@ -382,7 +382,7 @@
 							</div>
 							<div class="sdcollections-content">
 								<ul class="sdcollections-list">
-									<li class="sdc-element vetical-menu1 site-nav--has-dropdown" aria-haspopup="true">
+									<!-- <li class="sdc-element vetical-menu1 site-nav--has-dropdown" aria-haspopup="true">
 										<a href="./collection.html" class="site-nav__link">
 											<div class="element-main">
 												<div class="collection-icon">
@@ -443,236 +443,27 @@
 												</ul>
 											</li>
 										</ul>
-									</li>
-									<li class="sdc-element vetical-menu2 site-nav--has-dropdown" aria-haspopup="true">
-										<a href="./collection.html" class="site-nav__link">
-											<div class="element-main">
-												<div class="collection-icon">
-													<img src="{% static 'assets/images/beauty-health.png' %}"
-														alt="collection icon">
-												</div>
-												<div class="collection-area have-icons">
-													<div class="collection-name">
-														Beauty &amp; Health (36)
-													</div>
-												</div>
-											</div>
-											<span class="icon icon-arrow-right" aria-hidden="true"></span>
-										</a>
-										<ul class="site-nav__dropdown vetical__dropdown vetical__dropdown1">
-											<li class="nav-links nav-links01 grid__item large--one-half">
-												<ul>
-													<li class="list-title">Usefull links</li>
-													<li class="list-unstyled nav-sub-mega">
-														<a href="./collection.html">Makeup</a>
-													</li>
-													<li class="list-unstyled nav-sub-mega">
-														<a href="./collection.html">Body Care</a>
-													</li>
-													<li class="list-unstyled nav-sub-mega">
-														<a href="./collection.html">Skin Care</a>
-													</li>
-													<li class="list-unstyled nav-sub-mega">
-														<a href="./collection.html">Perfumes</a>
-													</li>
-													<li class="list-unstyled nav-sub-mega">
-														<a href="./collection.html">Product sets</a>
-													</li>
-													<li class="list-unstyled nav-sub-mega">
-														<a href="./collection.html">Functional products</a>
-													</li>
-													<li class="list-unstyled nav-sub-mega">
-														<a href="./collection.html">Salon Equipment</a>
-													</li>
-												</ul>
-											</li>
-											<li class="grid__item large--one-half">
-												<ul>
-													<li class="list-title">New Arrivals</li>
-													<li class="list-product">
-														<div class="list-product-image">
-															<a href="./product.html"><img
-																	src="{% static 'assets/images/demo2_210x210.jpg' %}"
-																	alt="Demo Product Sample"></a>
-														</div>
-														<div class="list-product-name">
-															Demo Product Sample
-														</div>
-														<div class="list-product-link">
-															<a href="./product.html">More Detail</a>
-														</div>
-													</li>
-												</ul>
-											</li>
-										</ul>
-									</li>
+									</li> -->
+									{% for cate in category_all %}
+
+
 									<li class="sdc-element">
-										<a href="./collection.html">
+										<a
+											href="/search?&category={{cate.category}}&platform=all&sort=relevant&page=1&name=">
 											<div class="element-main">
 												<div class="collection-icon">
-													<img src="{% static 'assets/images/homelife.png' %}"
-														alt="collection icon">
+													<!-- <img src="{% static 'assets/images/homelife.png' %}"
+														alt="collection icon"> -->
 												</div>
 												<div class="collection-area have-icons">
 													<div class="collection-name">
-														Homelife (8)
+														{{cate.category}}
 													</div>
 												</div>
 											</div>
 										</a>
 									</li>
-									<li class="sdc-element">
-										<a href="./collection.html">
-											<div class="element-main">
-												<div class="collection-icon">
-													<img src="{% static 'assets/images/appliances.png' %}"
-														alt="collection icon">
-												</div>
-												<div class="collection-area have-icons">
-													<div class="collection-name">
-														Home Appliances (8)
-													</div>
-												</div>
-											</div>
-										</a>
-									</li>
-									<li class="sdc-element vetical-menu3 site-nav--has-dropdown" aria-haspopup="true">
-										<a href="./collection.html" class="site-nav__link">
-											<div class="element-main">
-												<div class="collection-icon">
-													<img src="{% static 'assets/images/smartphones.png' %}"
-														alt="collection icon">
-												</div>
-												<div class="collection-area have-icons">
-													<div class="collection-name">
-														Smartphones &amp; Cell Phones (49)
-													</div>
-												</div>
-											</div>
-											<span class="icon icon-arrow-right" aria-hidden="true"></span>
-										</a>
-										<ul class="site-nav__dropdown vetical__dropdown vetical__dropdown1">
-											<li class="nav-links nav-links01 grid__item large--one-half">
-												<ul>
-													<li class="list-title">Usefull links</li>
-													<li class="list-unstyled nav-sub-mega">
-														<a href="./collection.html">iOS</a>
-													</li>
-													<li class="list-unstyled nav-sub-mega">
-														<a href="./collection.html">Android</a>
-													</li>
-													<li class="list-unstyled nav-sub-mega">
-														<a href="./collection.html">Windows Phone</a>
-													</li>
-													<li class="list-unstyled nav-sub-mega">
-														<a href="./collection.html">BlackBerry</a>
-													</li>
-													<li class="list-unstyled nav-sub-mega">
-														<a href="./collection.html">Firefox OS</a>
-													</li>
-													<li class="list-unstyled nav-sub-mega">
-														<a href="./collection.html">Tablet</a>
-													</li>
-													<li class="list-unstyled nav-sub-mega">
-														<a href="./collection.html">Smartwatches</a>
-													</li>
-												</ul>
-											</li>
-											<li class="grid__item large--one-half">
-												<ul>
-													<li class="list-title">New Arrivals</li>
-													<li class="list-product">
-														<div class="list-product-image">
-															<a href="./product.html"><img
-																	src="{% static 'assets/images/demo3_210x210.jpg' %}"
-																	alt="Etiam dan lorem quis"></a>
-														</div>
-														<div class="list-product-name">
-															Etiam dan lorem quis
-														</div>
-														<div class="list-product-link">
-															<a href="./product.html">More Detail</a>
-														</div>
-													</li>
-												</ul>
-											</li>
-										</ul>
-									</li>
-									<li class="sdc-element">
-										<a href="./collection.html">
-											<div class="element-main">
-												<div class="collection-icon">
-													<img src="{% static 'assets/images/camera.png' %}"
-														alt="collection icon">
-												</div>
-												<div class="collection-area have-icons">
-													<div class="collection-name">
-														Camera - Camcorder (37)
-													</div>
-												</div>
-											</div>
-										</a>
-									</li>
-									<li class="sdc-element">
-										<a href="./collection.html">
-											<div class="element-main">
-												<div class="collection-icon">
-													<img src="{% static 'assets/images/clothing.png' %}"
-														alt="collection icon">
-												</div>
-												<div class="collection-area have-icons">
-													<div class="collection-name">
-														Clothing (6)
-													</div>
-												</div>
-											</div>
-										</a>
-									</li>
-									<li class="sdc-element">
-										<a href="./collection.html">
-											<div class="element-main">
-												<div class="collection-icon">
-													<img src="{% static 'assets/images/kids-baby.png' %}"
-														alt="collection icon">
-												</div>
-												<div class="collection-area have-icons">
-													<div class="collection-name">
-														Kids &amp; Baby (6)
-													</div>
-												</div>
-											</div>
-										</a>
-									</li>
-									<li class="sdc-element">
-										<a href="./collection.html">
-											<div class="element-main">
-												<div class="collection-icon">
-													<img src="{% static 'assets/images/sport.png' %}"
-														alt="collection icon">
-												</div>
-												<div class="collection-area have-icons">
-													<div class="collection-name">
-														Sport &amp; Outdoor (6)
-													</div>
-												</div>
-											</div>
-										</a>
-									</li>
-									<li class="sdc-element">
-										<a href="./collection.html">
-											<div class="element-main">
-												<div class="collection-icon">
-													<img src="{% static 'assets/images/stationery.png' %}"
-														alt="collection icon">
-												</div>
-												<div class="collection-area have-icons">
-													<div class="collection-name">
-														Stationery (15)
-													</div>
-												</div>
-											</div>
-										</a>
-									</li>
+									{% endfor %}
 								</ul>
 							</div>
 						</div>
@@ -757,14 +548,13 @@
 											<span class="cr-desc">Happy New Year</span>
 										</div>
 									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				
 				<!-- <div id="beauty-health-blocks" class="beauty-health-wrapper grid--full grid--table grid-block-full">
-
 					<div class="beauty-health-inner">
 						<div class="bh-top home-block-title">
 							<div class="collection-name">
@@ -857,13 +647,13 @@
 						</div>
 					</div>
 				</div> -->
-				{%for %}
 				<div id="beauty-health-blocks" class="beauty-health-wrapper grid--full grid--table grid-block-full">
 					<div class="beauty-health-inner">
 						<div class="bh-top home-block-title">
 							<div class="collection-name">
 								<img class="collection-icon" src="{% static 'assets/images/beauty-health.png' %}"
-									alt=""><a href="./collection.html">Beauty &amp; Health</a>
+									alt=""><a
+									href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=">{{collection_list.0.0.category}}</a>
 							</div>
 							<div class="collection-tags">
 								<ul class="bh-tags">
@@ -881,13 +671,13 @@
 								<div class="home-slideshow-block bh-slideshow">
 									<div class="home-gallery-slider">
 										<div><a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_slide1_880x285.jpg' %}"
+													src="https://cf.shopee.co.th/file/f54999f1748e7ee6ca771986101f29eb"
 													alt=""></a></div>
 										<div><a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_slide2_880x285.jpg' %}"
+													src="https://cf.shopee.co.th/file/acba79c7806c1c981cbfc7d0ab1440a6"
 													alt=""></a></div>
 										<div><a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_slide3_880x285.jpg' %}"
+													src="https://cf.shopee.co.th/file/a714e6261aabf448b3c183f84b8b8a50"
 													alt=""></a></div>
 									</div>
 								</div>
@@ -897,12 +687,12 @@
 									</div>
 									<div class="home-products-block-content">
 										<div class="home-products-slider">
+											{%for i in collection_list.0%}
 											<div class="grid__item">
 												<div class="grid__item_wrapper">
 													<div class="grid__image product-image">
 														<a href="./product.html">
-															<img src="{% static 'assets/images/demo1_product1_208x208.jpg' %}"
-																alt="Demo Product Sample">
+															<img src="{{i.collection.Image}}" alt="Demo Product Sample">
 														</a>
 														<div class="quickview">
 															<div class="product-ajax-cart hidden-xs hidden-sm">
@@ -929,27 +719,30 @@
 														</span>
 													</div>
 													<p class="h6 product-title">
-														<a href="./product.html">Demo Product Sample</a>
+														<a
+															href="./product.html">{{i.collection.Name}}{{i.collection.id}}</a>
 													</p>
 													<p class="product-price">
 														<strong>On Sale</strong>
-														<span class="money" data-currency-usd="$19.99">$19.99</span>
-														<span class="visually-hidden">Regular price</span>
-														<s><span class="money"
-																data-currency-usd="$24.99">$24.99</span></s>
+														<span class="money">฿
+															{{i.collection.Price|floatformat:0}}</span>
+
 													</p>
 													<ul class="action-button">
 														<li class="add-to-cart-form">
-															<form action="#" method="post" enctype="multipart/form-data"
-																id="AddToCartForm" class="form-vertical">
+															<form action="{{i.collection.URL}}" method="post"
+																enctype="multipart/form-data" id="AddToCartForm"
+																class="form-vertical">
 																<div class="effect-ajax-cart">
 																	<input type="hidden" name="quantity" value="1">
-																	<button type="submit" name="add" id="AddToCart"
-																		class="btn btn-1 add-to-cart" title="Buy Now">
-																		<span id="AddToCartText"><i
-																				class="fa fa-shopping-cart"></i> Buy
-																			Now</span>
-																	</button>
+																	<a href="{{i.collection.URL}}"><button name="add"
+																			id="AddToCart" class="btn btn-1 add-to-cart"
+																			title="Buy Now">
+																			<span id="AddToCartText"><i
+																					class="fa fa-shopping-cart"></i> Buy
+																				Now</span>
+																		</button></a>
+
 																</div>
 															</form>
 														</li>
@@ -965,278 +758,7 @@
 													</ul>
 												</div>
 											</div>
-											<div class="grid__item">
-												<div class="grid__item_wrapper">
-													<div class="grid__image product-image">
-														<a href="./product.html">
-															<img src="{% static 'assets/images/demo1_product2_208x208.jpg' %}"
-																alt="Demo Product Sample">
-														</a>
-														<div class="quickview">
-															<div class="product-ajax-cart hidden-xs hidden-sm">
-																<div data-handle="consequuntur-magni-dolores"
-																	class="quick_shop-div">
-																	<a href="#quick-shop-modal" class="btn quick_shop">
-																		<i class="fa fa-eye" title="Quick View"></i>
-																	</a>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="rating-star">
-														<span class="spr-badge" id="spr_badge_3008529987"
-															data-rating="0.0">
-															<span class="spr-starrating spr-badge-starrating">
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-															</span>
-															<span class="spr-badge-caption">No reviews </span>
-														</span>
-													</div>
-													<p class="h6 product-title">
-														<a href="./product.html">Demo Product Sample</a>
-													</p>
-													<p class="product-price">
-														<strong>On Sale</strong>
-														<span class="money" data-currency-usd="$19.99">$19.99</span>
-														<span class="visually-hidden">Regular price</span>
-														<s><span class="money"
-																data-currency-usd="$24.99">$24.99</span></s>
-													</p>
-													<ul class="action-button">
-														<li class="add-to-cart-form">
-															<form action="#" method="post" enctype="multipart/form-data"
-																id="AddToCartForm" class="form-vertical">
-																<div class="effect-ajax-cart">
-																	<input type="hidden" name="quantity" value="1">
-																	<button type="submit" name="add" id="AddToCart"
-																		class="btn btn-1 add-to-cart" title="Buy Now">
-																		<span id="AddToCartText"><i
-																				class="fa fa-shopping-cart"></i> Buy
-																			Now</span>
-																	</button>
-																</div>
-															</form>
-														</li>
-														<li class="wishlist">
-															<a class="wish-list btn" href="./wish-list.html"><i
-																	class="fa fa-heart" title="Wishlist"></i></a>
-														</li>
-														<li class="email">
-															<a target="_blank" class="btn email-to-friend" href="#"><i
-																	class="fa fa-envelope"
-																	title="Email to friend"></i></a>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<div class="grid__item">
-												<div class="grid__item_wrapper">
-													<div class="grid__image product-image">
-														<a href="./product.html">
-															<img src="{% static 'assets/images/demo1_product3_208x208.jpg' %}"
-																alt="Demo Product Sample">
-														</a>
-														<div class="quickview">
-															<div class="product-ajax-cart hidden-xs hidden-sm">
-																<div data-handle="consequuntur-magni-dolores"
-																	class="quick_shop-div">
-																	<a href="#quick-shop-modal" class="btn quick_shop">
-																		<i class="fa fa-eye" title="Quick View"></i>
-																	</a>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="rating-star">
-														<span class="spr-badge" id="spr_badge_3008529987"
-															data-rating="0.0">
-															<span class="spr-starrating spr-badge-starrating">
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-															</span>
-															<span class="spr-badge-caption">No reviews </span>
-														</span>
-													</div>
-													<p class="h6 product-title">
-														<a href="./product.html">Demo Product Sample</a>
-													</p>
-													<p class="product-price">
-														<strong>On Sale</strong>
-														<span class="money" data-currency-usd="$19.99">$19.99</span>
-														<span class="visually-hidden">Regular price</span>
-														<s><span class="money"
-																data-currency-usd="$24.99">$24.99</span></s>
-													</p>
-													<ul class="action-button">
-														<li class="add-to-cart-form">
-															<form action="#" method="post" enctype="multipart/form-data"
-																id="AddToCartForm" class="form-vertical">
-																<div class="effect-ajax-cart">
-																	<input type="hidden" name="quantity" value="1">
-																	<button type="submit" name="add" id="AddToCart"
-																		class="btn btn-1 add-to-cart" title="Buy Now">
-																		<span id="AddToCartText"><i
-																				class="fa fa-shopping-cart"></i> Buy
-																			Now</span>
-																	</button>
-																</div>
-															</form>
-														</li>
-														<li class="wishlist">
-															<a class="wish-list btn" href="./wish-list.html"><i
-																	class="fa fa-heart" title="Wishlist"></i></a>
-														</li>
-														<li class="email">
-															<a target="_blank" class="btn email-to-friend" href="#"><i
-																	class="fa fa-envelope"
-																	title="Email to friend"></i></a>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<div class="grid__item">
-												<div class="grid__item_wrapper">
-													<div class="grid__image product-image">
-														<a href="./product.html">
-															<img src="{% static 'assets/images/demo1_product4_208x208.jpg' %}"
-																alt="Demo Product Sample">
-														</a>
-														<div class="quickview">
-															<div class="product-ajax-cart hidden-xs hidden-sm">
-																<div data-handle="consequuntur-magni-dolores"
-																	class="quick_shop-div">
-																	<a href="#quick-shop-modal" class="btn quick_shop">
-																		<i class="fa fa-eye" title="Quick View"></i>
-																	</a>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="rating-star">
-														<span class="spr-badge" id="spr_badge_3008529987"
-															data-rating="0.0">
-															<span class="spr-starrating spr-badge-starrating">
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-															</span>
-															<span class="spr-badge-caption">No reviews </span>
-														</span>
-													</div>
-													<p class="h6 product-title">
-														<a href="./product.html">Demo Product Sample</a>
-													</p>
-													<p class="product-price">
-														<strong>On Sale</strong>
-														<span class="money" data-currency-usd="$19.99">$19.99</span>
-														<span class="visually-hidden">Regular price</span>
-														<s><span class="money"
-																data-currency-usd="$24.99">$24.99</span></s>
-													</p>
-													<ul class="action-button">
-														<li class="add-to-cart-form">
-															<form action="#" method="post" enctype="multipart/form-data"
-																id="AddToCartForm" class="form-vertical">
-																<div class="effect-ajax-cart">
-																	<input type="hidden" name="quantity" value="1">
-																	<button type="submit" name="add" id="AddToCart"
-																		class="btn btn-1 add-to-cart" title="Buy Now">
-																		<span id="AddToCartText"><i
-																				class="fa fa-shopping-cart"></i> Buy
-																			Now</span>
-																	</button>
-																</div>
-															</form>
-														</li>
-														<li class="wishlist">
-															<a class="wish-list btn" href="./wish-list.html"><i
-																	class="fa fa-heart" title="Wishlist"></i></a>
-														</li>
-														<li class="email">
-															<a target="_blank" class="btn email-to-friend" href="#"><i
-																	class="fa fa-envelope"
-																	title="Email to friend"></i></a>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<div class="grid__item">
-												<div class="grid__item_wrapper">
-													<div class="grid__image product-image">
-														<a href="./product.html">
-															<img src="{% static 'assets/images/demo1_product5_208x208.jpg' %}"
-																alt="Demo Product Sample">
-														</a>
-														<div class="quickview">
-															<div class="product-ajax-cart hidden-xs hidden-sm">
-																<div data-handle="consequuntur-magni-dolores"
-																	class="quick_shop-div">
-																	<a href="#quick-shop-modal" class="btn quick_shop">
-																		<i class="fa fa-eye" title="Quick View"></i>
-																	</a>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="rating-star">
-														<span class="spr-badge" id="spr_badge_3008529987"
-															data-rating="0.0">
-															<span class="spr-starrating spr-badge-starrating">
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-															</span>
-															<span class="spr-badge-caption">No reviews </span>
-														</span>
-													</div>
-													<p class="h6 product-title">
-														<a href="./product.html">Demo Product Sample</a>
-													</p>
-													<p class="product-price">
-														<strong>On Sale</strong>
-														<span class="money" data-currency-usd="$19.99">$19.99</span>
-														<span class="visually-hidden">Regular price</span>
-														<s><span class="money"
-																data-currency-usd="$24.99">$24.99</span></s>
-													</p>
-													<ul class="action-button">
-														<li class="add-to-cart-form">
-															<form action="#" method="post" enctype="multipart/form-data"
-																id="AddToCartForm" class="form-vertical">
-																<div class="effect-ajax-cart">
-																	<input type="hidden" name="quantity" value="1">
-																	<button type="submit" name="add" id="AddToCart"
-																		class="btn btn-1 add-to-cart" title="Buy Now">
-																		<span id="AddToCartText"><i
-																				class="fa fa-shopping-cart"></i> Buy
-																			Now</span>
-																	</button>
-																</div>
-															</form>
-														</li>
-														<li class="wishlist">
-															<a class="wish-list btn" href="./wish-list.html"><i
-																	class="fa fa-heart" title="Wishlist"></i></a>
-														</li>
-														<li class="email">
-															<a target="_blank" class="btn email-to-friend" href="#"><i
-																	class="fa fa-envelope"
-																	title="Email to friend"></i></a>
-														</li>
-													</ul>
-												</div>
-											</div>
+											{%endfor%}
 										</div>
 									</div>
 								</div>
@@ -1245,39 +767,574 @@
 								<div class="brands-area">
 									<ul class="brands-elements">
 										<li class="">
-											<a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_brand1_123x64.png' %}"
-													alt=""></a>
+											<a
+												href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=apple"><img
+													src="https://cf.shopee.co.th/file/e930c08c67f5fbc233aaa5751e8a4440"
+													alt="apple"></a>
 										</li>
 										<li class="">
-											<a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_brand2_123x64.png' %}"
-													alt=""></a>
+											<a
+												href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=samsung"><img
+													src="https://cf.shopee.co.th/file/32a817fa8c243823534c3f250cdd7567"
+													alt="samsung"></a>
 										</li>
 										<li class="">
-											<a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_brand3_123x64.png' %}"
-													alt=""></a>
+											<a
+												href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=xiaomi"><img
+													src="https://cf.shopee.co.th/file/73c124598ae7103667be98823ce6f9eb"
+													alt="xiaomi"></a>
 										</li>
 										<li class="">
-											<a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_brand4_123x64.png' %}"
-													alt=""></a>
+											<a
+												href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=realme"><img
+													src="https://cf.shopee.co.th/file/3f35e1551504904eafc62e049e64657a"
+													alt="realme"></a>
 										</li>
 										<li class="">
-											<a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_brand5_123x64.png' %}"
-													alt=""></a>
+											<a
+												href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=huawei"><img
+													src="https://cf.shopee.co.th/file/fa64564526f51ff10b01f1e08bda0b21"
+													alt="huawei"></a>
 										</li>
 										<li class="">
-											<a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_brand6_123x64.png' %}"
-													alt=""></a>
+											<a
+												href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=oppo"><img
+													src="https://cf.shopee.co.th/file/23abab243ebddb3ac9a6df16fd542bc6"
+													alt="oppo"></a>
 										</li>
 										<li class="">
-											<a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_brand7_123x64.png' %}"
-													alt=""></a>
+											<a
+												href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=vivo"><img
+													src="https://cf.shopee.co.th/file/9ed43e5eac2b4af527d18c54dc82d4af"
+													alt="vivo"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=ais"><img
+													src="https://cf.shopee.co.th/file/c82cf6398d5f602e84e1678631620fd0"
+													alt="ais"></a>
+										</li>
+									</ul>
+								</div>
+								<div class="banner-area">
+									<a href="./collection.html"><img
+											src="{% static 'assets/images/demo1_banner1_185x345.png' %}" alt=""></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="beauty-health-blocks" class="beauty-health-wrapper grid--full grid--table grid-block-full">
+					<div class="beauty-health-inner">
+						<div class="bh-top home-block-title">
+							<div class="collection-name">
+								<img class="collection-icon" src="{% static 'assets/images/beauty-health.png' %}"
+									alt=""><a
+									href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=">{{collection_list.1.0.category}}</a>
+							</div>
+							<div class="collection-tags">
+								<ul class="bh-tags">
+									<li class=""><a href="./collection.html">Makeup</a></li>
+									<li class=""><a href="./collection.html">Body Care</a></li>
+									<li class=""><a href="./collection.html">Skin Care</a></li>
+									<li class=""><a href="./collection.html">Hair Care</a></li>
+									<li class=""><a href="./collection.html">Perfumes</a></li>
+									<li class="link-to"><a href="./collection.html">See all</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="bh-btm">
+							<div class="grid__item three-quarters bh-left small--one-whole medium--one-whole">
+								<div class="home-slideshow-block bh-slideshow">
+									<div class="home-gallery-slider">
+										<div><a href="./collection.html"><img
+													src="https://cf.shopee.co.th/file/665c98aafacc6808d2283011934e8d21"
+													alt=""></a></div>
+										<div><a href="./collection.html"><img
+													src="https://cf.shopee.co.th/file/047a15175d324dca5afc3b863ce96167"
+													alt=""></a></div>
+										<div><a href="./collection.html"><img
+													src="https://cf.shopee.co.th/file/f9d2dd74a5099b6d531e70ade1b40241"
+													alt=""></a></div>
+									</div>
+								</div>
+								<div class="home-products-block bh-products">
+									<div class="home-products-block-title">
+										<span>Spotlight</span>
+									</div>
+									<div class="home-products-block-content">
+										<div class="home-products-slider">
+											{%for i in collection_list.1%}
+											<div class="grid__item">
+												<div class="grid__item_wrapper">
+													<div class="grid__image product-image">
+														<a href="./product.html">
+															<img src="{{i.collection.Image}}" alt="Demo Product Sample">
+														</a>
+														<div class="quickview">
+															<div class="product-ajax-cart hidden-xs hidden-sm">
+																<div data-handle="consequuntur-magni-dolores"
+																	class="quick_shop-div">
+																	<a href="#quick-shop-modal" class="btn quick_shop">
+																		<i class="fa fa-eye" title="Quick View"></i>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="rating-star">
+														<span class="spr-badge" id="spr_badge_3008529987"
+															data-rating="0.0">
+															<span class="spr-starrating spr-badge-starrating">
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+															</span>
+															<span class="spr-badge-caption">No reviews </span>
+														</span>
+													</div>
+													<p class="h6 product-title">
+														<a href="./product.html">{{i.collection.Name}}</a>
+													</p>
+													<p class="product-price">
+														<strong>On Sale</strong>
+														<span class="money">฿
+															{{i.collection.Price|floatformat:0}}</span>
+
+													</p>
+													<ul class="action-button">
+														<li class="add-to-cart-form">
+															<form action="{{i.collection.URL}}" method="post"
+																enctype="multipart/form-data" id="AddToCartForm"
+																class="form-vertical">
+																<div class="effect-ajax-cart">
+																	<input type="hidden" name="quantity" value="1">
+																	<a href="{{i.collection.URL}}"><button name="add"
+																			id="AddToCart" class="btn btn-1 add-to-cart"
+																			title="Buy Now">
+																			<span id="AddToCartText"><i
+																					class="fa fa-shopping-cart"></i> Buy
+																				Now</span>
+																		</button></a>
+
+																</div>
+															</form>
+														</li>
+														<li class="wishlist">
+															<a class="wish-list btn" href="./wish-list.html"><i
+																	class="fa fa-heart" title="Wishlist"></i></a>
+														</li>
+														<li class="email">
+															<a target="_blank" class="btn email-to-friend" href="#"><i
+																	class="fa fa-envelope"
+																	title="Email to friend"></i></a>
+														</li>
+													</ul>
+												</div>
+											</div>
+											{%endfor%}
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="grid__item one-quarter bh-right small--one-whole medium--one-whole">
+								<div class="brands-area">
+									<ul class="brands-elements">
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=hp"><img
+													src="https://cf.shopee.co.th/file/ff93814d84fa1ceb260d49e5671bad7a"
+													alt="hp"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=steelseries"><img
+													src="https://cf.shopee.co.th/file/1d0d0a3d74d13798c94091100a271dca"
+													alt="steelseries"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=logitech"><img
+													src="https://cf.shopee.co.th/file/7870fbfea7c1dea936184957b5988eaf"
+													alt="logitech"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=lenovo"><img
+													src="https://cf.shopee.co.th/file/589052b2af4784dc74a489916d9bb28e"
+													alt="lenovo"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=advice"><img
+													src="https://cf.shopee.co.th/file/50e8858929f0940fa359781aab0c1631"
+													alt="advice"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=huawei"><img
+													src="https://cf.shopee.co.th/file/fa64564526f51ff10b01f1e08bda0b21"
+													alt="huawei"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=asus"><img
+													src="https://cf.shopee.co.th/file/d33a9265ee619473ac48aa63c892f3d0"
+													alt="asus"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=acer"><img
+													src="https://cf.shopee.co.th/file/72dd14e8fa384116583869fc0f43f439"
+													alt="acer"></a>
+										</li>
+									</ul>
+								</div>
+								<div class="banner-area">
+									<a href="./collection.html"><img
+											src="{% static 'assets/images/demo1_banner1_185x345.png' %}" alt=""></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="beauty-health-blocks" class="beauty-health-wrapper grid--full grid--table grid-block-full">
+					<div class="beauty-health-inner">
+						<div class="bh-top home-block-title">
+							<div class="collection-name">
+								<img class="collection-icon" src="{% static 'assets/images/beauty-health.png' %}"
+									alt=""><a
+									href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=">{{collection_list.2.0.category}}</a>
+							</div>
+							<div class="collection-tags">
+								<ul class="bh-tags">
+									<li class=""><a href="./collection.html">Makeup</a></li>
+									<li class=""><a href="./collection.html">Body Care</a></li>
+									<li class=""><a href="./collection.html">Skin Care</a></li>
+									<li class=""><a href="./collection.html">Hair Care</a></li>
+									<li class=""><a href="./collection.html">Perfumes</a></li>
+									<li class="link-to"><a href="./collection.html">See all</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="bh-btm">
+							<div class="grid__item three-quarters bh-left small--one-whole medium--one-whole">
+								<div class="home-slideshow-block bh-slideshow">
+									<div class="home-gallery-slider">
+										<div><a href="./collection.html"><img
+													src="https://cf.shopee.co.th/file/87169dc3c8d215e4781d23302e3954d3"
+													alt=""></a></div>
+										<div><a href="./collection.html"><img
+													src="https://cf.shopee.co.th/file/87169dc3c8d215e4781d23302e3954d3"
+													alt=""></a></div>
+										<div><a href="./collection.html"><img
+													src="https://cf.shopee.co.th/file/87169dc3c8d215e4781d23302e3954d3"
+													alt=""></a></div>
+									</div>
+								</div>
+								<div class="home-products-block bh-products">
+									<div class="home-products-block-title">
+										<span>Spotlight</span>
+									</div>
+									<div class="home-products-block-content">
+										<div class="home-products-slider">
+											{%for i in collection_list.2%}
+											<div class="grid__item">
+												<div class="grid__item_wrapper">
+													<div class="grid__image product-image">
+														<a href="./product.html">
+															<img src="{{i.collection.Image}}" alt="Demo Product Sample">
+														</a>
+														<div class="quickview">
+															<div class="product-ajax-cart hidden-xs hidden-sm">
+																<div data-handle="consequuntur-magni-dolores"
+																	class="quick_shop-div">
+																	<a href="#quick-shop-modal" class="btn quick_shop">
+																		<i class="fa fa-eye" title="Quick View"></i>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="rating-star">
+														<span class="spr-badge" id="spr_badge_3008529987"
+															data-rating="0.0">
+															<span class="spr-starrating spr-badge-starrating">
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+															</span>
+															<span class="spr-badge-caption">No reviews </span>
+														</span>
+													</div>
+													<p class="h6 product-title">
+														<a href="./product.html">{{i.collection.Name}}</a>
+													</p>
+													<p class="product-price">
+														<strong>On Sale</strong>
+														<span class="money">฿
+															{{i.collection.Price|floatformat:0}}</span>
+
+													</p>
+													<ul class="action-button">
+														<li class="add-to-cart-form">
+															<form action="{{i.collection.URL}}" method="post"
+																enctype="multipart/form-data" id="AddToCartForm"
+																class="form-vertical">
+																<div class="effect-ajax-cart">
+																	<input type="hidden" name="quantity" value="1">
+																	<a href="{{i.collection.URL}}"><button name="add"
+																			id="AddToCart" class="btn btn-1 add-to-cart"
+																			title="Buy Now">
+																			<span id="AddToCartText"><i
+																					class="fa fa-shopping-cart"></i> Buy
+																				Now</span>
+																		</button></a>
+
+																</div>
+															</form>
+														</li>
+														<li class="wishlist">
+															<a class="wish-list btn" href="./wish-list.html"><i
+																	class="fa fa-heart" title="Wishlist"></i></a>
+														</li>
+														<li class="email">
+															<a target="_blank" class="btn email-to-friend" href="#"><i
+																	class="fa fa-envelope"
+																	title="Email to friend"></i></a>
+														</li>
+													</ul>
+												</div>
+											</div>
+											{%endfor%}
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="grid__item one-quarter bh-right small--one-whole medium--one-whole">
+								<div class="brands-area">
+									<ul class="brands-elements">
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=dji"><img
+													src="https://cf.shopee.co.th/file/ba7d295d7dfb47e2f0ba39519b9c3f85"
+													alt="dji"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=sony"><img
+													src="https://cf.shopee.co.th/file/a7205200653a685b68da9b26133753ff"
+													alt="sony"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=fujiflim"><img
+													src="https://cf.shopee.co.th/file/91fa0eb27c8d315f7cccc99f2bc26567"
+													alt="fujiflim"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=sandisk"><img
+													src="https://cf.shopee.co.th/file/38eb2d452779691d4845377b7c53d36d"
+													alt="sandisk"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=kingston"><img
+													src="https://cf.shopee.co.th/file/2750a0adce23234edebaba75ed13eadb"
+													alt="kingston"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=bigcamera"><img
+													src="https://cf.shopee.co.th/file/dbe915d3ee20472eab72072fcb530123"
+													alt="bigcamera"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=casio"><img
+													src="https://cf.shopee.co.th/file/12de0e7645b6a51683e43bae69be5e4b"
+													alt="casio"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=canon"><img
+													src="https://cf.shopee.co.th/file/165783b7beee27803ee4f6250376e685"
+													alt="canon"></a>
+										</li>
+									</ul>
+								</div>
+								<div class="banner-area">
+									<a href="./collection.html"><img
+											src="{% static 'assets/images/demo1_banner1_185x345.png' %}" alt=""></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="beauty-health-blocks" class="beauty-health-wrapper grid--full grid--table grid-block-full">
+					<div class="beauty-health-inner">
+						<div class="bh-top home-block-title">
+							<div class="collection-name">
+								<img class="collection-icon" src="{% static 'assets/images/beauty-health.png' %}"
+									alt=""><a
+									href="/search?&category={{collection_list.3.0.category}}&platform=all&sort=relevant&page=1&name=">{{collection_list.3.0.category}}</a>
+							</div>
+							<div class="collection-tags">
+								<ul class="bh-tags">
+									<li class=""><a href="./collection.html">Makeup</a></li>
+									<li class=""><a href="./collection.html">Body Care</a></li>
+									<li class=""><a href="./collection.html">Skin Care</a></li>
+									<li class=""><a href="./collection.html">Hair Care</a></li>
+									<li class=""><a href="./collection.html">Perfumes</a></li>
+									<li class="link-to"><a href="./collection.html">See all</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="bh-btm">
+							<div class="grid__item three-quarters bh-left small--one-whole medium--one-whole">
+								<div class="home-slideshow-block bh-slideshow">
+									<div class="home-gallery-slider">
+										<div><a href="./collection.html"><img
+													src="https://cf.shopee.co.th/file/a94a8d33a481977c9ccdd2619e4fbcf1"
+													alt=""></a></div>
+										<div><a href="./collection.html"><img
+													src="https://cf.shopee.co.th/file/f183301f85e42002dd3c732c01685837"
+													alt=""></a></div>
+										<!-- <div><a href="./collection.html"><img
+													src="{% static 'assets/images/demo1_slide3_880x285.jpg' %}"
+													alt=""></a></div> -->
+									</div>
+								</div>
+								<div class="home-products-block bh-products">
+									<div class="home-products-block-title">
+										<span>Spotlight</span>
+									</div>
+									<div class="home-products-block-content">
+										<div class="home-products-slider">
+											{%for i in collection_list.3%}
+											<div class="grid__item">
+												<div class="grid__item_wrapper">
+													<div class="grid__image product-image">
+														<a href="./product.html">
+															<img src="{{i.collection.Image}}" alt="Demo Product Sample">
+														</a>
+														<div class="quickview">
+															<div class="product-ajax-cart hidden-xs hidden-sm">
+																<div data-handle="consequuntur-magni-dolores"
+																	class="quick_shop-div">
+																	<a href="#quick-shop-modal" class="btn quick_shop">
+																		<i class="fa fa-eye" title="Quick View"></i>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="rating-star">
+														<span class="spr-badge" id="spr_badge_3008529987"
+															data-rating="0.0">
+															<span class="spr-starrating spr-badge-starrating">
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+																<i class="spr-icon spr-icon-star-empty" style=""></i>
+															</span>
+															<span class="spr-badge-caption">No reviews </span>
+														</span>
+													</div>
+													<p class="h6 product-title">
+														<a href="./product.html">{{i.collection.Name}}</a>
+													</p>
+													<p class="product-price">
+														<strong>On Sale</strong>
+														<span class="money">฿
+															{{i.collection.Price|floatformat:0}}</span>
+
+													</p>
+													<ul class="action-button">
+														<li class="add-to-cart-form">
+															<form action="{{i.collection.URL}}" method="post"
+																enctype="multipart/form-data" id="AddToCartForm"
+																class="form-vertical">
+																<div class="effect-ajax-cart">
+																	<input type="hidden" name="quantity" value="1">
+																	<a href="{{i.collection.URL}}"><button name="add"
+																			id="AddToCart" class="btn btn-1 add-to-cart"
+																			title="Buy Now">
+																			<span id="AddToCartText"><i
+																					class="fa fa-shopping-cart"></i> Buy
+																				Now</span>
+																		</button></a>
+
+																</div>
+															</form>
+														</li>
+														<li class="wishlist">
+															<a class="wish-list btn" href="./wish-list.html"><i
+																	class="fa fa-heart" title="Wishlist"></i></a>
+														</li>
+														<li class="email">
+															<a target="_blank" class="btn email-to-friend" href="#"><i
+																	class="fa fa-envelope"
+																	title="Email to friend"></i></a>
+														</li>
+													</ul>
+												</div>
+											</div>
+											{%endfor%}
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="grid__item one-quarter bh-right small--one-whole medium--one-whole">
+								<div class="brands-area">
+									<ul class="brands-elements">
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.3.0.category}}&platform=all&sort=relevant&page=1&name=tinzshop"><img
+													src="https://cf.shopee.co.th/file/d8cbaa2f2e965b192455f058700a9c17"
+													alt="tinzshop"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.3.0.category}}&platform=all&sort=relevant&page=1&name=gunplavillage"><img
+													src="https://cf.shopee.co.th/file/d5dcf1b8f492b9782e8f94113f85fe8c"
+													alt="gunplavillage"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.3.0.category}}&platform=all&sort=relevant&page=1&name=gscs_official"><img
+													src="https://cf.shopee.co.th/file/e8653f4e5d5afb7e0f7939a2f02c7c6d"
+													alt="gscs_official"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.3.0.category}}&platform=all&sort=relevant&page=1&name=gcorners"><img
+													src="https://cf.shopee.co.th/file/c7a182aa85792ba3306e06bd5fb74c0e"
+													alt="gcorners"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.3.0.category}}&platform=all&sort=relevant&page=1&name=xmodeltoys"><img
+													src="https://cf.shopee.co.th/file/1553c38624478d2e45cadec6506afd3c"
+													alt="xmodeltoys"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.3.0.category}}&platform=all&sort=relevant&page=1&name=casiamboardgamesnon"><img
+													src="https://cf.shopee.co.th/file/7783fdd1ff9d8e3ee821951febd53bbc"
+													alt="siamboardgames"></a>
+										</li>
+										<li class="">
+											<a
+												href="/search?&category={{collection_list.3.0.category}}&platform=all&sort=relevant&page=1&name=siamboardgames"><img
+													src="https://cf.shopee.co.th/file/e9e7d0d6574b06d3a31127f6f86fba47"
+													alt="siamboardgames"></a>
 										</li>
 										<li class="">
 											<a href="./collection.html"><img
@@ -1294,1429 +1351,8 @@
 						</div>
 					</div>
 				</div>
-<!-- 
-				<div id="smartphones-blocks" class="smartphones-wrapper grid--full grid--table grid-block-full">
-					<div class="smartphones-inner">
-						<div class="bh-top home-block-title">
-							<div class="collection-name">
-								<img class="collection-icon" src="{% static 'assets/images/smartphones.png' %}" alt="">
-								<a href="./collection.html">Smartphones &amp; Cell Phones</a>
-							</div>
-							<div class="collection-tags">
-								<ul class="bh-tags">
-									<li class=""><a href="./collection.html">iOS</a></li>
-									<li class=""><a href="./collection.html">Android</a></li>
-									<li class=""><a href="./collection.html">Windows Phone</a></li>
-									<li class=""><a href="./collection.html">BlackBerry</a></li>
-									<li class=""><a href="./collection.html">Firefox OS</a></li>
-									<li class="link-to"><a href="./collection.html">See All</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="bh-btm">
-							<div class="grid__item three-quarters bh-left small--one-whole medium--one-whole">
-								<div class="home-slideshow-block bh-slideshow">
-									<div class="home-gallery-slider">
-										<div><a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_slide4_880x285.jpg' %}"
-													alt=""></a></div>
-										<div><a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_slide5_880x285.jpg' %}"
-													alt=""></a></div>
-										<div><a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_slide6_880x285.jpg' %}"
-													alt=""></a></div>
-									</div>
-								</div>
-								<div class="home-products-block bh-products">
-									<div class="home-products-block-title">
-										<span>Spotlight</span>
-									</div>
-									<div class="home-products-block-content">
-										<div class="home-products-slider">
-											<div class="grid__item">
-												<div class="grid__item_wrapper">
-													<div class="grid__image product-image">
-														<a href="./product.html">
-															<img src="{% static 'assets/images/demo1_product6_208x208.jpg' %}"
-																alt="Demo Product Sample">
-														</a>
-														<div class="quickview">
-															<div class="product-ajax-cart hidden-xs hidden-sm">
-																<div data-handle="consequuntur-magni-dolores"
-																	class="quick_shop-div">
-																	<a href="#quick-shop-modal" class="btn quick_shop">
-																		<i class="fa fa-eye" title="Quick View"></i>
-																	</a>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="rating-star">
-														<span class="spr-badge" id="spr_badge_3008529987"
-															data-rating="0.0">
-															<span class="spr-starrating spr-badge-starrating">
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-															</span>
-															<span class="spr-badge-caption">No reviews </span>
-														</span>
-													</div>
-													<p class="h6 product-title">
-														<a href="./product.html">Demo Product Sample</a>
-													</p>
-													<p class="product-price">
-														<strong>On Sale</strong>
-														<span class="money" data-currency-usd="$19.99">$19.99</span>
-														<span class="visually-hidden">Regular price</span>
-														<s><span class="money"
-																data-currency-usd="$24.99">$24.99</span></s>
-													</p>
-													<ul class="action-button">
-														<li class="add-to-cart-form">
-															<form action="#" method="post" enctype="multipart/form-data"
-																id="AddToCartForm" class="form-vertical">
-																<div class="effect-ajax-cart">
-																	<input type="hidden" name="quantity" value="1">
-																	<button type="submit" name="add" id="AddToCart"
-																		class="btn btn-1 add-to-cart" title="Buy Now">
-																		<span id="AddToCartText"><i
-																				class="fa fa-shopping-cart"></i> Buy
-																			Now</span>
-																	</button>
-																</div>
-															</form>
-														</li>
-														<li class="wishlist">
-															<a class="wish-list btn" href="./wish-list.html"><i
-																	class="fa fa-heart" title="Wishlist"></i></a>
-														</li>
-														<li class="email">
-															<a target="_blank" class="btn email-to-friend" href="#"><i
-																	class="fa fa-envelope"
-																	title="Email to friend"></i></a>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<div class="grid__item">
-												<div class="grid__item_wrapper">
-													<div class="grid__image product-image">
-														<a href="./product.html">
-															<img src="{% static 'assets/images/demo1_product7_208x208.jpg' %}"
-																alt="Demo Product Sample">
-														</a>
-														<div class="quickview">
-															<div class="product-ajax-cart hidden-xs hidden-sm">
-																<div data-handle="consequuntur-magni-dolores"
-																	class="quick_shop-div">
-																	<a href="#quick-shop-modal" class="btn quick_shop">
-																		<i class="fa fa-eye" title="Quick View"></i>
-																	</a>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="rating-star">
-														<span class="spr-badge" id="spr_badge_3008529987"
-															data-rating="0.0">
-															<span class="spr-starrating spr-badge-starrating">
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-															</span>
-															<span class="spr-badge-caption">No reviews </span>
-														</span>
-													</div>
-													<p class="h6 product-title">
-														<a href="./product.html">Demo Product Sample</a>
-													</p>
-													<p class="product-price">
-														<strong>On Sale</strong>
-														<span class="money" data-currency-usd="$19.99">$19.99</span>
-														<span class="visually-hidden">Regular price</span>
-														<s><span class="money"
-																data-currency-usd="$24.99">$24.99</span></s>
-													</p>
-													<ul class="action-button">
-														<li class="add-to-cart-form">
-															<form action="#" method="post" enctype="multipart/form-data"
-																id="AddToCartForm" class="form-vertical">
-																<div class="effect-ajax-cart">
-																	<input type="hidden" name="quantity" value="1">
-																	<button type="submit" name="add" id="AddToCart"
-																		class="btn btn-1 add-to-cart" title="Buy Now">
-																		<span id="AddToCartText"><i
-																				class="fa fa-shopping-cart"></i> Buy
-																			Now</span>
-																	</button>
-																</div>
-															</form>
-														</li>
-														<li class="wishlist">
-															<a class="wish-list btn" href="./wish-list.html"><i
-																	class="fa fa-heart" title="Wishlist"></i></a>
-														</li>
-														<li class="email">
-															<a target="_blank" class="btn email-to-friend" href="#"><i
-																	class="fa fa-envelope"
-																	title="Email to friend"></i></a>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<div class="grid__item">
-												<div class="grid__item_wrapper">
-													<div class="grid__image product-image">
-														<a href="./product.html">
-															<img src="{% static 'assets/images/demo1_product8_208x208.jpg' %}"
-																alt="Demo Product Sample">
-														</a>
-														<div class="quickview">
-															<div class="product-ajax-cart hidden-xs hidden-sm">
-																<div data-handle="consequuntur-magni-dolores"
-																	class="quick_shop-div">
-																	<a href="#quick-shop-modal" class="btn quick_shop">
-																		<i class="fa fa-eye" title="Quick View"></i>
-																	</a>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="rating-star">
-														<span class="spr-badge" id="spr_badge_3008529987"
-															data-rating="0.0">
-															<span class="spr-starrating spr-badge-starrating">
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-															</span>
-															<span class="spr-badge-caption">No reviews </span>
-														</span>
-													</div>
-													<p class="h6 product-title">
-														<a href="./product.html">Demo Product Sample</a>
-													</p>
-													<p class="product-price">
-														<strong>On Sale</strong>
-														<span class="money" data-currency-usd="$19.99">$19.99</span>
-														<span class="visually-hidden">Regular price</span>
-														<s><span class="money"
-																data-currency-usd="$24.99">$24.99</span></s>
-													</p>
-													<ul class="action-button">
-														<li class="add-to-cart-form">
-															<form action="#" method="post" enctype="multipart/form-data"
-																id="AddToCartForm" class="form-vertical">
-																<div class="effect-ajax-cart">
-																	<input type="hidden" name="quantity" value="1">
-																	<button type="submit" name="add" id="AddToCart"
-																		class="btn btn-1 add-to-cart" title="Buy Now">
-																		<span id="AddToCartText"><i
-																				class="fa fa-shopping-cart"></i> Buy
-																			Now</span>
-																	</button>
-																</div>
-															</form>
-														</li>
-														<li class="wishlist">
-															<a class="wish-list btn" href="./wish-list.html"><i
-																	class="fa fa-heart" title="Wishlist"></i></a>
-														</li>
-														<li class="email">
-															<a target="_blank" class="btn email-to-friend" href="#"><i
-																	class="fa fa-envelope"
-																	title="Email to friend"></i></a>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<div class="grid__item">
-												<div class="grid__item_wrapper">
-													<div class="grid__image product-image">
-														<a href="./product.html">
-															<img src="{% static 'assets/images/demo1_product9_208x208.jpg' %}"
-																alt="Demo Product Sample">
-														</a>
-														<div class="quickview">
-															<div class="product-ajax-cart hidden-xs hidden-sm">
-																<div data-handle="consequuntur-magni-dolores"
-																	class="quick_shop-div">
-																	<a href="#quick-shop-modal" class="btn quick_shop">
-																		<i class="fa fa-eye" title="Quick View"></i>
-																	</a>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="rating-star">
-														<span class="spr-badge" id="spr_badge_3008529987"
-															data-rating="0.0">
-															<span class="spr-starrating spr-badge-starrating">
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-															</span>
-															<span class="spr-badge-caption">No reviews </span>
-														</span>
-													</div>
-													<p class="h6 product-title">
-														<a href="./product.html">Demo Product Sample</a>
-													</p>
-													<p class="product-price">
-														<strong>On Sale</strong>
-														<span class="money" data-currency-usd="$19.99">$19.99</span>
-														<span class="visually-hidden">Regular price</span>
-														<s><span class="money"
-																data-currency-usd="$24.99">$24.99</span></s>
-													</p>
-													<ul class="action-button">
-														<li class="add-to-cart-form">
-															<form action="#" method="post" enctype="multipart/form-data"
-																id="AddToCartForm" class="form-vertical">
-																<div class="effect-ajax-cart">
-																	<input type="hidden" name="quantity" value="1">
-																	<button type="submit" name="add" id="AddToCart"
-																		class="btn btn-1 add-to-cart" title="Buy Now">
-																		<span id="AddToCartText"><i
-																				class="fa fa-shopping-cart"></i> Buy
-																			Now</span>
-																	</button>
-																</div>
-															</form>
-														</li>
-														<li class="wishlist">
-															<a class="wish-list btn" href="./wish-list.html"><i
-																	class="fa fa-heart" title="Wishlist"></i></a>
-														</li>
-														<li class="email">
-															<a target="_blank" class="btn email-to-friend" href="#"><i
-																	class="fa fa-envelope"
-																	title="Email to friend"></i></a>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<div class="grid__item">
-												<div class="grid__item_wrapper">
-													<div class="grid__image product-image">
-														<a href="./product.html">
-															<img src="{% static 'assets/images/demo1_product10_208x208.jpg' %}"
-																alt="Demo Product Sample">
-														</a>
-														<div class="quickview">
-															<div class="product-ajax-cart hidden-xs hidden-sm">
-																<div data-handle="consequuntur-magni-dolores"
-																	class="quick_shop-div">
-																	<a href="#quick-shop-modal" class="btn quick_shop">
-																		<i class="fa fa-eye" title="Quick View"></i>
-																	</a>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="rating-star">
-														<span class="spr-badge" id="spr_badge_3008529987"
-															data-rating="0.0">
-															<span class="spr-starrating spr-badge-starrating">
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-																<i class="spr-icon spr-icon-star-empty" style=""></i>
-															</span>
-															<span class="spr-badge-caption">No reviews </span>
-														</span>
-													</div>
-													<p class="h6 product-title">
-														<a href="./product.html">Demo Product Sample</a>
-													</p>
-													<p class="product-price">
-														<strong>On Sale</strong>
-														<span class="money" data-currency-usd="$19.99">$19.99</span>
-														<span class="visually-hidden">Regular price</span>
-														<s><span class="money"
-																data-currency-usd="$24.99">$24.99</span></s>
-													</p>
-													<ul class="action-button">
-														<li class="add-to-cart-form">
-															<form action="#" method="post" enctype="multipart/form-data"
-																id="AddToCartForm" class="form-vertical">
-																<div class="effect-ajax-cart">
-																	<input type="hidden" name="quantity" value="1">
-																	<button type="submit" name="add" id="AddToCart"
-																		class="btn btn-1 add-to-cart" title="Buy Now">
-																		<span id="AddToCartText"><i
-																				class="fa fa-shopping-cart"></i> Buy
-																			Now</span>
-																	</button>
-																</div>
-															</form>
-														</li>
-														<li class="wishlist">
-															<a class="wish-list btn" href="./wish-list.html"><i
-																	class="fa fa-heart" title="Wishlist"></i></a>
-														</li>
-														<li class="email">
-															<a target="_blank" class="btn email-to-friend" href="#"><i
-																	class="fa fa-envelope"
-																	title="Email to friend"></i></a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="grid__item one-quarter bh-right small--one-whole medium--one-whole">
-								<div class="brands-area">
-									<ul class="brands-elements">
-										<li class="">
-											<a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_brand1_123x64.png' %}"
-													alt=""></a>
-										</li>
-										<li class="">
-											<a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_brand2_123x64.png' %}"
-													alt=""></a>
-										</li>
-										<li class="">
-											<a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_brand3_123x64.png' %}"
-													alt=""></a>
-										</li>
-										<li class="">
-											<a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_brand4_123x64.png' %}"
-													alt=""></a>
-										</li>
-										<li class="">
-											<a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_brand5_123x64.png' %}"
-													alt=""></a>
-										</li>
-										<li class="">
-											<a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_brand6_123x64.png' %}"
-													alt=""></a>
-										</li>
-										<li class="">
-											<a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_brand7_123x64.png' %}"
-													alt=""></a>
-										</li>
-										<li class="">
-											<a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_brand8_123x64.png' %}"
-													alt=""></a>
-										</li>
-									</ul>
-								</div>
-								<div class="banner-area">
-									<a href="./collection.html"><img
-											src="{% static 'assets/images/demo1_banner2_185x345.png' %}" alt=""></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 
-				<div id="kids-blocks" class="kids-wrapper grid--full grid--table grid-block-full">
-					<div class="kids-inner">
-						<div class="bh-top home-block-title">
-							<div class="collection-name">
-								<img class="collection-icon" src="{% static 'assets/images/clothing.png' %}" alt="">
-								<a href="./collection.html">Clothing</a>
-							</div>
-							<div class="collection-tags">
-								<ul class="bh-tags">
-									<li class=""><a href="./collection.html">Headphone</a></li>
-									<li class=""><a href="./collection.html">Rechargeable Battery </a></li>
-									<li class=""><a href="./collection.html">Portable Hard Drive</a></li>
-									<li class=""><a href="./collection.html">USB</a></li>
-									<li class=""><a href="./collection.html">Caple</a></li>
-									<li class="link-to"><a href="./collection.html">See all</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="bh-btm">
-							<div class="bh-btm">
-								<div class="grid__item three-quarters bh-left small--one-whole medium--one-whole">
-									<div class="home-slideshow-block bh-slideshow">
-										<div class="home-gallery-slider">
-											<div><a href="./collection.html"><img
-														src="{% static 'assets/images/demo1_slide7_880x285.jpg' %}"
-														alt=""></a></div>
-											<div><a href="./collection.html"><img
-														src="{% static 'assets/images/demo1_slide8_880x285.jpg' %}"
-														alt=""></a></div>
-											<div><a href="./collection.html"><img
-														src="{% static 'assets/images/demo1_slide9_880x285.jpg' %}"
-														alt=""></a></div>
-										</div>
-									</div>
-									<div class="home-products-block bh-products">
-										<div class="home-products-block-title">
-											<span>Spotlight</span>
-										</div>
-										<div class="home-products-block-content">
-											<div class="home-products-slider">
-												<div class="grid__item">
-													<div class="grid__item_wrapper">
-														<div class="grid__image product-image">
-															<a href="./product.html">
-																<img src="{% static 'assets/images/demo1_product11_208x208.jpg' %}"
-																	alt="Demo Product Sample">
-															</a>
-															<div class="quickview">
-																<div class="product-ajax-cart hidden-xs hidden-sm">
-																	<div data-handle="consequuntur-magni-dolores"
-																		class="quick_shop-div">
-																		<a href="#quick-shop-modal"
-																			class="btn quick_shop">
-																			<i class="fa fa-eye" title="Quick View"></i>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="rating-star">
-															<span class="spr-badge" id="spr_badge_3008529987"
-																data-rating="0.0">
-																<span class="spr-starrating spr-badge-starrating">
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																</span>
-																<span class="spr-badge-caption">No reviews </span>
-															</span>
-														</div>
-														<p class="h6 product-title">
-															<a href="./product.html">Demo Product Sample</a>
-														</p>
-														<p class="product-price">
-															<strong>On Sale</strong>
-															<span class="money" data-currency-usd="$19.99">$19.99</span>
-															<span class="visually-hidden">Regular price</span>
-															<s><span class="money"
-																	data-currency-usd="$24.99">$24.99</span></s>
-														</p>
-														<ul class="action-button">
-															<li class="add-to-cart-form">
-																<form action="#" method="post"
-																	enctype="multipart/form-data" id="AddToCartForm"
-																	class="form-vertical">
-																	<div class="effect-ajax-cart">
-																		<input type="hidden" name="quantity" value="1">
-																		<button type="submit" name="add" id="AddToCart"
-																			class="btn btn-1 add-to-cart"
-																			title="Buy Now">
-																			<span id="AddToCartText"><i
-																					class="fa fa-shopping-cart"></i> Buy
-																				Now</span>
-																		</button>
-																	</div>
-																</form>
-															</li>
-															<li class="wishlist">
-																<a class="wish-list btn" href="./wish-list.html"><i
-																		class="fa fa-heart" title="Wishlist"></i></a>
-															</li>
-															<li class="email">
-																<a target="_blank" class="btn email-to-friend"
-																	href="#"><i class="fa fa-envelope"
-																		title="Email to friend"></i></a>
-															</li>
-														</ul>
-													</div>
-												</div>
-												<div class="grid__item">
-													<div class="grid__item_wrapper">
-														<div class="grid__image product-image">
-															<a href="./product.html">
-																<img src="{% static 'assets/images/demo1_product12_208x208.jpg' %}"
-																	alt="Demo Product Sample">
-															</a>
-															<div class="quickview">
-																<div class="product-ajax-cart hidden-xs hidden-sm">
-																	<div data-handle="consequuntur-magni-dolores"
-																		class="quick_shop-div">
-																		<a href="#quick-shop-modal"
-																			class="btn quick_shop">
-																			<i class="fa fa-eye" title="Quick View"></i>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="rating-star">
-															<span class="spr-badge" id="spr_badge_3008529987"
-																data-rating="0.0">
-																<span class="spr-starrating spr-badge-starrating">
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																</span>
-																<span class="spr-badge-caption">No reviews </span>
-															</span>
-														</div>
-														<p class="h6 product-title">
-															<a href="./product.html">Demo Product Sample</a>
-														</p>
-														<p class="product-price">
-															<strong>On Sale</strong>
-															<span class="money" data-currency-usd="$19.99">$19.99</span>
-															<span class="visually-hidden">Regular price</span>
-															<s><span class="money"
-																	data-currency-usd="$24.99">$24.99</span></s>
-														</p>
-														<ul class="action-button">
-															<li class="add-to-cart-form">
-																<form action="#" method="post"
-																	enctype="multipart/form-data" id="AddToCartForm"
-																	class="form-vertical">
-																	<div class="effect-ajax-cart">
-																		<input type="hidden" name="quantity" value="1">
-																		<button type="submit" name="add" id="AddToCart"
-																			class="btn btn-1 add-to-cart"
-																			title="Buy Now">
-																			<span id="AddToCartText"><i
-																					class="fa fa-shopping-cart"></i> Buy
-																				Now</span>
-																		</button>
-																	</div>
-																</form>
-															</li>
-															<li class="wishlist">
-																<a class="wish-list btn" href="./wish-list.html"><i
-																		class="fa fa-heart" title="Wishlist"></i></a>
-															</li>
-															<li class="email">
-																<a target="_blank" class="btn email-to-friend"
-																	href="#"><i class="fa fa-envelope"
-																		title="Email to friend"></i></a>
-															</li>
-														</ul>
-													</div>
-												</div>
-												<div class="grid__item">
-													<div class="grid__item_wrapper">
-														<div class="grid__image product-image">
-															<a href="./product.html">
-																<img src="{% static 'assets/images/demo1_product13_208x208.jpg' %}"
-																	alt="Demo Product Sample">
-															</a>
-															<div class="quickview">
-																<div class="product-ajax-cart hidden-xs hidden-sm">
-																	<div data-handle="consequuntur-magni-dolores"
-																		class="quick_shop-div">
-																		<a href="#quick-shop-modal"
-																			class="btn quick_shop">
-																			<i class="fa fa-eye" title="Quick View"></i>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="rating-star">
-															<span class="spr-badge" id="spr_badge_3008529987"
-																data-rating="0.0">
-																<span class="spr-starrating spr-badge-starrating">
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																</span>
-																<span class="spr-badge-caption">No reviews </span>
-															</span>
-														</div>
-														<p class="h6 product-title">
-															<a href="./product.html">Demo Product Sample</a>
-														</p>
-														<p class="product-price">
-															<strong>On Sale</strong>
-															<span class="money" data-currency-usd="$19.99">$19.99</span>
-															<span class="visually-hidden">Regular price</span>
-															<s><span class="money"
-																	data-currency-usd="$24.99">$24.99</span></s>
-														</p>
-														<ul class="action-button">
-															<li class="add-to-cart-form">
-																<form action="#" method="post"
-																	enctype="multipart/form-data" id="AddToCartForm"
-																	class="form-vertical">
-																	<div class="effect-ajax-cart">
-																		<input type="hidden" name="quantity" value="1">
-																		<button type="submit" name="add" id="AddToCart"
-																			class="btn btn-1 add-to-cart"
-																			title="Buy Now">
-																			<span id="AddToCartText"><i
-																					class="fa fa-shopping-cart"></i> Buy
-																				Now</span>
-																		</button>
-																	</div>
-																</form>
-															</li>
-															<li class="wishlist">
-																<a class="wish-list btn" href="./wish-list.html"><i
-																		class="fa fa-heart" title="Wishlist"></i></a>
-															</li>
-															<li class="email">
-																<a target="_blank" class="btn email-to-friend"
-																	href="#"><i class="fa fa-envelope"
-																		title="Email to friend"></i></a>
-															</li>
-														</ul>
-													</div>
-												</div>
-												<div class="grid__item">
-													<div class="grid__item_wrapper">
-														<div class="grid__image product-image">
-															<a href="./product.html">
-																<img src="{% static 'assets/images/demo1_product14_208x208.jpg' %}"
-																	alt="Demo Product Sample">
-															</a>
-															<div class="quickview">
-																<div class="product-ajax-cart hidden-xs hidden-sm">
-																	<div data-handle="consequuntur-magni-dolores"
-																		class="quick_shop-div">
-																		<a href="#quick-shop-modal"
-																			class="btn quick_shop">
-																			<i class="fa fa-eye" title="Quick View"></i>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="rating-star">
-															<span class="spr-badge" id="spr_badge_3008529987"
-																data-rating="0.0">
-																<span class="spr-starrating spr-badge-starrating">
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																</span>
-																<span class="spr-badge-caption">No reviews </span>
-															</span>
-														</div>
-														<p class="h6 product-title">
-															<a href="./product.html">Demo Product Sample</a>
-														</p>
-														<p class="product-price">
-															<strong>On Sale</strong>
-															<span class="money" data-currency-usd="$19.99">$19.99</span>
-															<span class="visually-hidden">Regular price</span>
-															<s><span class="money"
-																	data-currency-usd="$24.99">$24.99</span></s>
-														</p>
-														<ul class="action-button">
-															<li class="add-to-cart-form">
-																<form action="#" method="post"
-																	enctype="multipart/form-data" id="AddToCartForm"
-																	class="form-vertical">
-																	<div class="effect-ajax-cart">
-																		<input type="hidden" name="quantity" value="1">
-																		<button type="submit" name="add" id="AddToCart"
-																			class="btn btn-1 add-to-cart"
-																			title="Buy Now">
-																			<span id="AddToCartText"><i
-																					class="fa fa-shopping-cart"></i> Buy
-																				Now</span>
-																		</button>
-																	</div>
-																</form>
-															</li>
-															<li class="wishlist">
-																<a class="wish-list btn" href="./wish-list.html"><i
-																		class="fa fa-heart" title="Wishlist"></i></a>
-															</li>
-															<li class="email">
-																<a target="_blank" class="btn email-to-friend"
-																	href="#"><i class="fa fa-envelope"
-																		title="Email to friend"></i></a>
-															</li>
-														</ul>
-													</div>
-												</div>
-												<div class="grid__item">
-													<div class="grid__item_wrapper">
-														<div class="grid__image product-image">
-															<a href="./product.html">
-																<img src="{% static 'assets/images/demo1_product15_208x208.jpg' %}"
-																	alt="Demo Product Sample">
-															</a>
-															<div class="quickview">
-																<div class="product-ajax-cart hidden-xs hidden-sm">
-																	<div data-handle="consequuntur-magni-dolores"
-																		class="quick_shop-div">
-																		<a href="#quick-shop-modal"
-																			class="btn quick_shop">
-																			<i class="fa fa-eye" title="Quick View"></i>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="rating-star">
-															<span class="spr-badge" id="spr_badge_3008529987"
-																data-rating="0.0">
-																<span class="spr-starrating spr-badge-starrating">
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																	<i class="spr-icon spr-icon-star-empty"
-																		style=""></i>
-																</span>
-																<span class="spr-badge-caption">No reviews </span>
-															</span>
-														</div>
-														<p class="h6 product-title">
-															<a href="./product.html">Demo Product Sample</a>
-														</p>
-														<p class="product-price">
-															<strong>On Sale</strong>
-															<span class="money" data-currency-usd="$19.99">$19.99</span>
-															<span class="visually-hidden">Regular price</span>
-															<s><span class="money"
-																	data-currency-usd="$24.99">$24.99</span></s>
-														</p>
-														<ul class="action-button">
-															<li class="add-to-cart-form">
-																<form action="#" method="post"
-																	enctype="multipart/form-data" id="AddToCartForm"
-																	class="form-vertical">
-																	<div class="effect-ajax-cart">
-																		<input type="hidden" name="quantity" value="1">
-																		<button type="submit" name="add" id="AddToCart"
-																			class="btn btn-1 add-to-cart"
-																			title="Buy Now">
-																			<span id="AddToCartText"><i
-																					class="fa fa-shopping-cart"></i> Buy
-																				Now</span>
-																		</button>
-																	</div>
-																</form>
-															</li>
-															<li class="wishlist">
-																<a class="wish-list btn" href="./wish-list.html"><i
-																		class="fa fa-heart" title="Wishlist"></i></a>
-															</li>
-															<li class="email">
-																<a target="_blank" class="btn email-to-friend"
-																	href="#"><i class="fa fa-envelope"
-																		title="Email to friend"></i></a>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="grid__item one-quarter bh-right small--one-whole medium--one-whole">
-									<div class="brands-area">
-										<ul class="brands-elements">
-											<li class="">
-												<a href="./collection.html"><img
-														src="{% static 'assets/images/demo1_brand1_123x64.png' %}"
-														alt=""></a>
-											</li>
-											<li class="">
-												<a href="./collection.html"><img
-														src="{% static 'assets/images/demo1_brand2_123x64.png' %}"
-														alt=""></a>
-											</li>
-											<li class="">
-												<a href="./collection.html"><img
-														src="{% static 'assets/images/demo1_brand3_123x64.png' %}"
-														alt=""></a>
-											</li>
-											<li class="">
-												<a href="./collection.html"><img
-														src="{% static 'assets/images/demo1_brand4_123x64.png' %}"
-														alt=""></a>
-											</li>
-											<li class="">
-												<a href="./collection.html"><img
-														src="{% static 'assets/images/demo1_brand5_123x64.png' %}"
-														alt=""></a>
-											</li>
-											<li class="">
-												<a href="./collection.html"><img
-														src="{% static 'assets/images/demo1_brand6_123x64.png' %}"
-														alt=""></a>
-											</li>
-											<li class="">
-												<a href="./collection.html"><img
-														src="{% static 'assets/images/demo1_brand7_123x64.png' %}"
-														alt=""></a>
-											</li>
-											<li class="">
-												<a href="./collection.html"><img
-														src="{% static 'assets/images/demo1_brand8_123x64.png' %}"
-														alt=""></a>
-											</li>
-										</ul>
-									</div>
-									<div class="banner-area">
-										<a href="./collection.html"><img
-												src="{% static 'assets/images/demo1_banner3_185x345.png' %}" alt=""></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 
-				<div id="accessories-blocks" class="accessories-wrapper grid--full grid--table grid-block-full">
-					<div class="accessories-inner">
-						<div class="bh-top home-block-title">
-							<div class="collection-name">
-								<img class="collection-icon" src="{% static 'assets/images/sport.png' %}" alt=""><a
-									href="./collection.html">Sport &amp; Outdoor</a>
-							</div>
-							<div class="collection-tags">
-								<ul class="bh-tags">
-									<li class=""><a href="./collection.html">Football</a></li>
-									<li class=""><a href="./collection.html">Cycling</a></li>
-									<li class=""><a href="./collection.html">Running</a></li>
-									<li class=""><a href="./collection.html">Swimming</a></li>
-									<li class=""><a href="./collection.html">Badminton</a></li>
-									<li class="link-to"><a href="./collection.html">See all</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="bh-btm">
-							<div class="bh-btm">
-								<div class="bh-btm">
-									<div class="grid__item three-quarters bh-left small--one-whole medium--one-whole">
-										<div class="home-slideshow-block bh-slideshow">
-											<div class="home-gallery-slider">
-												<div><a href="./collection.html"><img
-															src="{% static 'assets/images/demo1_slide10_880x285.jpg' %}"
-															alt=""></a></div>
-												<div><a href="./collection.html"><img
-															src="{% static 'assets/images/demo1_slide11_880x285.jpg' %}"
-															alt=""></a></div>
-												<div><a href="./collection.html"><img
-															src="{% static 'assets/images/demo1_slide12_880x285.jpg' %}"
-															alt=""></a></div>
-											</div>
-										</div>
-										<div class="home-products-block bh-products">
-											<div class="home-products-block-title">
-												<span>Spotlight</span>
-											</div>
-											<div class="home-products-block-content">
-												<div class="home-products-slider">
-													<div class="grid__item">
-														<div class="grid__item_wrapper">
-															<div class="grid__image product-image">
-																<a href="./product.html">
-																	<img src="{% static 'assets/images/demo1_product16_208x208.jpg' %}"
-																		alt="Demo Product Sample">
-																</a>
-																<div class="quickview">
-																	<div class="product-ajax-cart hidden-xs hidden-sm">
-																		<div data-handle="consequuntur-magni-dolores"
-																			class="quick_shop-div">
-																			<a href="#quick-shop-modal"
-																				class="btn quick_shop">
-																				<i class="fa fa-eye"
-																					title="Quick View"></i>
-																			</a>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<div class="rating-star">
-																<span class="spr-badge" id="spr_badge_3008529987"
-																	data-rating="0.0">
-																	<span class="spr-starrating spr-badge-starrating">
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																	</span>
-																	<span class="spr-badge-caption">No reviews </span>
-																</span>
-															</div>
-															<p class="h6 product-title">
-																<a href="./product.html">Demo Product Sample</a>
-															</p>
-															<p class="product-price">
-																<strong>On Sale</strong>
-																<span class="money"
-																	data-currency-usd="$19.99">$19.99</span>
-																<span class="visually-hidden">Regular price</span>
-																<s><span class="money"
-																		data-currency-usd="$24.99">$24.99</span></s>
-															</p>
-															<ul class="action-button">
-																<li class="add-to-cart-form">
-																	<form action="#" method="post"
-																		enctype="multipart/form-data" id="AddToCartForm"
-																		class="form-vertical">
-																		<div class="effect-ajax-cart">
-																			<input type="hidden" name="quantity"
-																				value="1">
-																			<button type="submit" name="add"
-																				id="AddToCart"
-																				class="btn btn-1 add-to-cart"
-																				title="Buy Now">
-																				<span id="AddToCartText"><i
-																						class="fa fa-shopping-cart"></i>
-																					Buy Now</span>
-																			</button>
-																		</div>
-																	</form>
-																</li>
-																<li class="wishlist">
-																	<a class="wish-list btn" href="./wish-list.html"><i
-																			class="fa fa-heart"
-																			title="Wishlist"></i></a>
-																</li>
-																<li class="email">
-																	<a target="_blank" class="btn email-to-friend"
-																		href="#"><i class="fa fa-envelope"
-																			title="Email to friend"></i></a>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="grid__item">
-														<div class="grid__item_wrapper">
-															<div class="grid__image product-image">
-																<a href="./product.html">
-																	<img src="{% static 'assets/images/demo1_product17_208x208.jpg' %}"
-																		alt="Demo Product Sample">
-																</a>
-																<div class="quickview">
-																	<div class="product-ajax-cart hidden-xs hidden-sm">
-																		<div data-handle="consequuntur-magni-dolores"
-																			class="quick_shop-div">
-																			<a href="#quick-shop-modal"
-																				class="btn quick_shop">
-																				<i class="fa fa-eye"
-																					title="Quick View"></i>
-																			</a>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<div class="rating-star">
-																<span class="spr-badge" id="spr_badge_3008529987"
-																	data-rating="0.0">
-																	<span class="spr-starrating spr-badge-starrating">
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																	</span>
-																	<span class="spr-badge-caption">No reviews </span>
-																</span>
-															</div>
-															<p class="h6 product-title">
-																<a href="./product.html">Demo Product Sample</a>
-															</p>
-															<p class="product-price">
-																<strong>On Sale</strong>
-																<span class="money"
-																	data-currency-usd="$19.99">$19.99</span>
-																<span class="visually-hidden">Regular price</span>
-																<s><span class="money"
-																		data-currency-usd="$24.99">$24.99</span></s>
-															</p>
-															<ul class="action-button">
-																<li class="add-to-cart-form">
-																	<form action="#" method="post"
-																		enctype="multipart/form-data" id="AddToCartForm"
-																		class="form-vertical">
-																		<div class="effect-ajax-cart">
-																			<input type="hidden" name="quantity"
-																				value="1">
-																			<button type="submit" name="add"
-																				id="AddToCart"
-																				class="btn btn-1 add-to-cart"
-																				title="Buy Now">
-																				<span id="AddToCartText"><i
-																						class="fa fa-shopping-cart"></i>
-																					Buy Now</span>
-																			</button>
-																		</div>
-																	</form>
-																</li>
-																<li class="wishlist">
-																	<a class="wish-list btn" href="./wish-list.html"><i
-																			class="fa fa-heart"
-																			title="Wishlist"></i></a>
-																</li>
-																<li class="email">
-																	<a target="_blank" class="btn email-to-friend"
-																		href="#"><i class="fa fa-envelope"
-																			title="Email to friend"></i></a>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="grid__item">
-														<div class="grid__item_wrapper">
-															<div class="grid__image product-image">
-																<a href="./product.html">
-																	<img src="{% static 'assets/images/demo1_product18_208x208.jpg' %}"
-																		alt="Demo Product Sample">
-																</a>
-																<div class="quickview">
-																	<div class="product-ajax-cart hidden-xs hidden-sm">
-																		<div data-handle="consequuntur-magni-dolores"
-																			class="quick_shop-div">
-																			<a href="#quick-shop-modal"
-																				class="btn quick_shop">
-																				<i class="fa fa-eye"
-																					title="Quick View"></i>
-																			</a>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<div class="rating-star">
-																<span class="spr-badge" id="spr_badge_3008529987"
-																	data-rating="0.0">
-																	<span class="spr-starrating spr-badge-starrating">
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																	</span>
-																	<span class="spr-badge-caption">No reviews </span>
-																</span>
-															</div>
-															<p class="h6 product-title">
-																<a href="./product.html">Demo Product Sample</a>
-															</p>
-															<p class="product-price">
-																<strong>On Sale</strong>
-																<span class="money"
-																	data-currency-usd="$19.99">$19.99</span>
-																<span class="visually-hidden">Regular price</span>
-																<s><span class="money"
-																		data-currency-usd="$24.99">$24.99</span></s>
-															</p>
-															<ul class="action-button">
-																<li class="add-to-cart-form">
-																	<form action="#" method="post"
-																		enctype="multipart/form-data" id="AddToCartForm"
-																		class="form-vertical">
-																		<div class="effect-ajax-cart">
-																			<input type="hidden" name="quantity"
-																				value="1">
-																			<button type="submit" name="add"
-																				id="AddToCart"
-																				class="btn btn-1 add-to-cart"
-																				title="Buy Now">
-																				<span id="AddToCartText"><i
-																						class="fa fa-shopping-cart"></i>
-																					Buy Now</span>
-																			</button>
-																		</div>
-																	</form>
-																</li>
-																<li class="wishlist">
-																	<a class="wish-list btn" href="./wish-list.html"><i
-																			class="fa fa-heart"
-																			title="Wishlist"></i></a>
-																</li>
-																<li class="email">
-																	<a target="_blank" class="btn email-to-friend"
-																		href="#"><i class="fa fa-envelope"
-																			title="Email to friend"></i></a>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="grid__item">
-														<div class="grid__item_wrapper">
-															<div class="grid__image product-image">
-																<a href="./product.html">
-																	<img src="{% static 'assets/images/demo1_product19_208x208.jpg' %}"
-																		alt="Demo Product Sample">
-																</a>
-																<div class="quickview">
-																	<div class="product-ajax-cart hidden-xs hidden-sm">
-																		<div data-handle="consequuntur-magni-dolores"
-																			class="quick_shop-div">
-																			<a href="#quick-shop-modal"
-																				class="btn quick_shop">
-																				<i class="fa fa-eye"
-																					title="Quick View"></i>
-																			</a>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<div class="rating-star">
-																<span class="spr-badge" id="spr_badge_3008529987"
-																	data-rating="0.0">
-																	<span class="spr-starrating spr-badge-starrating">
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																	</span>
-																	<span class="spr-badge-caption">No reviews </span>
-																</span>
-															</div>
-															<p class="h6 product-title">
-																<a href="./product.html">Demo Product Sample</a>
-															</p>
-															<p class="product-price">
-																<strong>On Sale</strong>
-																<span class="money"
-																	data-currency-usd="$19.99">$19.99</span>
-																<span class="visually-hidden">Regular price</span>
-																<s><span class="money"
-																		data-currency-usd="$24.99">$24.99</span></s>
-															</p>
-															<ul class="action-button">
-																<li class="add-to-cart-form">
-																	<form action="#" method="post"
-																		enctype="multipart/form-data" id="AddToCartForm"
-																		class="form-vertical">
-																		<div class="effect-ajax-cart">
-																			<input type="hidden" name="quantity"
-																				value="1">
-																			<button type="submit" name="add"
-																				id="AddToCart"
-																				class="btn btn-1 add-to-cart"
-																				title="Buy Now">
-																				<span id="AddToCartText"><i
-																						class="fa fa-shopping-cart"></i>
-																					Buy Now</span>
-																			</button>
-																		</div>
-																	</form>
-																</li>
-																<li class="wishlist">
-																	<a class="wish-list btn" href="./wish-list.html"><i
-																			class="fa fa-heart"
-																			title="Wishlist"></i></a>
-																</li>
-																<li class="email">
-																	<a target="_blank" class="btn email-to-friend"
-																		href="#"><i class="fa fa-envelope"
-																			title="Email to friend"></i></a>
-																</li>
-															</ul>
-														</div>
-													</div>
-													<div class="grid__item">
-														<div class="grid__item_wrapper">
-															<div class="grid__image product-image">
-																<a href="./product.html">
-																	<img src="{% static 'assets/images/demo1_product20_208x208.jpg' %}"
-																		alt="Demo Product Sample">
-																</a>
-																<div class="quickview">
-																	<div class="product-ajax-cart hidden-xs hidden-sm">
-																		<div data-handle="consequuntur-magni-dolores"
-																			class="quick_shop-div">
-																			<a href="#quick-shop-modal"
-																				class="btn quick_shop">
-																				<i class="fa fa-eye"
-																					title="Quick View"></i>
-																			</a>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<div class="rating-star">
-																<span class="spr-badge" id="spr_badge_3008529987"
-																	data-rating="0.0">
-																	<span class="spr-starrating spr-badge-starrating">
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																		<i class="spr-icon spr-icon-star-empty"
-																			style=""></i>
-																	</span>
-																	<span class="spr-badge-caption">No reviews </span>
-																</span>
-															</div>
-															<p class="h6 product-title">
-																<a href="./product.html">Demo Product Sample</a>
-															</p>
-															<p class="product-price">
-																<strong>On Sale</strong>
-																<span class="money"
-																	data-currency-usd="$19.99">$19.99</span>
-																<span class="visually-hidden">Regular price</span>
-																<s><span class="money"
-																		data-currency-usd="$24.99">$24.99</span></s>
-															</p>
-															<ul class="action-button">
-																<li class="add-to-cart-form">
-																	<form action="#" method="post"
-																		enctype="multipart/form-data" id="AddToCartForm"
-																		class="form-vertical">
-																		<div class="effect-ajax-cart">
-																			<input type="hidden" name="quantity"
-																				value="1">
-																			<button type="submit" name="add"
-																				id="AddToCart"
-																				class="btn btn-1 add-to-cart"
-																				title="Buy Now">
-																				<span id="AddToCartText"><i
-																						class="fa fa-shopping-cart"></i>
-																					Buy Now</span>
-																			</button>
-																		</div>
-																	</form>
-																</li>
-																<li class="wishlist">
-																	<a class="wish-list btn" href="./wish-list.html"><i
-																			class="fa fa-heart"
-																			title="Wishlist"></i></a>
-																</li>
-																<li class="email">
-																	<a target="_blank" class="btn email-to-friend"
-																		href="#"><i class="fa fa-envelope"
-																			title="Email to friend"></i></a>
-																</li>
-															</ul>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="grid__item one-quarter bh-right small--one-whole medium--one-whole">
-										<div class="brands-area">
-											<ul class="brands-elements">
-												<li class="">
-													<a href="./collection.html"><img
-															src="{% static 'assets/images/demo1_brand1_123x64.png' %}"
-															alt=""></a>
-												</li>
-												<li class="">
-													<a href="./collection.html"><img
-															src="{% static 'assets/images/demo1_brand2_123x64.png' %}"
-															alt=""></a>
-												</li>
-												<li class="">
-													<a href="./collection.html"><img
-															src="{% static 'assets/images/demo1_brand3_123x64.png' %}"
-															alt=""></a>
-												</li>
-												<li class="">
-													<a href="./collection.html"><img
-															src="{% static 'assets/images/demo1_brand4_123x64.png' %}"
-															alt=""></a>
-												</li>
-												<li class="">
-													<a href="./collection.html"><img
-															src="{% static 'assets/images/demo1_brand5_123x64.png' %}"
-															alt=""></a>
-												</li>
-												<li class="">
-													<a href="./collection.html"><img
-															src="{% static 'assets/images/demo1_brand6_123x64.png' %}"
-															alt=""></a>
-												</li>
-												<li class="">
-													<a href="./collection.html"><img
-															src="{% static 'assets/images/demo1_brand7_123x64.png' %}"
-															alt=""></a>
-												</li>
-												<li class="">
-													<a href="./collection.html"><img
-															src="{% static 'assets/images/demo1_brand8_123x64.png' %}"
-															alt=""></a>
-												</li>
-											</ul>
-										</div>
-										<div class="banner-area">
-											<a href="./collection.html"><img
-													src="{% static 'assets/images/demo1_banner4_185x345.png' %}"
-													alt=""></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> -->
 			</div>
 		</main>
 

@@ -88,7 +88,14 @@ $(document).ready(function () {
           '</ul>' +
           '</div>' +
           '</div>';
-
+        var them2 = '<li>' +
+          '<div>' +
+          '<img src="https://cf.shopee.co.th/file/' + value.image + '" alt="">' +
+          '<span class="cr-title"><a href="" onclick="location.href = ">' + value.name + '</a></span>' +
+          '<span class="cr-desc">฿ ' + value.price / 100000 + '</span>' +
+          '</div>' +
+          '</li>';
+        $('#test').append(them2);
         $('.sale-products').append(html2);
       }
 

@@ -15,10 +15,10 @@ def index(request):
     #category_all[0].total จะเอาจำนวนของ category นั้น
 
     collection_list = []
-    category_collection1=categoryCollection(category="โทรศัพท์มือถือและแท็บเล็ต",size=5)
-    category_collection2=categoryCollection(category="คอมพิวเตอร์และแล็ปท็อป",size=5)
-    category_collection3=categoryCollection(category="กล้อง",size=5)
-    category_collection4=categoryCollection(category="อุปกรณ์สำหรับเกมเมอร์",size=5)
+    category_collection1=categoryCollection(category="โทรศัพท์มือถือและแท็บเล็ต",size=15)
+    category_collection2=categoryCollection(category="คอมพิวเตอร์และแล็ปท็อป",size=15)
+    category_collection3=categoryCollection(category="กล้อง",size=15)
+    category_collection4=categoryCollection(category="อุปกรณ์สำหรับเกมเมอร์",size=15)
     collection_list.append(category_collection1)
     collection_list.append(category_collection2)
     collection_list.append(category_collection3)
@@ -29,7 +29,7 @@ def index(request):
     #ส่วนตัวแปรมีไรบ้างดูใน categoryCollection()
 
     #print(collection_list[0][0].category) โทรศัพท์มือถือและแท็บเล็ต
-    # print(collection_list[0]) #อุปกรณ์เสริมคอมพิวเตอร์
+    print(collection_list[0][1].category) #อุปกรณ์เสริมคอมพิวเตอร์
 
     return render(request,'index.html',{'category_all':category_all,'collection_list':collection_list,'category_selected':"all",'platform_selected':"all"})
 
@@ -101,8 +101,10 @@ def product(request,product_id):
             })
 
 def todays_deals(request):
-    return render(request,'todays-deals.html')\
+    category_all=categoryAll()
+    return render(request,'todays-deals.html',{'category_all':category_all,'category_selected':"all",'platform_selected':"all"})\
 
         
 def BI_REPORT(request):
-    return render(request,'lookbook.html')
+    category_all=categoryAll()
+    return render(request,'lookbook.html',{'category_all':category_all,'category_selected':"all",'platform_selected':"all"})
