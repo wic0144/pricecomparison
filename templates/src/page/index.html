@@ -2,8 +2,6 @@
 {% load static %}
 
 <!-- {% block content %} -->
-<!DOCTYPE html>
-<html class="supports-js supports-no-touch supports-csstransforms supports-csstransforms3d supports-fontface">
 
 
 <body id="home-market-responsive-shopify-theme" class="index1 template-index">
@@ -653,7 +651,7 @@
 							<div class="collection-name">
 								<img class="collection-icon" src="{% static 'assets/images/beauty-health.png' %}"
 									alt=""><a
-									href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=">{{collection_list.0.0.category}}</a>
+									href="/search?&category={{collection_list.0.category}}&platform=all&sort=relevant&page=1&name=">{{collection_list.0.category}}</a>
 							</div>
 							<div class="collection-tags">
 								<ul class="bh-tags">
@@ -687,18 +685,22 @@
 									</div>
 									<div class="home-products-block-content">
 										<div class="home-products-slider">
-											{%for i in collection_list.0%}
+											{%for col in collection_list.0.collection %}
 											<div class="grid__item">
 												<div class="grid__item_wrapper">
 													<div class="grid__image product-image">
 														<a href="./product.html">
-															<img src="{{i.collection.Image}}" alt="Demo Product Sample">
+															<img src="{{col.data.Image}}" alt="Demo Product Sample">
 														</a>
 														<div class="quickview">
 															<div class="product-ajax-cart hidden-xs hidden-sm">
 																<div data-handle="consequuntur-magni-dolores"
 																	class="quick_shop-div">
-																	<a href="#quick-shop-modal" class="btn quick_shop">
+																	<a href="#quick-shop-modal" class="btn quick_shop" data-todo='{"name":"{{col.data.Name}}",
+																	"image":"{{col.data.Image}}","price":"{{col.data.Price|floatformat:0}}","compare":"{{col.compareSize}}",
+																	"platform":"{{col.data.Platform}}","category":"{{col.data.Category}}","review":"{{col.data.Review}}",
+																	"score":"{{col.data.Score}}","url":"{{col.data.URL}}","id":"{{col.id}}"
+																	}'>
 																		<i class="fa fa-eye" title="Quick View"></i>
 																	</a>
 																</div>
@@ -720,31 +722,39 @@
 													</div>
 													<p class="h6 product-title">
 														<a
-															href="./product.html">{{i.collection.Name}}{{i.collection.id}}</a>
+															href="./product.html">{{col.data.Name}}</a>
 													</p>
 													<p class="product-price">
 														<strong>On Sale</strong>
 														<span class="money">฿
-															{{i.collection.Price|floatformat:0}}</span>
+															{{col.data.Price|floatformat:0}}</span>
 
 													</p>
 													<ul class="action-button">
 														<li class="add-to-cart-form">
-															<form action="{{i.collection.URL}}" method="post"
-																enctype="multipart/form-data" id="AddToCartForm"
-																class="form-vertical">
 																<div class="effect-ajax-cart">
 																	<input type="hidden" name="quantity" value="1">
-																	<a href="{{i.collection.URL}}"><button name="add"
-																			id="AddToCart" class="btn btn-1 add-to-cart"
+																	{%if col.compareSize <= 1 %} <a href="{{col.data.URL}}"
+																	class="text-light" style="text-decoration: none;" target="_blank">
+																	<button name="add" id="AddToCart" class="btn btn-1 add-to-cart"
+																		title="Buy Now">
+																		<span id="AddToCartText"><i class="fa fa-shopping-cart"></i>
+																			เช็คราคา</span>
+																	</button>
+																	</a>
+																	{%else%}
+																	<a href="product/{{col.id}}" style="text-decoration: none; ">
+																		<button name="add" id="AddToCart" class="btn btn-1 add-to-cart"
 																			title="Buy Now">
-																			<span id="AddToCartText"><i
-																					class="fa fa-shopping-cart"></i> Buy
-																				Now</span>
-																		</button></a>
+																			<span id="AddToCartText"><i class="fa fa-shopping-cart"></i>
+																				เปรียบเทียบ {{col.compareSize}} ร้านค้า
+																			</span>
+																		</button>
+																	</a>
+																	{% endif %}
 
 																</div>
-															</form>
+
 														</li>
 														<li class="wishlist">
 															<a class="wish-list btn" href="./wish-list.html"><i
@@ -768,49 +778,49 @@
 									<ul class="brands-elements">
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=apple"><img
+												href="/search?&category={{collection_list.0.category}}&platform=all&sort=relevant&page=1&name=apple"><img
 													src="https://cf.shopee.co.th/file/e930c08c67f5fbc233aaa5751e8a4440"
 													alt="apple"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=samsung"><img
+												href="/search?&category={{collection_list.0.category}}&platform=all&sort=relevant&page=1&name=samsung"><img
 													src="https://cf.shopee.co.th/file/32a817fa8c243823534c3f250cdd7567"
 													alt="samsung"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=xiaomi"><img
+												href="/search?&category={{collection_list.0.category}}&platform=all&sort=relevant&page=1&name=xiaomi"><img
 													src="https://cf.shopee.co.th/file/73c124598ae7103667be98823ce6f9eb"
 													alt="xiaomi"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=realme"><img
+												href="/search?&category={{collection_list.0.category}}&platform=all&sort=relevant&page=1&name=realme"><img
 													src="https://cf.shopee.co.th/file/3f35e1551504904eafc62e049e64657a"
 													alt="realme"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=huawei"><img
+												href="/search?&category={{collection_list.0.category}}&platform=all&sort=relevant&page=1&name=huawei"><img
 													src="https://cf.shopee.co.th/file/fa64564526f51ff10b01f1e08bda0b21"
 													alt="huawei"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=oppo"><img
+												href="/search?&category={{collection_list.0.category}}&platform=all&sort=relevant&page=1&name=oppo"><img
 													src="https://cf.shopee.co.th/file/23abab243ebddb3ac9a6df16fd542bc6"
 													alt="oppo"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=vivo"><img
+												href="/search?&category={{collection_list.0.category}}&platform=all&sort=relevant&page=1&name=vivo"><img
 													src="https://cf.shopee.co.th/file/9ed43e5eac2b4af527d18c54dc82d4af"
 													alt="vivo"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.0.0.category}}&platform=all&sort=relevant&page=1&name=ais"><img
+												href="/search?&category={{collection_list.0.category}}&platform=all&sort=relevant&page=1&name=ais"><img
 													src="https://cf.shopee.co.th/file/c82cf6398d5f602e84e1678631620fd0"
 													alt="ais"></a>
 										</li>
@@ -830,7 +840,7 @@
 							<div class="collection-name">
 								<img class="collection-icon" src="{% static 'assets/images/beauty-health.png' %}"
 									alt=""><a
-									href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=">{{collection_list.1.0.category}}</a>
+									href="/search?&category={{collection_list.1.category}}&platform=all&sort=relevant&page=1&name=">{{collection_list.1.category}}</a>
 							</div>
 							<div class="collection-tags">
 								<ul class="bh-tags">
@@ -864,18 +874,22 @@
 									</div>
 									<div class="home-products-block-content">
 										<div class="home-products-slider">
-											{%for i in collection_list.1%}
+											{%for col in collection_list.1.collection %}
 											<div class="grid__item">
 												<div class="grid__item_wrapper">
 													<div class="grid__image product-image">
 														<a href="./product.html">
-															<img src="{{i.collection.Image}}" alt="Demo Product Sample">
+															<img src="{{col.data.Image}}" alt="Demo Product Sample">
 														</a>
 														<div class="quickview">
 															<div class="product-ajax-cart hidden-xs hidden-sm">
 																<div data-handle="consequuntur-magni-dolores"
 																	class="quick_shop-div">
-																	<a href="#quick-shop-modal" class="btn quick_shop">
+																	<a href="#quick-shop-modal" class="btn quick_shop" data-todo='{"name":"{{col.data.Name}}",
+																	"image":"{{col.data.Image}}","price":"{{col.data.Price|floatformat:0}}","compare":"{{col.compareSize}}",
+																	"platform":"{{col.data.Platform}}","category":"{{col.data.Category}}","review":"{{col.data.Review}}",
+																	"score":"{{col.data.Score}}","url":"{{col.data.URL}}","id":"{{col.id}}"
+																	}'>
 																		<i class="fa fa-eye" title="Quick View"></i>
 																	</a>
 																</div>
@@ -896,31 +910,38 @@
 														</span>
 													</div>
 													<p class="h6 product-title">
-														<a href="./product.html">{{i.collection.Name}}</a>
+														<a href="./product.html">{{col.data.Name}}</a>
 													</p>
 													<p class="product-price">
 														<strong>On Sale</strong>
 														<span class="money">฿
-															{{i.collection.Price|floatformat:0}}</span>
+															{{col.data.Price|floatformat:0}}</span>
 
 													</p>
 													<ul class="action-button">
 														<li class="add-to-cart-form">
-															<form action="{{i.collection.URL}}" method="post"
-																enctype="multipart/form-data" id="AddToCartForm"
-																class="form-vertical">
 																<div class="effect-ajax-cart">
 																	<input type="hidden" name="quantity" value="1">
-																	<a href="{{i.collection.URL}}"><button name="add"
-																			id="AddToCart" class="btn btn-1 add-to-cart"
+																	{%if col.compareSize <= 1 %} <a href="{{col.data.URL}}"
+																	class="text-light" style="text-decoration: none;" target="_blank">
+																	<button name="add" id="AddToCart" class="btn btn-1 add-to-cart"
+																		title="Buy Now">
+																		<span id="AddToCartText"><i class="fa fa-shopping-cart"></i>
+																			เช็คราคา</span>
+																	</button>
+																	</a>
+																	{%else%}
+																	<a href="product/{{col.id}}" style="text-decoration: none; ">
+																		<button name="add" id="AddToCart" class="btn btn-1 add-to-cart"
 																			title="Buy Now">
-																			<span id="AddToCartText"><i
-																					class="fa fa-shopping-cart"></i> Buy
-																				Now</span>
-																		</button></a>
+																			<span id="AddToCartText"><i class="fa fa-shopping-cart"></i>
+																				เปรียบเทียบ {{col.compareSize}} ร้านค้า
+																			</span>
+																		</button>
+																	</a>
+																	{% endif %}
 
 																</div>
-															</form>
 														</li>
 														<li class="wishlist">
 															<a class="wish-list btn" href="./wish-list.html"><i
@@ -944,49 +965,49 @@
 									<ul class="brands-elements">
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=hp"><img
+												href="/search?&category={{collection_list.1.category}}&platform=all&sort=relevant&page=1&name=hp"><img
 													src="https://cf.shopee.co.th/file/ff93814d84fa1ceb260d49e5671bad7a"
 													alt="hp"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=steelseries"><img
+												href="/search?&category={{collection_list.1.category}}&platform=all&sort=relevant&page=1&name=steelseries"><img
 													src="https://cf.shopee.co.th/file/1d0d0a3d74d13798c94091100a271dca"
 													alt="steelseries"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=logitech"><img
+												href="/search?&category={{collection_list.1.category}}&platform=all&sort=relevant&page=1&name=logitech"><img
 													src="https://cf.shopee.co.th/file/7870fbfea7c1dea936184957b5988eaf"
 													alt="logitech"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=lenovo"><img
+												href="/search?&category={{collection_list.1.category}}&platform=all&sort=relevant&page=1&name=lenovo"><img
 													src="https://cf.shopee.co.th/file/589052b2af4784dc74a489916d9bb28e"
 													alt="lenovo"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=advice"><img
+												href="/search?&category={{collection_list.1.category}}&platform=all&sort=relevant&page=1&name=advice"><img
 													src="https://cf.shopee.co.th/file/50e8858929f0940fa359781aab0c1631"
 													alt="advice"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=huawei"><img
+												href="/search?&category={{collection_list.1.category}}&platform=all&sort=relevant&page=1&name=huawei"><img
 													src="https://cf.shopee.co.th/file/fa64564526f51ff10b01f1e08bda0b21"
 													alt="huawei"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=asus"><img
+												href="/search?&category={{collection_list.1.category}}&platform=all&sort=relevant&page=1&name=asus"><img
 													src="https://cf.shopee.co.th/file/d33a9265ee619473ac48aa63c892f3d0"
 													alt="asus"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.1.0.category}}&platform=all&sort=relevant&page=1&name=acer"><img
+												href="/search?&category={{collection_list.1.category}}&platform=all&sort=relevant&page=1&name=acer"><img
 													src="https://cf.shopee.co.th/file/72dd14e8fa384116583869fc0f43f439"
 													alt="acer"></a>
 										</li>
@@ -1006,7 +1027,7 @@
 							<div class="collection-name">
 								<img class="collection-icon" src="{% static 'assets/images/beauty-health.png' %}"
 									alt=""><a
-									href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=">{{collection_list.2.0.category}}</a>
+									href="/search?&category={{collection_list.2.category}}&platform=all&sort=relevant&page=1&name=">{{collection_list.2.category}}</a>
 							</div>
 							<div class="collection-tags">
 								<ul class="bh-tags">
@@ -1040,19 +1061,22 @@
 									</div>
 									<div class="home-products-block-content">
 										<div class="home-products-slider">
-											{%for i in collection_list.2%}
+											{%for col in collection_list.2.collection %}
 											<div class="grid__item">
 												<div class="grid__item_wrapper">
 													<div class="grid__image product-image">
 														<a href="./product.html">
-															<img src="{{i.collection.Image}}" alt="Demo Product Sample">
+															<img src="{{col.data.Image}}" alt="Demo Product Sample">
 														</a>
 														<div class="quickview">
 															<div class="product-ajax-cart hidden-xs hidden-sm">
 																<div data-handle="consequuntur-magni-dolores"
 																	class="quick_shop-div">
-																	<a href="#quick-shop-modal" class="btn quick_shop">
-																		<i class="fa fa-eye" title="Quick View"></i>
+																	<a href="#quick-shop-modal" class="btn quick_shop" data-todo='{"name":"{{col.data.Name}}",
+																	"image":"{{col.data.Image}}","price":"{{col.data.Price|floatformat:0}}","compare":"{{col.compareSize}}",
+																	"platform":"{{col.data.Platform}}","category":"{{col.data.Category}}","review":"{{col.data.Review}}",
+																	"score":"{{col.data.Score}}","url":"{{col.data.URL}}","id":"{{col.id}}"
+																	}'><i class="fa fa-eye" title="Quick View"></i>
 																	</a>
 																</div>
 															</div>
@@ -1072,31 +1096,37 @@
 														</span>
 													</div>
 													<p class="h6 product-title">
-														<a href="./product.html">{{i.collection.Name}}</a>
+														<a href="./product.html">{{col.data.Name}}</a>
 													</p>
 													<p class="product-price">
 														<strong>On Sale</strong>
 														<span class="money">฿
-															{{i.collection.Price|floatformat:0}}</span>
+															{{col.data.Price|floatformat:0}}</span>
 
 													</p>
 													<ul class="action-button">
 														<li class="add-to-cart-form">
-															<form action="{{i.collection.URL}}" method="post"
-																enctype="multipart/form-data" id="AddToCartForm"
-																class="form-vertical">
 																<div class="effect-ajax-cart">
 																	<input type="hidden" name="quantity" value="1">
-																	<a href="{{i.collection.URL}}"><button name="add"
-																			id="AddToCart" class="btn btn-1 add-to-cart"
+																	{%if col.compareSize <= 1 %} <a href="{{col.data.URL}}"
+																	class="text-light" style="text-decoration: none;" target="_blank">
+																	<button name="add" id="AddToCart" class="btn btn-1 add-to-cart"
+																		title="Buy Now">
+																		<span id="AddToCartText"><i class="fa fa-shopping-cart"></i>
+																			เช็คราคา</span>
+																	</button>
+																	</a>
+																	{%else%}
+																	<a href="product/{{col.id}}" style="text-decoration: none; ">
+																		<button name="add" id="AddToCart" class="btn btn-1 add-to-cart"
 																			title="Buy Now">
-																			<span id="AddToCartText"><i
-																					class="fa fa-shopping-cart"></i> Buy
-																				Now</span>
-																		</button></a>
-
+																			<span id="AddToCartText"><i class="fa fa-shopping-cart"></i>
+																				เปรียบเทียบ {{col.compareSize}} ร้านค้า
+																			</span>
+																		</button>
+																	</a>
+																	{% endif %}
 																</div>
-															</form>
 														</li>
 														<li class="wishlist">
 															<a class="wish-list btn" href="./wish-list.html"><i
@@ -1120,49 +1150,49 @@
 									<ul class="brands-elements">
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=dji"><img
+												href="/search?&category={{collection_list.2.category}}&platform=all&sort=relevant&page=1&name=dji"><img
 													src="https://cf.shopee.co.th/file/ba7d295d7dfb47e2f0ba39519b9c3f85"
 													alt="dji"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=sony"><img
+												href="/search?&category={{collection_list.2.category}}&platform=all&sort=relevant&page=1&name=sony"><img
 													src="https://cf.shopee.co.th/file/a7205200653a685b68da9b26133753ff"
 													alt="sony"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=fujiflim"><img
+												href="/search?&category={{collection_list.2.category}}&platform=all&sort=relevant&page=1&name=fujiflim"><img
 													src="https://cf.shopee.co.th/file/91fa0eb27c8d315f7cccc99f2bc26567"
 													alt="fujiflim"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=sandisk"><img
+												href="/search?&category={{collection_list.2.category}}&platform=all&sort=relevant&page=1&name=sandisk"><img
 													src="https://cf.shopee.co.th/file/38eb2d452779691d4845377b7c53d36d"
 													alt="sandisk"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=kingston"><img
+												href="/search?&category={{collection_list.2.category}}&platform=all&sort=relevant&page=1&name=kingston"><img
 													src="https://cf.shopee.co.th/file/2750a0adce23234edebaba75ed13eadb"
 													alt="kingston"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=bigcamera"><img
+												href="/search?&category={{collection_list.2.category}}&platform=all&sort=relevant&page=1&name=bigcamera"><img
 													src="https://cf.shopee.co.th/file/dbe915d3ee20472eab72072fcb530123"
 													alt="bigcamera"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=casio"><img
+												href="/search?&category={{collection_list.2.category}}&platform=all&sort=relevant&page=1&name=casio"><img
 													src="https://cf.shopee.co.th/file/12de0e7645b6a51683e43bae69be5e4b"
 													alt="casio"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.2.0.category}}&platform=all&sort=relevant&page=1&name=canon"><img
+												href="/search?&category={{collection_list.2.category}}&platform=all&sort=relevant&page=1&name=canon"><img
 													src="https://cf.shopee.co.th/file/165783b7beee27803ee4f6250376e685"
 													alt="canon"></a>
 										</li>
@@ -1182,7 +1212,7 @@
 							<div class="collection-name">
 								<img class="collection-icon" src="{% static 'assets/images/beauty-health.png' %}"
 									alt=""><a
-									href="/search?&category={{collection_list.3.0.category}}&platform=all&sort=relevant&page=1&name=">{{collection_list.3.0.category}}</a>
+									href="/search?&category={{collection_list.3.category}}&platform=all&sort=relevant&page=1&name=">{{collection_list.3.category}}</a>
 							</div>
 							<div class="collection-tags">
 								<ul class="bh-tags">
@@ -1216,18 +1246,22 @@
 									</div>
 									<div class="home-products-block-content">
 										<div class="home-products-slider">
-											{%for i in collection_list.3%}
+											{%for col in collection_list.3.collection %}
 											<div class="grid__item">
 												<div class="grid__item_wrapper">
 													<div class="grid__image product-image">
 														<a href="./product.html">
-															<img src="{{i.collection.Image}}" alt="Demo Product Sample">
+															<img src="{{col.data.Image}}" alt="Demo Product Sample">
 														</a>
 														<div class="quickview">
 															<div class="product-ajax-cart hidden-xs hidden-sm">
 																<div data-handle="consequuntur-magni-dolores"
 																	class="quick_shop-div">
-																	<a href="#quick-shop-modal" class="btn quick_shop">
+																	<a href="#quick-shop-modal" class="btn quick_shop" data-todo='{"name":"{{col.data.Name}}",
+																	"image":"{{col.data.Image}}","price":"{{col.data.Price|floatformat:0}}","compare":"{{col.compareSize}}",
+																	"platform":"{{col.data.Platform}}","category":"{{col.data.Category}}","review":"{{col.data.Review}}",
+																	"score":"{{col.data.Score}}","url":"{{col.data.URL}}","id":"{{col.id}}"
+																	}'>
 																		<i class="fa fa-eye" title="Quick View"></i>
 																	</a>
 																</div>
@@ -1248,31 +1282,37 @@
 														</span>
 													</div>
 													<p class="h6 product-title">
-														<a href="./product.html">{{i.collection.Name}}</a>
+														<a href="./product.html">{{col.data.Name}}</a>
 													</p>
 													<p class="product-price">
 														<strong>On Sale</strong>
 														<span class="money">฿
-															{{i.collection.Price|floatformat:0}}</span>
+															{{col.data.Price|floatformat:0}}</span>
 
 													</p>
 													<ul class="action-button">
 														<li class="add-to-cart-form">
-															<form action="{{i.collection.URL}}" method="post"
-																enctype="multipart/form-data" id="AddToCartForm"
-																class="form-vertical">
-																<div class="effect-ajax-cart">
-																	<input type="hidden" name="quantity" value="1">
-																	<a href="{{i.collection.URL}}"><button name="add"
-																			id="AddToCart" class="btn btn-1 add-to-cart"
-																			title="Buy Now">
-																			<span id="AddToCartText"><i
-																					class="fa fa-shopping-cart"></i> Buy
-																				Now</span>
-																		</button></a>
-
-																</div>
-															</form>
+															<div class="effect-ajax-cart">
+																<input type="hidden" name="quantity" value="1">
+																{%if col.compareSize <= 1 %} <a href="{{col.data.URL}}"
+																class="text-light" style="text-decoration: none;" target="_blank">
+																<button name="add" id="AddToCart" class="btn btn-1 add-to-cart"
+																	title="Buy Now">
+																	<span id="AddToCartText"><i class="fa fa-shopping-cart"></i>
+																		เช็คราคา</span>
+																</button>
+																</a>
+																{%else%}
+																<a href="product/{{col.id}}" style="text-decoration: none; ">
+																	<button name="add" id="AddToCart" class="btn btn-1 add-to-cart"
+																		title="Buy Now">
+																		<span id="AddToCartText"><i class="fa fa-shopping-cart"></i>
+																			เปรียบเทียบ {{col.compareSize}} ร้านค้า
+																		</span>
+																	</button>
+																</a>
+																{% endif %}
+															</div>
 														</li>
 														<li class="wishlist">
 															<a class="wish-list btn" href="./wish-list.html"><i
@@ -1296,43 +1336,43 @@
 									<ul class="brands-elements">
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.3.0.category}}&platform=all&sort=relevant&page=1&name=tinzshop"><img
+												href="/search?&category={{collection_list.3.category}}&platform=all&sort=relevant&page=1&name=tinzshop"><img
 													src="https://cf.shopee.co.th/file/d8cbaa2f2e965b192455f058700a9c17"
 													alt="tinzshop"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.3.0.category}}&platform=all&sort=relevant&page=1&name=gunplavillage"><img
+												href="/search?&category={{collection_list.3.category}}&platform=all&sort=relevant&page=1&name=gunplavillage"><img
 													src="https://cf.shopee.co.th/file/d5dcf1b8f492b9782e8f94113f85fe8c"
 													alt="gunplavillage"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.3.0.category}}&platform=all&sort=relevant&page=1&name=gscs_official"><img
+												href="/search?&category={{collection_list.3.category}}&platform=all&sort=relevant&page=1&name=gscs_official"><img
 													src="https://cf.shopee.co.th/file/e8653f4e5d5afb7e0f7939a2f02c7c6d"
 													alt="gscs_official"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.3.0.category}}&platform=all&sort=relevant&page=1&name=gcorners"><img
+												href="/search?&category={{collection_list.3.category}}&platform=all&sort=relevant&page=1&name=gcorners"><img
 													src="https://cf.shopee.co.th/file/c7a182aa85792ba3306e06bd5fb74c0e"
 													alt="gcorners"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.3.0.category}}&platform=all&sort=relevant&page=1&name=xmodeltoys"><img
+												href="/search?&category={{collection_list.3.category}}&platform=all&sort=relevant&page=1&name=xmodeltoys"><img
 													src="https://cf.shopee.co.th/file/1553c38624478d2e45cadec6506afd3c"
 													alt="xmodeltoys"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.3.0.category}}&platform=all&sort=relevant&page=1&name=casiamboardgamesnon"><img
+												href="/search?&category={{collection_list.3.category}}&platform=all&sort=relevant&page=1&name=casiamboardgamesnon"><img
 													src="https://cf.shopee.co.th/file/7783fdd1ff9d8e3ee821951febd53bbc"
 													alt="siamboardgames"></a>
 										</li>
 										<li class="">
 											<a
-												href="/search?&category={{collection_list.3.0.category}}&platform=all&sort=relevant&page=1&name=siamboardgames"><img
+												href="/search?&category={{collection_list.3.category}}&platform=all&sort=relevant&page=1&name=siamboardgames"><img
 													src="https://cf.shopee.co.th/file/e9e7d0d6574b06d3a31127f6f86fba47"
 													alt="siamboardgames"></a>
 										</li>
@@ -1423,7 +1463,8 @@
 							<div id="featuted-image" class="main-image featured">
 								<img class="img-zoom img-responsive image-fly"
 									src="{% static 'assets/images/demo1_qs_480x480.jpg' %}"
-									data-zoom-image="{% static 'assets/images/demo1_qs_480x480.jpg' %}" alt="">
+									data-zoom-image="{% static 'assets/images/demo1_qs_480x480.jpg' %}"
+									alt="{% static 'assets/images/demo1_qs_480x480.jpg' %}" id="main_image">
 							</div>
 							<div id="gallery_main_qs" class="product-image-thumb scroll scroll-mini">
 								<div class="qs-vertical-slider product-single__thumbnails">
@@ -1436,7 +1477,7 @@
 									<a class="image-thumb thumb__element"><img
 											src="{% static 'assets/images/demo1_qs4_100x100.jpg' %}" alt="" /></a>
 									<a class="image-thumb thumb__element"><img
-											src="{% static '/assets/images/demo1_qs5_100x100.jpg' %}" alt="" /></a>
+											src="{% static 'assets/images/demo1_qs5_100x100.jpg' %}" alt="" /></a>
 								</div>
 							</div>
 							<div class="vertical-slider product-single__thumbnails" style="opacity: 0;">
@@ -1445,7 +1486,7 @@
 					</div>
 					<div class="grid__item one-half qs-product-information">
 						<div id="quick-shop-container">
-							<h3 id="quick-shop-title"><a href="./product.html">Corporis suscipit laboriosam</a></h3>
+							<h3 id="quick-shop-title"><a href="./product.html" id="titel_product"></a></h3>
 							<div class="rating-star">
 								<span class="shopify-product-reviews-badge" data-id="3008529923"></span>
 							</div>
@@ -1461,8 +1502,9 @@
 							</div>
 							<form action="#" method="post" class="variants" id="AddToCartForm"
 								enctype="multipart/form-data">
+								{% csrf_token %}
 								<div id="quick-shop-price-container" class="detail-price">
-									<span class="price"><span class="money">$89.00</span></span>
+									<span class="price"><span class="money" id="product_money">$89.00</span></span>
 								</div>
 								<div class="quantity-wrapper clearfix">
 									<label class="wrapper-title">Quantity</label>
@@ -1503,8 +1545,10 @@
 									</div>
 								</div>
 								<div class="others-bottom">
-									<input id="AddToCart" class="btn btn-1 small add-to-cart" type="submit" name="add"
-										value="Buy Now">
+									<a href="" id="checkOn" class="btn btn-1 small add-to-cart" name="add"
+										value="Buy Now">Buy Now</a>
+									<a href="" id="compareOn" class="btn btn-1 small add-to-cart" name="add"
+										value="Compare Now">Hello</a>
 								</div>
 							</form>
 						</div>
@@ -1514,6 +1558,35 @@
 		</div>
 	</div>
 
+	
+	<script type="text/javascript">
+		$(document).on("click", ".quick_shop", function () {
+			$('#compareOn').show();
+			var imglink = $(this).data('todo').image;
+			var product_name = $(this).data('todo').name;
+			var product_price = $(this).data('todo').price;
+			var product_url = $(this).data('todo').url;
+			var product_category = $(this).data('todo').category;
+			var product_platform = $(this).data('todo').platform;
+			var product_review = $(this).data('todo').review;
+			var product_score = $(this).data('todo').score;
+			var product_id = $(this).data('todo').id;
+			var product_compare = $(this).data('todo').compare;
+			var modalImg = document.getElementById("main_image");
+			var modalHref = document.getElementById("checkOn");
+			var modalCompare = document.getElementById("compareOn");
+			if (product_compare <= 1) {
+				$('#compareOn').hide();
+			}
+			$(".modal-body #compareOn").text('เปรียบเทียบร้านค้า ' + product_compare + ' ร้านค้า');
+			$(".modal-body #titel_product").text(product_name);
+			$(".modal-body #product_money").text(product_price);
+			modalHref.href = product_url;
+			modalCompare.href = 'product/' + product_id;
+			modalImg.src = imglink;
+			// $(".modal-body #main_image").src('https://img.jd.co.th/n1/jfs/t16/91/3587828062/86780/15a3fb93/5f3e0287N2043045c.jpg!q50.jpg.dpg');
+		});
+	</script>
 	<script type="text/javascript">
 		jQuery(document).ready(function ($) {
 			if ($('.quantity-wrapper').length) {

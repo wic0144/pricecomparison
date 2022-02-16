@@ -35,8 +35,8 @@ def categoryAll():
         categoryList.append(item)
     return categoryList 
 
-def categoryCollection(category="",size=10):      
-    client = Elasticsearch()      
+def categoryCollection(category="",size=10):
+    client = Elasticsearch()
     response = client.search(
                 index=db,
                 body={
@@ -53,21 +53,27 @@ def categoryCollection(category="",size=10):
                 )
 
     class CollectionData:
-        def _init_(self, data, compareSize):
+        def init(self, data,id, compareSize):
             self.category = None
-            self.collection = None
+            self.collection = []
             self.total = None
-
-    collectionList=[]
-    total = response["hits"]['total']['value']
-    
+    class DataSet:
+        def init(self, data,id, compareSize):
+            self.data = []
+            self.id = None
+            self.compareSize = None
+    item = CollectionData()
+    item.category = category
+    item.total = response["hits"]['total']['value']
+    dataArraySet = []
     for hit in response["hits"]["hits"]:
-        item = CollectionData()
-        item.category = category
-        item.total = total
-        item.collection = hit["_source"]
-        collectionList.append(item)
-    return collectionList 
+        dataset = DataSet()
+        dataset.data = hit["_source"]
+        dataset.id = hit["_id"]
+        dataset.compareSize = len(esearchCompare(id=hit["_id"]))
+        dataArraySet.append(dataset)
+    item.collection = dataArraySet
+    return item
 #ตัวค้นหาหลัก
 def esearch(Name="",categoryMenu="all",Page=1,sort="relevant",platform="all"):
     client = Elasticsearch()

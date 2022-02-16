@@ -29,9 +29,8 @@ def index(request):
     #ส่วนตัวแปรมีไรบ้างดูใน categoryCollection()
 
     #print(collection_list[0][0].category) โทรศัพท์มือถือและแท็บเล็ต
-    print(collection_list[0][1].category) #อุปกรณ์เสริมคอมพิวเตอร์
 
-    return render(request,'index.html',{'category_all':category_all,'collection_list':collection_list,'category_selected':"all",'platform_selected':"all"})
+    return render(request,'index.html',{'category_all':category_all,'collection_list':collection_list,'category_selected':"all",'platform_selected':"all",'title':'Price Compare IT'})
 
 def search_product(request): 
     name = request.GET['name']
@@ -84,10 +83,12 @@ def search_product(request):
         'page_num':page_num,
         'total':total,
         'category_all':category_all,
-        'platform_selected':pf
+        'platform_selected':pf,
+        'title':'Search Product'
     })
 
 def product(request,product_id): 
+    category_all=categoryAll()
     response = esearchCompare(id=product_id)
     main_product = response[0]
     main_product_url = response[0]["URL"]
@@ -97,7 +98,10 @@ def product(request,product_id):
             'products':response,
             'main_product':main_product,
             'main_product_url':main_product_url,
-            'compares':compares
+            'compares':compares,'category_selected':"all",
+            'platform_selected':"all",
+            'category_all':category_all,
+            'title':'Product Compare'
             })
 
 def todays_deals(request):
