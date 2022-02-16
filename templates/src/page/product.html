@@ -386,41 +386,37 @@
 											id="ProductPhotoImg" data-image-id="7500291971">
 									</div>
 									<ul class="product-single__thumbnails grid-uniform" id="ProductThumbs">
+
+										{%if main_product.Platform == "Shopee" %}
+
 										<li class="thumb__element">
-											<a href="{% static 'assets/images/demo1_detail1_135x135.jpg' %}"
+											<a href="https://ustatic.priceza.com/img/logo/shopee.jpg"
 												class="product-single__thumbnail">
-												<img src="{% static 'assets/images/demo1_detail1_135x135.jpg' %}"
-													alt="Corporis suscipit laboriosam">
+												<img src="https://ustatic.priceza.com/img/logo/shopee.jpg" alt=""
+													width="40%" style="display: inline;">
 											</a>
 										</li>
+										{%elif main_product.Platform == "Lazada"%}
 										<li class="thumb__element">
-											<a href="{% static 'assets/images/demo1_detail2_135x135.jpg' %}"
+											<a href="https://ustatic.priceza.com/img/logo/shopee.jpg"
 												class="product-single__thumbnail">
-												<img src="{% static 'assets/images/demo1_detail2_135x135.jpg' %}"
-													alt="Corporis suscipit laboriosam">
+												<img src="https://ustatic.priceza.com/img/logo/lazada_white.jpg" alt=""
+													width="40%" style="display: inline;">
 											</a>
 										</li>
+
+										{%elif main_product.Platform == "JDCentral"%}
 										<li class="thumb__element">
-											<a href="{% static 'assets/images/demo1_detail3_135x135.jpg' %}"
+											<a href="https://ustatic.priceza.com/img/logo/central_new.jpg"
 												class="product-single__thumbnail">
-												<img src="{% static 'assets/images/demo1_detail3_135x135.jpg' %}"
-													alt="Corporis suscipit laboriosam">
+												<img src="https://ustatic.priceza.com/img/logo/central_new.png" alt=""
+													width="40%" style="display: inline;">
 											</a>
 										</li>
-										<li class="thumb__element">
-											<a href="{% static 'assets/images/demo1_detail4_135x135.jpg' %}"
-												class="product-single__thumbnail">
-												<img src="{% static 'assets/images/demo1_detail4_135x135.jpg' %}"
-													alt="Corporis suscipit laboriosam">
-											</a>
-										</li>
-										<li class="thumb__element">
-											<a href="{% static 'assets/images/demo1_detail5_135x135.jpg' %}"
-												class="product-single__thumbnail">
-												<img src="{% static 'assets/images/demo1_detail5_135x135.jpg' %}"
-													alt="Corporis suscipit laboriosam">
-											</a>
-										</li>
+
+										{%else%}
+										ไม่พบPlatform
+										{% endif %}</span></s>
 									</ul>
 								</div>
 								<div class="grid__item large--one-half">
@@ -441,9 +437,18 @@
 										</div>
 										<div class="product-description" itemprop="description">
 											<h4>Quick View</h4>
-											Quisque vel enim quis purus ultrices consequat, sed tincidunt massa blandit
-											ipsum interdum tristique cras dictum, lacus eu molestie elementum nulla est
-											auctor. Etiam dan lorem quis ligula elementum porttitor...
+											<!-- {%if main_product.Platform == "Shopee" %}
+											<img src="https://ustatic.priceza.com/img/logo/shopee.jpg" alt=""
+												width="80%" style="display: inline;">
+											{%elif main_product.Platform == "Lazada"%}
+											<img src="https://ustatic.priceza.com/img/logo/lazada_white.jpg" alt=""
+												width="80%" style="display: inline;">
+											{%elif main_product.Platform == "JDCentral"%}
+											<img src="https://ustatic.priceza.com/img/logo/central_new.png" alt=""
+												width="80%" style="display: inline;">
+											{%else%}
+											ไม่พบPlatform
+											{% endif %}</span></s> -->
 										</div>
 										<div class="product-vendor">
 											Vendor: <b>{{main_product.Store}}</b>
@@ -459,103 +464,17 @@
 											<meta itemprop="priceCurrency" content="USD">
 											<link itemprop="availability" href="http://schema.org/InStock">
 											<div class="product-action ">
-												<form action="#" method="post" enctype="multipart/form-data"
-													id="AddToCartForm" class="form-vertical">
-													{% csrf_token %}
-													<div class="selector-wrapper">
-														<label for="productSelect-option-0">Size</label>
-														<select class="single-option-selector" data-option="option1"
-															id="productSelect-option-0">
-															<option value="XS">XS</option>
-															<option value="XS">S</option>
-															<option value="XS">M</option>
-															<option value="XS">L</option>
-															<option value="XS">XL</option>
-														</select>
-													</div>
-													<div class="selector-wrapper">
-														<label for="productSelect-option-1">Color</label>
-														<select class="single-option-selector" data-option="option2"
-															id="productSelect-option-1">
-															<option value="Black">Black</option>
-															<option value="Black">Blue</option>
-															<option value="Black">Red</option>
-															<option value="Black">White</option>
-														</select>
-													</div>
-													<select name="id" id="productSelect"
-														class="product-single__variants hide" style="display: none;">
-														<option selected="selected" data-sku="" value="8772462979">XS /
-															Black - $89.00 USD</option>
-													</select>
-													<hr>
-													<span class="visually-hidden">Regular price</span>
-													<span id="ProductPrice" class="" itemprop="price"><span
-															class="money" data-currency-usd="$89.00 USD"
-															data-currency="USD">{{main_product.Price}}</span></span>
-													<div class="qty_select">
-														<label for="Quantity" class="quantity-selector">Quantity</label>
-														<div class="js-qty">
-															<button type="button"
-																class="js-qty__adjust js-qty__adjust--minus icon-fallback-text"
-																data-id="" data-qty="0">
-																<span class="icon icon-minus" aria-hidden="true"></span>
-																<span class="fallback-text">−</span>
-															</button>
-															<input type="text" class="js-qty__num" value="1" min="1"
-																data-id="" aria-label="quantity" pattern="[0-9]*"
-																name="quantity" id="Quantity">
-															<button type="button"
-																class="js-qty__adjust js-qty__adjust--plus icon-fallback-text"
-																data-id="" data-qty="11">
-																<span class="icon icon-plus" aria-hidden="true"></span>
-																<span class="fallback-text">+</span>
-															</button>
-														</div>
-													</div>
-													<a href="{{main_product.URL}}" class="btn" id="AddToCart"><span
-															id="AddToCartText">Buy Now</span></a>
-													<!-- <button type="submit" name="add" id="AddToCart" class="btn">
-													<span id="AddToCartText">Buy Now</span>
-													</button> -->
-												</form>
-												<div class="add-to-wishlist">
-													<span class="non-user" data-toggle="tooltip" data-placement="right"
-														title="To use the Wish-list, you must Login or Register"><a
-															href="/account/login"><i class="fa fa-heart"></i>Add to
-															Wishlist</a></span>
-												</div>
-											</div>
-										</div>
-										<div class="detail-social">
-											<div class="social-sharing">
-												<a target="_blank" href="#" class="share-facebook">
-													<span class="icon icon-facebook" aria-hidden="true"></span>
-													<span class="share-title">Share</span>
-													<span class="share-count">0</span>
+												<span class="money" data-currency-usd="$19.99">฿
+													{{main_product.Price}}</span>
+												<a href="{{main_product.URL}}" class="text-light"
+													style="text-decoration: none;" target="_blank">
+													<button name="add" id="AddToCart" class="btn btn-1 add-to-cart"
+														title="Buy Now">
+														<span id="AddToCartText"><i class="fa fa-shopping-cart"></i>
+															เช็คราคา</span>
+													</button>
 												</a>
-												<a target="_blank" href="#" class="share-twitter">
-													<span class="icon icon-twitter" aria-hidden="true"></span>
-													<span class="share-title">Tweet</span>
-													<span class="share-count">0</span>
-												</a>
-												<a target="_blank" href="#" class="share-pinterest">
-													<span class="icon icon-pinterest" aria-hidden="true"></span>
-													<span class="share-title">Pin it</span>
-													<span class="share-count">0</span>
-												</a>
-												<a target="_blank" href="#" class="share-fancy">
-													<span class="icon icon-fancy" aria-hidden="true"></span>
-													<span class="share-title">Fancy</span>
-												</a>
-												<a target="_blank" href="#" class="share-google">
-													<!-- Cannot get Google+ share count with JS yet -->
-													<span class="icon icon-google" aria-hidden="true"></span>
-													<span class="share-count">+1</span>
-												</a>
-												<a target="_blank" href="#" class="share-email">
-													<i class="fa fa-envelope"></i>
-												</a>
+
 											</div>
 										</div>
 									</div>
@@ -580,7 +499,8 @@
 												<li><span class="fa-stack fa-lg"><i
 															class="fa fa-circle fa-stack-2x"></i><i
 															class="fa fa-reply fa-stack-1x fa-inverse"></i></span><span
-														class="detail_more_info">Free return<span class="sub"> Within 7
+														class="detail_more_info">Free return<span class="sub">
+															Within 7
 															days</span></span></li>
 												<li><span class="fa-stack fa-lg"><i
 															class="fa fa-circle fa-stack-2x"></i><i
@@ -595,7 +515,7 @@
 								</div>
 							</div>
 							<div class="product-information">
-								<div id="tabs-information">
+								<!-- <div id="tabs-information">
 									<ul class="nav nav-tabs tabs-left sideways">
 										<li class="description"><a href="#desc" data-toggle="tab"
 												class="active">Description</a></li>
@@ -802,7 +722,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 								<script>
 									$('#tabs-information').easytabs({ animationSpeed: 'fast', updateHash: false });
 								</script>
@@ -849,14 +769,27 @@
 															</span>
 														</div>
 														<p class="h6 product-title">
-															<a href="./product.html">Demo Product Sample</a>
+															<a href="{{product.URL}}">{{product.Name}}</a>
 														</p>
 														<p class="product-price">
 															<strong>On Sale</strong>
-															<span class="money" data-currency-usd="$19.99">$19.99</span>
+															<span class="money" data-currency-usd="$19.99">฿
+																{{product.Price|floatformat:0}} </span>
 															<span class="visually-hidden">Regular price</span>
-															<s><span class="money"
-																	data-currency-usd="$24.99">$24.99</span></s>
+															<!-- <s><span class="money"
+																	data-currency-usd="$24.99">$24.99</span></s> -->
+															{%if product.Platform == "Shopee" %}
+															<img src="https://ustatic.priceza.com/img/logo/shopee.jpg"
+																alt="" width="40%" style="display: inline;">
+															{%elif product.Platform == "Lazada"%}
+															<img src="https://ustatic.priceza.com/img/logo/lazada_white.jpg"
+																alt="" width="40%" style="display: inline;">
+															{%elif product.Platform == "JDCentral"%}
+															<img src="https://ustatic.priceza.com/img/logo/central_new.png"
+																alt="" width="40%" style="display: inline;">
+															{%else%}
+															ไม่พบPlatform
+															{% endif %}</span></s>
 														</p>
 														<ul class="action-button">
 															<li class="add-to-cart-form">
@@ -866,13 +799,17 @@
 																	{% csrf_token %}
 																	<div class="effect-ajax-cart">
 																		<input type="hidden" name="quantity" value="1">
-																		<button type="submit" name="add" id="AddToCart"
-																			class="btn btn-1 add-to-cart"
-																			title="Buy Now">
-																			<span id="AddToCartText"><i
-																					class="fa fa-shopping-cart"></i> Buy
-																				Now</span>
-																		</button>
+																		<a href="{{product.URL}}" class="text-light"
+																			style="text-decoration: none;"
+																			target="_blank">
+																			<button name="add" id="AddToCart"
+																				class="btn btn-1 add-to-cart"
+																				title="Buy Now">
+																				<span id="AddToCartText"><i
+																						class="fa fa-shopping-cart"></i>
+																					เช็คราคา</span>
+																			</button>
+																		</a>
 																	</div>
 																</form>
 															</li>
@@ -986,7 +923,7 @@
 										</span>
 									</div>
 								</div>
-								<div id="quick-shop-variants-container" class="variants-wrapper"
+								<!-- <div id="quick-shop-variants-container" class="variants-wrapper"
 									style="display: block;">
 									<div class="selector-wrapper">
 										<label for="#quick-shop-variants-3008529731-option-0">Size</label>
@@ -1010,7 +947,7 @@
 											<option value="White">White</option>
 										</select>
 									</div>
-								</div>
+								</div> -->
 								<div class="others-bottom">
 									<input id="AddToCart" class="btn btn-1 small add-to-cart" type="submit" name="add"
 										value="Buy Now">
