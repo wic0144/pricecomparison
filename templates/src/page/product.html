@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <!DOCTYPE html>
 <html class="supports-js supports-no-touch supports-csstransforms supports-csstransforms3d supports-fontface">
 {% include "./layout/head.html "%}
@@ -465,7 +466,7 @@
 											<link itemprop="availability" href="http://schema.org/InStock">
 											<div class="product-action ">
 												<span class="money" data-currency-usd="$19.99">฿
-													{{main_product.Price}}</span>
+													{{main_product.Price|floatformat:0|intcomma}}</span>
 												<a href="{{main_product.URL}}" class="text-light"
 													style="text-decoration: none;" target="_blank">
 													<button name="add" id="AddToCart" class="btn btn-1 add-to-cart"
@@ -735,15 +736,18 @@
 												<div class="grid__item">
 													<div class="grid__item_wrapper">
 														<div class="grid__image product-image">
-															<a href="./product.html">
+															<a href="{{product.URL}}">
 																<img src="{{product.Image}}" alt="Demo Product Sample">
 															</a>
 															<div class="quickview">
 																<div class="product-ajax-cart hidden-xs hidden-sm">
 																	<div data-handle="consequuntur-magni-dolores"
 																		class="quick_shop-div">
-																		<a href="#quick-shop-modal"
-																			class="btn quick_shop">
+																		<a href="#quick-shop-modal" class="btn quick_shop" data-todo='{"name":"{{product.Name}}",
+																		"image":"{{product.Image}}","price":"{{product.Price|floatformat:0|intcomma}}",
+																		"platform":"{{product.Platform}}","category":"{{product.Category}}","review":"{{product.Review}}",
+																		"score":"{{product.Score}}","url":"{{product.URL}}"
+																		}'>
 																			<i class="fa fa-eye" title="Quick View"></i>
 																		</a>
 																	</div>
@@ -774,7 +778,7 @@
 														<p class="product-price">
 															<strong>On Sale</strong>
 															<span class="money" data-currency-usd="$19.99">฿
-																{{product.Price|floatformat:0}} </span>
+																{{product.Price|floatformat:0|intcomma}} </span>
 															<span class="visually-hidden">Regular price</span>
 															<!-- <s><span class="money"
 																	data-currency-usd="$24.99">$24.99</span></s> -->
@@ -868,9 +872,10 @@
 							<div id="featuted-image" class="main-image featured">
 								<img class="img-zoom img-responsive image-fly"
 									src="{% static 'assets/images/demo1_qs_480x480.jpg' %}"
-									data-zoom-image="assets/images/demo1_qs_480x480.jpg" alt="">
+									data-zoom-image="{% static 'assets/images/demo1_qs_480x480.jpg' %}"
+									alt="{% static 'assets/images/demo1_qs_480x480.jpg' %}" id="main_image">
 							</div>
-							<div id="gallery_main_qs" class="product-image-thumb scroll scroll-mini">
+							<!-- <div id="gallery_main_qs" class="product-image-thumb scroll scroll-mini">
 								<div class="qs-vertical-slider product-single__thumbnails">
 									<a class="image-thumb active thumb__element"><img
 											src="{% static 'assets/images/demo1_qs1_100x100.jpg' %}" alt="" /></a>
@@ -883,35 +888,35 @@
 									<a class="image-thumb thumb__element"><img
 											src="{% static 'assets/images/demo1_qs5_100x100.jpg' %}" alt="" /></a>
 								</div>
-							</div>
+							</div> -->
 							<div class="vertical-slider product-single__thumbnails" style="opacity: 0;">
 							</div>
 						</div>
 					</div>
 					<div class="grid__item one-half qs-product-information">
 						<div id="quick-shop-container">
-							<h3 id="quick-shop-title"><a href="./product.html">Corporis suscipit laboriosam</a></h3>
+							<h3 id="quick-shop-title"><a href="./product/{{col.id}}" id="titel_product"></a></h3>
 							<div class="rating-star">
 								<span class="shopify-product-reviews-badge" data-id="3008529923"></span>
 							</div>
 							<div class="description">
-								<div id="quick-shop-description" class="text-left">
+								<!-- <div id="quick-shop-description" class="text-left">
 									<p>
 										Quisque vel enim quis purus ultrices consequat, sed tincidunt massa blandit
 										ipsum interdum tristique cras dictum, lacus eu molestie elementum nulla est
 										auctor. Etiam dan lorem quis ligula elementum porttitor quisem. Duis eget purus
 										urna fusce sed scelerisque ante. Lorem ipsum dolor sit amet conse...
 									</p>
-								</div>
+								</div> -->
 							</div>
 							<form action="#" method="post" class="variants" id="AddToCartForm"
 								enctype="multipart/form-data">
 								{% csrf_token %}
 								<div id="quick-shop-price-container" class="detail-price">
-									<span class="price"><span class="money">$89.00</span></span>
+									<span class="price"><span class="money" id="product_money">$89.00</span></span>
 								</div>
 								<div class="quantity-wrapper clearfix">
-									<label class="wrapper-title">Quantity</label>
+									<!-- <label class="wrapper-title">Quantity</label>
 									<div class="wrapper">
 										<span class="qty-down" title="Decrease" data-src="#qs-quantity">
 											<i class="fa fa-minus"></i>
@@ -921,11 +926,11 @@
 										<span class="qty-up" title="Increase" data-src="#qs-quantity">
 											<i class="fa fa-plus"></i>
 										</span>
-									</div>
+									</div> -->
 								</div>
-								<!-- <div id="quick-shop-variants-container" class="variants-wrapper"
+								<div id="quick-shop-variants-container" class="variants-wrapper"
 									style="display: block;">
-									<div class="selector-wrapper">
+									<!-- <div class="selector-wrapper">
 										<label for="#quick-shop-variants-3008529731-option-0">Size</label>
 										<select class="single-option-selector" data-option="option1"
 											id="#quick-shop-variants-3008529731-option-0">
@@ -946,11 +951,11 @@
 											<option value="Blue">Blue</option>
 											<option value="White">White</option>
 										</select>
-									</div>
-								</div> -->
+									</div> -->
+								</div>
 								<div class="others-bottom">
-									<input id="AddToCart" class="btn btn-1 small add-to-cart" type="submit" name="add"
-										value="Buy Now">
+									<a href="" id="checkOn" class="btn btn-1 small add-to-cart" name="add"
+										value="Buy Now">Buy Now</a>
 								</div>
 							</form>
 						</div>
@@ -959,6 +964,30 @@
 			</div>
 		</div>
 	</div>
+
+	
+	<script type="text/javascript">
+		$(document).on("click", ".quick_shop", function () {
+
+			var imglink = $(this).data('todo').image;
+			var product_name = $(this).data('todo').name;
+			var product_price = $(this).data('todo').price;
+			var product_url = $(this).data('todo').url;
+			var product_category = $(this).data('todo').category;
+			var product_platform = $(this).data('todo').platform;
+			var product_review = $(this).data('todo').review;
+			var product_score = $(this).data('todo').score;
+			var product_compare = $(this).data('todo').compare;
+			var modalImg = document.getElementById("main_image");
+			var modalHref = document.getElementById("checkOn");
+
+			$(".modal-body #titel_product").text(product_name);
+			$(".modal-body #product_money").text(product_price);
+			modalHref.href = product_url;
+			modalImg.src = imglink;
+			// $(".modal-body #main_image").src('https://img.jd.co.th/n1/jfs/t16/91/3587828062/86780/15a3fb93/5f3e0287N2043045c.jpg!q50.jpg.dpg');
+		});
+	</script>
 
 	<script type="text/javascript">
 		jQuery(document).ready(function ($) {

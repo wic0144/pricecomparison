@@ -1,6 +1,6 @@
 {% include "./layout/head.html" %}
 {% load static %}
-
+{% load humanize %}
 <!-- {% block content %} -->
 
 
@@ -689,7 +689,7 @@
 											<div class="grid__item">
 												<div class="grid__item_wrapper">
 													<div class="grid__image product-image">
-														<a href="./product.html">
+														<a href="{{col.data.URL}}">
 															<img src="{{col.data.Image}}" alt="Demo Product Sample">
 														</a>
 														<div class="quickview">
@@ -722,12 +722,12 @@
 													</div>
 													<p class="h6 product-title">
 														<a
-															href="./product.html">{{col.data.Name}}</a>
+															href="{{col.data.URL}}">{{col.data.Name}}</a>
 													</p>
 													<p class="product-price">
 														<strong>On Sale</strong>
 														<span class="money">฿
-															{{col.data.Price|floatformat:0}}</span>
+															{{col.data.Price|floatformat:0|intcomma}}</span>
 
 													</p>
 													<ul class="action-button">
@@ -878,7 +878,7 @@
 											<div class="grid__item">
 												<div class="grid__item_wrapper">
 													<div class="grid__image product-image">
-														<a href="./product.html">
+														<a href="{{col.data.URL}}">
 															<img src="{{col.data.Image}}" alt="Demo Product Sample">
 														</a>
 														<div class="quickview">
@@ -886,7 +886,7 @@
 																<div data-handle="consequuntur-magni-dolores"
 																	class="quick_shop-div">
 																	<a href="#quick-shop-modal" class="btn quick_shop" data-todo='{"name":"{{col.data.Name}}",
-																	"image":"{{col.data.Image}}","price":"{{col.data.Price|floatformat:0}}","compare":"{{col.compareSize}}",
+																	"image":"{{col.data.Image}}","price":"{{col.data.Price|floatformat:0|intcomma}}","compare":"{{col.compareSize}}",
 																	"platform":"{{col.data.Platform}}","category":"{{col.data.Category}}","review":"{{col.data.Review}}",
 																	"score":"{{col.data.Score}}","url":"{{col.data.URL}}","id":"{{col.id}}"
 																	}'>
@@ -910,12 +910,12 @@
 														</span>
 													</div>
 													<p class="h6 product-title">
-														<a href="./product.html">{{col.data.Name}}</a>
+														<a href="{{col.data.URL}}">{{col.data.Name}}</a>
 													</p>
 													<p class="product-price">
 														<strong>On Sale</strong>
 														<span class="money">฿
-															{{col.data.Price|floatformat:0}}</span>
+															{{col.data.Price|floatformat:0|intcomma}}</span>
 
 													</p>
 													<ul class="action-button">
@@ -1065,7 +1065,7 @@
 											<div class="grid__item">
 												<div class="grid__item_wrapper">
 													<div class="grid__image product-image">
-														<a href="./product.html">
+														<a href="{{col.data.URL}}">
 															<img src="{{col.data.Image}}" alt="Demo Product Sample">
 														</a>
 														<div class="quickview">
@@ -1073,7 +1073,7 @@
 																<div data-handle="consequuntur-magni-dolores"
 																	class="quick_shop-div">
 																	<a href="#quick-shop-modal" class="btn quick_shop" data-todo='{"name":"{{col.data.Name}}",
-																	"image":"{{col.data.Image}}","price":"{{col.data.Price|floatformat:0}}","compare":"{{col.compareSize}}",
+																	"image":"{{col.data.Image}}","price":"{{col.data.Price|floatformat:0|intcomma}}","compare":"{{col.compareSize}}",
 																	"platform":"{{col.data.Platform}}","category":"{{col.data.Category}}","review":"{{col.data.Review}}",
 																	"score":"{{col.data.Score}}","url":"{{col.data.URL}}","id":"{{col.id}}"
 																	}'><i class="fa fa-eye" title="Quick View"></i>
@@ -1096,12 +1096,12 @@
 														</span>
 													</div>
 													<p class="h6 product-title">
-														<a href="./product.html">{{col.data.Name}}</a>
+														<a href="{{col.data.URL}}">{{col.data.Name}}</a>
 													</p>
 													<p class="product-price">
 														<strong>On Sale</strong>
 														<span class="money">฿
-															{{col.data.Price|floatformat:0}}</span>
+															{{col.data.Price|floatformat:0|intcomma}}</span>
 
 													</p>
 													<ul class="action-button">
@@ -1250,7 +1250,7 @@
 											<div class="grid__item">
 												<div class="grid__item_wrapper">
 													<div class="grid__image product-image">
-														<a href="./product.html">
+														<a href="{{col.data.URL}}">
 															<img src="{{col.data.Image}}" alt="Demo Product Sample">
 														</a>
 														<div class="quickview">
@@ -1258,7 +1258,7 @@
 																<div data-handle="consequuntur-magni-dolores"
 																	class="quick_shop-div">
 																	<a href="#quick-shop-modal" class="btn quick_shop" data-todo='{"name":"{{col.data.Name}}",
-																	"image":"{{col.data.Image}}","price":"{{col.data.Price|floatformat:0}}","compare":"{{col.compareSize}}",
+																	"image":"{{col.data.Image}}","price":"{{col.data.Price|floatformat:0|intcomma}}","compare":"{{col.compareSize}}",
 																	"platform":"{{col.data.Platform}}","category":"{{col.data.Category}}","review":"{{col.data.Review}}",
 																	"score":"{{col.data.Score}}","url":"{{col.data.URL}}","id":"{{col.id}}"
 																	}'>
@@ -1282,12 +1282,12 @@
 														</span>
 													</div>
 													<p class="h6 product-title">
-														<a href="./product.html">{{col.data.Name}}</a>
+														<a href="{{col.data.URL}}">{{col.data.Name}}</a>
 													</p>
 													<p class="product-price">
 														<strong>On Sale</strong>
 														<span class="money">฿
-															{{col.data.Price|floatformat:0}}</span>
+															{{col.data.Price|floatformat:0|intcomma}}</span>
 
 													</p>
 													<ul class="action-button">
@@ -1466,7 +1466,7 @@
 									data-zoom-image="{% static 'assets/images/demo1_qs_480x480.jpg' %}"
 									alt="{% static 'assets/images/demo1_qs_480x480.jpg' %}" id="main_image">
 							</div>
-							<div id="gallery_main_qs" class="product-image-thumb scroll scroll-mini">
+							<!-- <div id="gallery_main_qs" class="product-image-thumb scroll scroll-mini">
 								<div class="qs-vertical-slider product-single__thumbnails">
 									<a class="image-thumb active thumb__element"><img
 											src="{% static 'assets/images/demo1_qs1_100x100.jpg' %}" alt="" /></a>
@@ -1479,26 +1479,26 @@
 									<a class="image-thumb thumb__element"><img
 											src="{% static 'assets/images/demo1_qs5_100x100.jpg' %}" alt="" /></a>
 								</div>
-							</div>
+							</div> -->
 							<div class="vertical-slider product-single__thumbnails" style="opacity: 0;">
 							</div>
 						</div>
 					</div>
 					<div class="grid__item one-half qs-product-information">
 						<div id="quick-shop-container">
-							<h3 id="quick-shop-title"><a href="./product.html" id="titel_product"></a></h3>
+							<h3 id="quick-shop-title"><a href="{{col.data.URL}}" id="titel_product"></a></h3>
 							<div class="rating-star">
 								<span class="shopify-product-reviews-badge" data-id="3008529923"></span>
 							</div>
 							<div class="description">
-								<div id="quick-shop-description" class="text-left">
+								<!-- <div id="quick-shop-description" class="text-left">
 									<p>
 										Quisque vel enim quis purus ultrices consequat, sed tincidunt massa blandit
 										ipsum interdum tristique cras dictum, lacus eu molestie elementum nulla est
 										auctor. Etiam dan lorem quis ligula elementum porttitor quisem. Duis eget purus
 										urna fusce sed scelerisque ante. Lorem ipsum dolor sit amet conse...
 									</p>
-								</div>
+								</div> -->
 							</div>
 							<form action="#" method="post" class="variants" id="AddToCartForm"
 								enctype="multipart/form-data">
@@ -1507,7 +1507,7 @@
 									<span class="price"><span class="money" id="product_money">$89.00</span></span>
 								</div>
 								<div class="quantity-wrapper clearfix">
-									<label class="wrapper-title">Quantity</label>
+									<!-- <label class="wrapper-title">Quantity</label>
 									<div class="wrapper">
 										<span class="qty-down" title="Decrease" data-src="#qs-quantity">
 											<i class="fa fa-minus"></i>
@@ -1517,11 +1517,11 @@
 										<span class="qty-up" title="Increase" data-src="#qs-quantity">
 											<i class="fa fa-plus"></i>
 										</span>
-									</div>
+									</div> -->
 								</div>
 								<div id="quick-shop-variants-container" class="variants-wrapper"
 									style="display: block;">
-									<div class="selector-wrapper">
+									<!-- <div class="selector-wrapper">
 										<label for="#quick-shop-variants-3008529731-option-0">Size</label>
 										<select class="single-option-selector" data-option="option1"
 											id="#quick-shop-variants-3008529731-option-0">
@@ -1542,7 +1542,7 @@
 											<option value="Blue">Blue</option>
 											<option value="White">White</option>
 										</select>
-									</div>
+									</div> -->
 								</div>
 								<div class="others-bottom">
 									<a href="" id="checkOn" class="btn btn-1 small add-to-cart" name="add"

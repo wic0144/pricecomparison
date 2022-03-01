@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django_elasticsearch_dsl',
     # Django REST framework Elasticsearch integration (this package)
     'django_elasticsearch_dsl_drf',
+    'django.contrib.humanize',
 ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
