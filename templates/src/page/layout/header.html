@@ -471,6 +471,23 @@
                         <span class="special_label new_label">New</span>
                     </a>
                 </li>
+                {% if user.is_authenticated %}
+                    <li>
+                        <a href="/admin" class="site-nav__link" target="_blank">
+                            <span>จัดการบัญชีผู้ใช้</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="airflow" class="site-nav__link" target="_blank">
+                            <span>จัดการตาราง</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://localhost:5601/app/dashboards#/view/02fd8e50-ab69-11ec-bd4a-21850821f8d7?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))" class="site-nav__link" target="_blank">
+                            <span>จัดการ Dashboard</span>
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
             <script>
                 $(window).ready(function ($) {
