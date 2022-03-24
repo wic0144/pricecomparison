@@ -23,4 +23,7 @@ urlpatterns = [
     path('todays-deals', views.todays_deals),
     path('BI-REPORT', views.BI_REPORT),
     path('product/<product_id>/', views.product),
+    path('test', views.test),
+    path('login', views.login),
+    path('logout', views.logout),
 ]

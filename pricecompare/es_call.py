@@ -3,11 +3,10 @@ from django.http import response
 from elasticsearch import Elasticsearch 
 from elasticsearch_dsl import Search, Q 
 db = "products"
-
+client = Elasticsearch(http_auth=('elastic', 'bM06IvoIFpIsmR8KsoxX'))  
+#http_auth=('elastic', 'bM06IvoIFpIsmR8KsoxX')
 #ตัว aggregate หา category ทั้งหมดที่ไม่ซ้ำกันที่อยู่ใน db มีจำนวนรวมของข้อมูลของแต่ละ category ด้วย
 def categoryAll():      
-    client = Elasticsearch()      
-
     response = client.search(
                 index=db,
                 body={
@@ -36,7 +35,6 @@ def categoryAll():
     return categoryList 
 
 def categoryCollection(category="",size=10):
-    client = Elasticsearch()
     response = client.search(
                 index=db,
                 body={
@@ -76,7 +74,6 @@ def categoryCollection(category="",size=10):
     return item
 #ตัวค้นหาหลัก
 def esearch(Name="",categoryMenu="all",Page=1,sort="relevant",platform="all"):
-    client = Elasticsearch()
     if(sort=="relevant"):
         field = "_score"
         sort_select = "desc"
@@ -139,8 +136,6 @@ def esearch(Name="",categoryMenu="all",Page=1,sort="relevant",platform="all"):
  
 #ตัวเปรียบเที่ยบสินค้า
 def esearchCompare(id=""):      
-    client = Elasticsearch()
-
     qOne = Q("term", _id=id)
     sOne = Search(using=client, index=db).query(qOne)
     base = sOne.execute()
@@ -174,14 +169,14 @@ def esearchCompare(id=""):
                             {"match":{
                             "thToken":{
                                 "query": thToken ,
-                                "minimum_should_match": "50%"
+                                "minimum_should_match": "90%"
                             }
 
                             }},
                             {"match":{
                                 "enToken":{
                                 "query": enToken ,
-                                "minimum_should_match": "95%"
+                                "minimum_should_match": "100%"
                                 }
                             }},
                             {"match":{

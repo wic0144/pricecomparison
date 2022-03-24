@@ -1,10 +1,13 @@
+from contextlib import redirect_stderr
 from typing import Match
 import math
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.core.paginator import Paginator
 from .es_call import *
 import json
 from django.http import JsonResponse
+from django.contrib.auth.models import User,auth
+from django.contrib import messages
 #from django.http import HttpResponse 
 # Create your views here.
 
@@ -112,3 +115,27 @@ def todays_deals(request):
 def BI_REPORT(request):
     category_all=categoryAll()
     return render(request,'lookbook.html',{'category_all':category_all,'category_selected':"all",'platform_selected':"all"})
+
+def test(request):
+    category_all=categoryAll()
+    return render(request,'test.html',{'category_all':category_all,'category_selected':"all",'platform_selected':"all"})
+
+def login(request):
+    # username=request.POST['username']
+    # password=request.POST['password']
+    username = request.POST.get('username', False)
+    password = request.POST.get('password', False)
+    user = auth.authenticate(username=username,password=password)
+
+    if user is not None:
+        auth.login(request,user)
+        return redirect('/')
+    else:
+        messages.info(request,'รหัสผ่านไม่ตรง')
+        return redirect('/')
+
+def logout(request):
+    # username=request.POST['username']
+    # password=request.POST['password']
+    auth.logout(request)
+    return redirect('/')
