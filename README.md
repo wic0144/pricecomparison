@@ -12,6 +12,18 @@ What Is This?
 
 This is a simple Python/Flask application intended to provide a working example of Uber's external API. The goal of these endpoints is to be simple, well-documented and to provide a base for developers to develop other applications off of.
 
+Requirement
+-------------
+
+Java JDK 11
+Spark 3.2.0
+Hadoop 3.3.0
+ElasticSearch 7.17.4
+Kibana 7.17.4
+Airflow 2.2.4
+selenium 4.1.3
+Pyspark 3.2.0
+
 
 How To Use This
 ---------------
