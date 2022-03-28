@@ -1,0 +1,78 @@
+{% extends 'layout.html' %}
+{% block title %}
+
+<title>Product-Compare</title>
+{%endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-3 mt-5" style="max-width: 100%;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{main_product_img}}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+
+                            <p class="card-title" style="color:#000000; ">{{main_product_name}}</p>
+                            <p class="card-text" style="color:#000000; ">ราคา {{main_product_price|floatformat:0}} ฿</p>
+                            <p class="card-text" style="color:#000000; ">จำนวนร้านค้าเปรียบเทียบ {{compares}} ร้าน</p>
+                            <a href="{{main_product_url}}" target="_blank">ไปยังร้านค้าที่จำหน่าย</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2 mb-2 card-border-radius" style="width: 100%;">
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col">ขายโดย</th>
+                                <th scope="col">ราคาสินค้า</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for product in products%}
+                            <tr>
+                                <td> <img src="{{product.Image}}" class="img-fluid rounded-start" alt="..." width="100"
+                                        height="100"></td>
+                                <td>{{product.Name}}</td>
+                                <td></td>
+                                <td>{{product.Platform}}</td>
+                                <td>{{product.Price|floatformat:0}} ฿</td>
+                                <td><a href="{{product.URL}}" target="_blank">ไปยังร้านค้าที่จำหน่าย</a></td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- <div class="col-2"></div>
+        <p>{{product.Name}}</p>
+        <p>{{product.Price}}</p>
+        <a href="{{product.URL}}" target="_blank">ไปยังร้านค้าที่จำหน่าย</a>
+        <hr> -->
+
+
+    </div>
+</div>
+
+
+
+
+{%endblock %}

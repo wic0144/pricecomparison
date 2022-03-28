@@ -1,0 +1,91 @@
+{
+  "settings": {
+    "index": {
+      "routing": {
+        "allocation": {
+          "include": {
+            "_tier_preference": "data_content"
+          }
+        }
+      },
+      "number_of_shards": "1",
+      "number_of_replicas": "1",
+      "uuid": "7xliIhE4RESoPSC1ZXQozg",
+      "version": {
+        "created": "7140199"
+      }
+    }
+  },
+  "mappings": {
+    "_meta": {
+      "created_by": "file-data-visualizer"
+    },
+    "properties": {
+      "Category": {
+        "type": "keyword"
+      },
+      "Image": {
+        "type": "text"
+      },
+      "Name": {
+        "type": "text",
+        "analyzer": "thai"
+      },
+      "Platform": {
+        "type": "keyword"
+      },
+      "Price": {
+        "type": "double"
+      },
+      "Review": {
+        "type": "long"
+      },
+      "Score": {
+        "type": "double"
+      },
+      "Store": {
+        "type": "keyword"
+      },
+      "Subcategory": {
+        "type": "keyword"
+      },
+      "Token": {
+        "type": "keyword"
+      },
+      "URL": {
+        "type": "keyword"
+      },
+      "brand": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "enToken": {
+        "type": "text"
+      },
+      "historical_sold": {
+        "type": "double"
+      },
+      "shop_location": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "thToken": {
+        "type": "text",
+        "analyzer": "thai"
+      },
+      "view_count": {
+        "type": "double"
+      }
+    }
+  }
+}

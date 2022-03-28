@@ -1,0 +1,502 @@
+{% load static %}
+<!-- Top Other -->
+<!-- <div id="top-header" class="grid--full grid--table">
+    <div class="wrapper">
+        <div id="topother-header" class="grid--full grid--table">
+            <div class="grid__item one-half top-header-left">
+                Default Welcome Msg!
+            </div>
+            <div class="grid__item one-half top-header-right">
+                <div class="currency-picker">
+                    <label class="currency-picker__wrapper">
+                        <span class="currency-picker__label">Currency</span>
+                        <select class="currency-picker" name="currencies"
+                            style="display: inline; width: auto; vertical-align: inherit;">
+                            <option value="USD" selected="selected">USD</option>
+                            <option value="INR">INR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="CAD">CAD</option>
+                            <option value="AUD">AUD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="JPY">JPY</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="fi-content inline-list social-icons">
+                    <a href="#" title="Twitter" class="icon-social twitter" data-toggle="tooltip"
+                        data-placement="top"><i class="fa fa-twitter-square"></i></a>
+                    <a href="#" title="Facebook" class="icon-social facebook" data-toggle="tooltip"
+                        data-placement="top"><i class="fa fa-facebook-square"></i></a>
+                    <a href="#" title="Google+" class="icon-social google" data-toggle="tooltip" data-placement="top"><i
+                            class="fa fa-google-plus-square"></i></a>
+                    <a href="#" title="Pinterest" class="icon-social pinterest" data-toggle="tooltip"
+                        data-placement="top"><i class="fa fa-pinterest-square"></i></a>
+                    <a href="#" title="Youtube" class="icon-social youtube" data-toggle="tooltip"
+                        data-placement="top"><i class="fa fa-youtube-square"></i></a>
+                    <a href="#" title="Vimeo" class="icon-social vimeo" data-toggle="tooltip" data-placement="top"><i
+                            class="fa fa-vimeo-square"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- Main Header -->
+<header class="site-header">
+    <div class="wrapper">
+        <div id="main-header" class="grid--full grid--table">
+            <div class="grid__item small--one-whole medium--one-whole two-eighths">
+                <h1 class="site-header__logo large--left" itemscope="" itemtype="http://schema.org/Organization">
+                    <a href="/" itemprop="url" class="site-header__logo-link">
+                        <img src="{% static './assets/images/logo.png' %}" alt="Home Market Red" itemprop="logo">
+                    </a>
+                </h1>
+            </div>
+            <div class="grid__item small--one-whole medium--one-whole four-eighths mobile-bottom">
+                <div class="large--hide medium-down--show navigation-icon">
+                    <div class="grid">
+                        <div class="grid__item one-half">
+                            <div class="site-nav--mobile">
+                                <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left"
+                                    aria-controls="NavDrawer" aria-expanded="false">
+                                    <span class="icon icon-hamburger" aria-hidden="true"></span>
+                                    <span class="fallback-text">Menu</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="site-header__search">
+                    <form action="/search?sort=relevant" method="get" class="input-group search-bar">
+                        {% csrf_token %}
+                        <div class="collections-selector">
+                            <select class="single-option-selector" data-option="collection-option"
+                                id="collection-option" name="category" value="{{category_selected}}">
+                                <!-- <select type="submit" name="category" class="btn btn-secondary" value="{{category_selected}}"> -->
+                                <option value="{{category_selected}}" style="display:none" selected>
+                                    {%if category_selected == 'all'%}หมวดหมู่ทั้งหมด
+                                    {% else %}{{category_selected}}
+                                    {%endif %}</option>
+                                <option value="all">หมวดหมู่ทั้งหมด</option>
+                                {% for cate in category_all %}
+                                <option value="{{cate.category}}">{{cate.category}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="collections-selector">
+                            <select class="single-option-selector" data-option="collection-option"
+                                id="collection-option" name="platform" value="{{platform_selected}}">
+                                <!-- <select type="submit" name="category" class="btn btn-secondary" value="{{category_selected}}"> -->
+                                <option value="{{platform_selected}}" style="display:none" selected>
+                                    {%if platform_selected == 'all'%}แพลตฟอร์มทั้งหมด
+                                    {% else %}{{platform_selected}}
+                                    {%endif %}</option>
+                                <option value="all">แพลตฟอร์มทั้งหมด</option>
+                                <option value="JDCentral">JDCentral</option>
+                                <option value="Lazada">Lazada</option>
+                                <option value="Shopee">Shopee</option>
+                                <!-- </select> -->
+                            </select>
+                        </div>
+                        <input type="hidden" name="sort" value="relevant">
+                        <input type="hidden" name="page" value="1">
+                        <input type="search" name="name" value="{{search_item}}" placeholder="Search our store"
+                            class="input-group-field st-default-search-input" aria-label="Search our store">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn icon-fallback-text">
+                                <i class="fa fa-search"></i>
+                                <span class="fallback-text">Search</span>
+                            </button>
+                        </span>
+                    </form>
+                </div>
+                <div class="large--hide medium-down--show navigation-cart">
+                    <div class="grid__item text-right">
+                        <div class="site-nav--mobile">
+                            <a href="{% static './cart.html' %}" class="js-drawer-open-right site-nav__link"
+                                aria-controls="CartDrawer" aria-expanded="false">
+                                <span class="icon-fallback-text">
+                                    <span class="icon icon-cart" aria-hidden="true"></span>
+                                    <span class="fallback-text">Shopping Cart</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid__item small--one-whole two-eighths medium-down--hide">
+                <ul class="link-list">
+                    <!-- <li class="track-order">
+                        <a href="{% static './store-location.html' %}">
+                            <i class="fa fa-map-marker"></i>
+                            <span class="name">Store Location</span>
+                        </a>
+                    </li> -->
+                    <li class="header-account">
+                        {% if user.is_authenticated %}
+                            <a href="#logoutBox" id="login_link">
+                                <i class="fa fa-user"></i>
+                                <span class="name">{{user.username}}</span>
+                            </a>
+                            <div id="logoutBox" class="loginLightbox" style="display:none;">
+                                <div id="lightboxlogin">
+                                    <form method="post" action="logout" id="customer_login"
+                                        accept-charset="UTF-8">
+                                        {% csrf_token %}
+                                        <input type="hidden" value="customer_login" name="form_type"><input type="hidden"
+                                            name="utf8" value="✓">
+                                        <div id="bodyBox">
+                                            <h3>ต้องการออกจากระบบ?</h3>
+                                            <input type="submit" class="btn btn2 btn--full" value="ออกจากระบบ">
+                                            <p>
+                                                <a href="#" onclick="$.fancybox.close();">Close</a>
+                                            </p>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div id="recover-password" style="display:none;">
+                                    <h3>Reset your password</h3>
+                                    <p class="note">
+                                        We will send you an email to reset your password.
+                                    </p>
+                                    <form method="post" action="recover.html" accept-charset="UTF-8">
+                                        <input type="hidden" value="recover_customer_password" name="form_type"><input
+                                            type="hidden" name="utf8" value="✓">
+                                        <p>
+                                            <label for="recover-email" class="label">Email</label>
+                                        </p>
+                                        <input type="email" value="" size="30" name="email" id="recover-email" class="text">
+                                        <div class="action_bottom">
+                                            <input class="btn btn2" type="submit" value="Submit">
+                                            <a class="btn back" href="#"
+                                                onclick="hideRecoverPasswordForm();return false;">Back to Login</a>
+                                        </div>
+                                        <p class="close">
+                                            <a href="#" onclick="$.fancybox.close();">Close</a>
+                                        </p>
+                                    </form>
+                                </div>
+                                <div id="create_accountBox" style="display:none;">
+                                    <h3>Create Account</h3>
+                                    <div class="form-vertical">
+                                        <form method="post" action="./account.html" id="create_customer"
+                                            accept-charset="UTF-8">
+                                            <input type="hidden" value="create_customer" name="form_type"><input
+                                                type="hidden" name="utf8" value="✓">
+                                            <label for="FirstName" class="hidden-label">First Name</label>
+                                            <input type="text" name="customer[first_name]" id="FirstName" class="input-full"
+                                                placeholder="First Name">
+                                            <label for="LastName" class="hidden-label">Last Name</label>
+                                            <input type="text" name="customer[last_name]" id="LastName" class="input-full"
+                                                placeholder="Last Name">
+                                            <label for="Email" class="hidden-label">Email</label>
+                                            <input type="email" name="customer[email]" id="Email" class="input-full"
+                                                placeholder="Email">
+                                            <label for="CreatePassword" class="hidden-label">Password</label>
+                                            <input type="password" name="customer[password]" id="CreatePassword"
+                                                class="input-full" placeholder="Password">
+                                            <p>
+                                                <input type="submit" value="Create" class="btn btn2 btn--full">
+                                            </p>
+                                            <p>
+                                                <span><a class="btn" href="#"
+                                                        onclick="hideRecoverPasswordForm();return false;">Back to
+                                                        Login</a></span>
+                                            </p>
+                                            <p class="close">
+                                                <a href="#" onclick="$.fancybox.close();">Close</a>
+                                            </p>
+                                        </form>
+                                    </div>
+                                </div>
+                                <script>
+                                    function showRecoverPasswordForm() {
+                                        $('#recover-password').css("display", 'block');
+                                        $('#lightboxlogin').css("display", 'none');
+                                        $('#create_accountBox').css("display", 'none');
+                                    }
+                                    function hideRecoverPasswordForm() {
+                                        $('#recover-password').css("display", 'none');
+                                        $('#lightboxlogin').css("display", 'block');
+                                        $('#create_accountBox').css("display", 'none');
+                                    }
+                                    function showCreateAccountForm() {
+                                        $('#recover-password').css("display", 'none');
+                                        $('#lightboxlogin').css("display", 'none');
+                                        $('#create_accountBox').css("display", 'block');
+                                    }
+                                </script>
+                            </div>
+                        {% else %}
+                        <a href="#loginBox" id="login_link">
+                            <i class="fa fa-user"></i>
+                            <span class="name">Log in</span>
+                        </a>
+                        <div id="loginBox" class="loginLightbox" style="display:none;">
+                            <div id="lightboxlogin">
+                                <form method="post" action="login" id="customer_login"
+                                    accept-charset="UTF-8">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="customer_login" name="form_type"><input type="hidden"
+                                        name="utf8" value="✓">
+                                    <div id="bodyBox">
+                                        <h3>Login</h3>
+                                        <label for="CustomerEmail" class="hidden-label">Email</label>
+                                        <input type="text" name="username" id="CustomerEmail" class="input-full"
+                                            placeholder="Email">
+                                        <label for="CustomerPassword" class="hidden-label">Password</label>
+                                        <input type="password" value="" name="password" id="CustomerPassword"
+                                            class="input-full" placeholder="Password">
+                                        <input type="submit" class="btn btn2 btn--full" value="Sign In">
+                                        <!-- <div>
+                                            <p class="forgot">
+                                                <a href="#recover" onclick="showRecoverPasswordForm();return false;"
+                                                    id="RecoverPassword">Forgot your password?</a>
+                                            </p>
+                                            <p class="create">
+                                                <a href="#create_accountBox"
+                                                    onclick="showCreateAccountForm();return false;"
+                                                    id="CreateAccountPassword">Create New Account</a>
+                                            </p>
+                                        </div> -->
+                                        <p>
+                                            <a href="#" onclick="$.fancybox.close();">Close</a>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="recover-password" style="display:none;">
+                                <h3>Reset your password</h3>
+                                <p class="note">
+                                    We will send you an email to reset your password.
+                                </p>
+                                <form method="post" action="recover.html" accept-charset="UTF-8">
+                                    <input type="hidden" value="recover_customer_password" name="form_type"><input
+                                        type="hidden" name="utf8" value="✓">
+                                    <p>
+                                        <label for="recover-email" class="label">Email</label>
+                                    </p>
+                                    <input type="email" value="" size="30" name="email" id="recover-email" class="text">
+                                    <div class="action_bottom">
+                                        <input class="btn btn2" type="submit" value="Submit">
+                                        <a class="btn back" href="#"
+                                            onclick="hideRecoverPasswordForm();return false;">Back to Login</a>
+                                    </div>
+                                    <p class="close">
+                                        <a href="#" onclick="$.fancybox.close();">Close</a>
+                                    </p>
+                                </form>
+                            </div>
+                            <div id="create_accountBox" style="display:none;">
+                                <h3>Create Account</h3>
+                                <div class="form-vertical">
+                                    <form method="post" action="./account.html" id="create_customer"
+                                        accept-charset="UTF-8">
+                                        <input type="hidden" value="create_customer" name="form_type"><input
+                                            type="hidden" name="utf8" value="✓">
+                                        <label for="FirstName" class="hidden-label">First Name</label>
+                                        <input type="text" name="customer[first_name]" id="FirstName" class="input-full"
+                                            placeholder="First Name">
+                                        <label for="LastName" class="hidden-label">Last Name</label>
+                                        <input type="text" name="customer[last_name]" id="LastName" class="input-full"
+                                            placeholder="Last Name">
+                                        <label for="Email" class="hidden-label">Email</label>
+                                        <input type="email" name="customer[email]" id="Email" class="input-full"
+                                            placeholder="Email">
+                                        <label for="CreatePassword" class="hidden-label">Password</label>
+                                        <input type="password" name="customer[password]" id="CreatePassword"
+                                            class="input-full" placeholder="Password">
+                                        <p>
+                                            <input type="submit" value="Create" class="btn btn2 btn--full">
+                                        </p>
+                                        <p>
+                                            <span><a class="btn" href="#"
+                                                    onclick="hideRecoverPasswordForm();return false;">Back to
+                                                    Login</a></span>
+                                        </p>
+                                        <p class="close">
+                                            <a href="#" onclick="$.fancybox.close();">Close</a>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                            <script>
+                                function showRecoverPasswordForm() {
+                                    $('#recover-password').css("display", 'block');
+                                    $('#lightboxlogin').css("display", 'none');
+                                    $('#create_accountBox').css("display", 'none');
+                                }
+                                function hideRecoverPasswordForm() {
+                                    $('#recover-password').css("display", 'none');
+                                    $('#lightboxlogin').css("display", 'block');
+                                    $('#create_accountBox').css("display", 'none');
+                                }
+                                function showCreateAccountForm() {
+                                    $('#recover-password').css("display", 'none');
+                                    $('#lightboxlogin').css("display", 'none');
+                                    $('#create_accountBox').css("display", 'block');
+                                }
+                            </script>
+                        </div>
+                        {% endif %}
+                    </li>
+                    <!-- <li class="header-cart">
+                        <a href=".cart.html" class="site-header__cart-toggle js-drawer-open-right"
+                            aria-controls="CartDrawer" aria-expanded="false">
+                            <i class="fa fa-shopping-basket"></i>
+                            <span id="CartCount">3</span>
+                            <span class="name">Shopping Cart</span>
+                        </a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Navigation Bar -->
+<nav class="nav-bar">
+    <div class="wrapper">
+        <div class="medium-down--hide">
+            <!-- begin site-nav -->
+            <ul class="site-nav" id="AccessibleNav">
+                <li class="site-nav--active">
+                    <a href="/" class="site-nav__link">
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="site-nav--has-dropdown" aria-haspopup="true">
+                    <a href="/search?&category=all&platform=all&sort=relevant&page=1&name=" class="site-nav__link">
+                        <span>Collections</span>
+                        <span class="icon icon-arrow-down" aria-hidden="true"></span>
+                    </a>
+                    <ul class="site-nav__dropdown">
+                        {% for cate in category_all %}
+                        <li>
+                            <a href="/search?&category={{cate.category}}&platform=all&sort=relevant&page=1&name="
+                                class="site-nav__link">{{cate.category}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="mega-menu site-nav--has-dropdown" aria-haspopup="true">
+                    <a href="{% static './collection.html' %}" class="site-nav__link">
+                        <span>Shop</span>
+                        <span class="icon icon-arrow-down" aria-hidden="true"></span>
+                        <!-- <span class="special_label hot_label"></span> -->
+                    </a>
+                    <ul class="site-nav__dropdown megamenu__dropdown megamenu_1">
+                        <li class="nav-sampletext grid__item large--one-quarter">
+                            <a href="/"><img src="{% static '/assets/images/logo-b.png' %}"
+                                    alt=""></a>
+                            <p>
+                                Lorem ipsum dolor sit amet, quod fabellas hendrerit per eu, mea populo epicuri
+                                et, ea possim numquam mea.
+                            </p>
+                            <p>
+                                Duo harum ornatus ponderum an, at ius zril menandri praesent. Bonorum tacimates
+                                interesset has ei, pro ignota prodesset at. Vel ea velit percipitur.
+                            </p>
+                        </li>
+                        <li class="nav-links nav-links01 grid__item large--one-quarter">
+                            <ul>
+                                <li class="list-title">1st Collections</li>
+                                {% for cate in category_all %}
+
+
+                                <li class="list-unstyled nav-sub-mega">
+                                    <a
+                                        href="/search?&category={{cate.category}}&platform=all&sort=relevant&page=1&name=">{{cate.category}}</a>
+                                </li>
+                                {% endfor %}
+
+                            </ul>
+                        </li>
+                        <!-- <li class="nav-links nav-links02 grid__item large--one-quarter">
+                            <ul>
+                                <li class="list-title">2nd Collections</li>
+                                <li class="list-unstyled nav-sub-mega">
+                                    <a href="{% static './collection.html' %}">Camera - Camcorder</a>
+                                </li>
+                                <li class="list-unstyled nav-sub-mega">
+                                    <a href="{% static './collection.html' %}">Accessories</a>
+                                </li>
+                                <li class="list-unstyled nav-sub-mega">
+                                    <a href="{% static './collection.html' %}">Kids &amp; Baby</a>
+                                </li>
+                                <li class="list-unstyled nav-sub-mega">
+                                    <a href="{% static './collection.html' %}">Toy and Gift</a>
+                                </li>
+                                <li class="list-unstyled nav-sub-mega">
+                                    <a href="{% static './collection.html' %}">Stationery</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-links nav-links03 grid__item large--one-quarter">
+                            <ul>
+                                <li class="list-title">Pages</li>
+                                <li class="list-unstyled nav-sub-mega">
+                                    <a href="{% static './collection.html' %}">All Collections</a>
+                                </li>
+                                <li class="list-unstyled nav-sub-mega">
+                                    <a href="{% static './product.html' %}">All Products</a>
+                                </li>
+                                <li class="list-unstyled nav-sub-mega">
+                                    <a href="{% static './about-us.html' %}">About us</a>
+                                </li>
+                                <li class="list-unstyled nav-sub-mega">
+                                    <a href="{% static './contact-us.html' %}">Contact us</a>
+                                </li>
+                                <li class="list-unstyled nav-sub-mega">
+                                    <a href="{% static './wishlist.html' %}">Wishlist</a>
+                                </li>
+                            </ul>
+                        </li> -->
+                    </ul>
+                </li>
+                <li>
+                    <a href="/todays-deals" class="site-nav__link">
+                        <span>Today's Deals</span>
+                        <span class="special_label sale_label">Sale</span>
+                    </a>
+                </li>
+                <!-- <li>
+                    <a href="./blog.html" class="site-nav__link">
+                        <span>Blog</span>
+                    </a>
+                </li> -->
+                <li>
+                    <a href="/BI-REPORT" class="site-nav__link">
+                        <span>BI Report</span>
+                        <span class="special_label new_label">New</span>
+                    </a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li>
+                        <a href="/admin" class="site-nav__link" target="_blank">
+                            <span>จัดการบัญชีผู้ใช้</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="airflow" class="site-nav__link" target="_blank">
+                            <span>จัดการตาราง</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://localhost:5601/app/dashboards#/view/02fd8e50-ab69-11ec-bd4a-21850821f8d7?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))" class="site-nav__link" target="_blank">
+                            <span>จัดการ Dashboard</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+            <script>
+                $(window).ready(function ($) {
+                    //$('.megamenu__dropdown').css("width",$('#main-header').innerWidth());
+                });
+                $(window).resize(function () {
+                    //$('.megamenu__dropdown').css("width",$('#main-header').innerWidth());
+                });
+            </script>
+        </div>
+    </div>
+</nav> <!-- Main Content -->
