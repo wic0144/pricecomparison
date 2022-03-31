@@ -241,7 +241,7 @@
                                         name="utf8" value="✓">
                                     <div id="bodyBox">
                                         <h3>Login</h3>
-                                        <label for="CustomerEmail" class="hidden-label">Email</label>
+                                        <label for="CustomerEmail" class="hidden-label">Username</label>
                                         <input type="text" name="username" id="CustomerEmail" class="input-full"
                                             placeholder="Email">
                                         <label for="CustomerPassword" class="hidden-label">Password</label>
@@ -499,4 +499,10 @@
             </script>
         </div>
     </div>
+    {% if messages %}
+    {% for message in messages %}
+        {% if message.tags %}  <script>alert("{{ message }}")</script> 
+        {% endif %}
+    {% endfor %}
+    {% endif %}
 </nav> <!-- Main Content -->

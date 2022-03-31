@@ -131,7 +131,7 @@ def login(request):
         auth.login(request,user)
         return redirect('/')
     else:
-        messages.info(request,'รหัสผ่านไม่ตรง')
+        messages.success(request,'ชื่อหรือรหัสผ่านไม่ถูกต้อง')
         return redirect('/')
 
 def logout(request):
