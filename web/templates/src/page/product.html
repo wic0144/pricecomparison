@@ -452,13 +452,13 @@
 											{% endif %}</span></s> -->
 										</div>
 										<div class="product-vendor">
-											Vendor: <b>{{main_product.Store}}</b>
+											Vendor: <b>{% if main_product.Store %}{{main_product.Store}}{%else%}ไม่ระบุ{%endif%} </b>
 										</div>
-										<div class="product-type">
+										<div class="product-vendor">
 											Type: <b>{{main_product.Category}}</b>
 										</div>
 										<div class="product-vendor">
-											Type: <b>{{main_product.Platform}}</b>
+											Platform: <b>{{main_product.Platform}}</b>
 										</div>
 
 										<div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
