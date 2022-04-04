@@ -2,10 +2,48 @@ from unicodedata import name
 from django.http import response
 from elasticsearch import Elasticsearch 
 from elasticsearch_dsl import Search, Q 
+from elasticsearch_dsl import UpdateByQuery
 db = "products"
+dbc = "comparepercentage"
 client = Elasticsearch(http_auth=('elastic', 'bM06IvoIFpIsmR8KsoxX'))  
 #http_auth=('elastic', 'bM06IvoIFpIsmR8KsoxX')
 #ตัว aggregate หา category ทั้งหมดที่ไม่ซ้ำกันที่อยู่ใน db มีจำนวนรวมของข้อมูลของแต่ละ category ด้วย
+
+def currentComparePercentage():
+    namepercentage = 0
+    thaipercentage = 0
+    engpercentage = 0
+    response = client.search(
+            index=dbc,
+            body={
+                "size": 1
+                }
+            )
+    for hit in response["hits"]["hits"]:
+        namepercentage = hit['_source']['name']
+        thaipercentage = hit['_source']['thai']
+        engpercentage = hit['_source']['english']
+    return [namepercentage,thaipercentage,engpercentage]
+def updateComparePercentage(name=0,thai=0,eng=0):
+    script = "ctx._source.name ="+str(name)+";ctx._source.english ="+str(eng)+";ctx._source.thai ="+str(thai)
+
+    update_body = {
+
+        "query": {
+            "bool": {
+                "filter": {
+                    "term": {"_id": 1}
+                }
+            }
+        },
+
+        "script": {
+            "source": script,
+            "lang": "painless"
+        }
+    }
+    finish = client.update_by_query(index=dbc, body=update_body)
+    return finish
 def categoryAll():      
     response = client.search(
                 index=db,
@@ -135,7 +173,8 @@ def esearch(Name="",categoryMenu="all",Page=1,sort="relevant",platform="all"):
     return dataALL 
  
 #ตัวเปรียบเที่ยบสินค้า
-def esearchCompare(id=""):      
+def esearchCompare(id=""):
+    percentage = currentComparePercentage()      
     qOne = Q("term", _id=id)
     sOne = Search(using=client, index=db).query(qOne)
     base = sOne.execute()
@@ -163,20 +202,20 @@ def esearchCompare(id=""):
                             {"match":{
                             "Name":{
                                 "query": base[0].Name,
-                                "minimum_should_match": "70%"
+                                "minimum_should_match": str(percentage[0]) + "%"
                             }
                             }},
                             {"match":{
                             "thToken":{
                                 "query": thToken ,
-                                "minimum_should_match": "90%"
+                                "minimum_should_match": str(percentage[1]) + "%"
                             }
 
                             }},
                             {"match":{
                                 "enToken":{
                                 "query": enToken ,
-                                "minimum_should_match": "100%"
+                                "minimum_should_match": str(percentage[2]) + "%"
                                 }
                             }},
                             {"match":{

@@ -10,7 +10,7 @@ from django.contrib.auth.models import User,auth
 from django.contrib import messages
 #from django.http import HttpResponse 
 # Create your views here.
-
+import time
 def index(request):
     
     category_all=categoryAll()
@@ -32,8 +32,11 @@ def index(request):
     #ส่วนตัวแปรมีไรบ้างดูใน categoryCollection()
 
     #print(collection_list[0][0].category) โทรศัพท์มือถือและแท็บเล็ต
-
-    return render(request,'index.html',{'category_all':category_all,'collection_list':collection_list,'category_selected':"all",'platform_selected':"all",'title':'Price Compare IT'})
+    currentPercent=currentComparePercentage()
+    namepercent = currentPercent[0]
+    thaipercent = currentPercent[1]
+    engpercent = currentPercent[2]
+    return render(request,'index.html',{'category_all':category_all,'collection_list':collection_list,'category_selected':"all",'platform_selected':"all",'title':'Price Compare IT','thaipercent':thaipercent,'namepercent':namepercent,'engpercent':engpercent})
 
 def search_product(request): 
     name = request.GET['name']
@@ -138,4 +141,14 @@ def logout(request):
     # username=request.POST['username']
     # password=request.POST['password']
     auth.logout(request)
+    return redirect('/')
+
+def changepercentage(request):
+    name =  int(request.POST['name'])
+    thai = int(request.POST['thaiword'])
+    eng = int(request.POST['engword'])
+    
+    finish = updateComparePercentage(name,thai,eng)
+    print(finish)
+    time.sleep(2)
     return redirect('/')

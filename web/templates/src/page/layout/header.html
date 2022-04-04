@@ -243,10 +243,10 @@
                                         <h3>Login</h3>
                                         <label for="CustomerEmail" class="hidden-label">Username</label>
                                         <input type="text" name="username" id="CustomerEmail" class="input-full"
-                                            placeholder="Email">
+                                            placeholder="Username" required>
                                         <label for="CustomerPassword" class="hidden-label">Password</label>
                                         <input type="password" value="" name="password" id="CustomerPassword"
-                                            class="input-full" placeholder="Password">
+                                            class="input-full" placeholder="Password" required>
                                         <input type="submit" class="btn btn2 btn--full" value="Sign In">
                                         <!-- <div>
                                             <p class="forgot">
@@ -264,61 +264,6 @@
                                         </p>
                                     </div>
                                 </form>
-                            </div>
-                            <div id="recover-password" style="display:none;">
-                                <h3>Reset your password</h3>
-                                <p class="note">
-                                    We will send you an email to reset your password.
-                                </p>
-                                <form method="post" action="recover.html" accept-charset="UTF-8">
-                                    <input type="hidden" value="recover_customer_password" name="form_type"><input
-                                        type="hidden" name="utf8" value="✓">
-                                    <p>
-                                        <label for="recover-email" class="label">Email</label>
-                                    </p>
-                                    <input type="email" value="" size="30" name="email" id="recover-email" class="text">
-                                    <div class="action_bottom">
-                                        <input class="btn btn2" type="submit" value="Submit">
-                                        <a class="btn back" href="#"
-                                            onclick="hideRecoverPasswordForm();return false;">Back to Login</a>
-                                    </div>
-                                    <p class="close">
-                                        <a href="#" onclick="$.fancybox.close();">Close</a>
-                                    </p>
-                                </form>
-                            </div>
-                            <div id="create_accountBox" style="display:none;">
-                                <h3>Create Account</h3>
-                                <div class="form-vertical">
-                                    <form method="post" action="./account.html" id="create_customer"
-                                        accept-charset="UTF-8">
-                                        <input type="hidden" value="create_customer" name="form_type"><input
-                                            type="hidden" name="utf8" value="✓">
-                                        <label for="FirstName" class="hidden-label">First Name</label>
-                                        <input type="text" name="customer[first_name]" id="FirstName" class="input-full"
-                                            placeholder="First Name">
-                                        <label for="LastName" class="hidden-label">Last Name</label>
-                                        <input type="text" name="customer[last_name]" id="LastName" class="input-full"
-                                            placeholder="Last Name">
-                                        <label for="Email" class="hidden-label">Email</label>
-                                        <input type="email" name="customer[email]" id="Email" class="input-full"
-                                            placeholder="Email">
-                                        <label for="CreatePassword" class="hidden-label">Password</label>
-                                        <input type="password" name="customer[password]" id="CreatePassword"
-                                            class="input-full" placeholder="Password">
-                                        <p>
-                                            <input type="submit" value="Create" class="btn btn2 btn--full">
-                                        </p>
-                                        <p>
-                                            <span><a class="btn" href="#"
-                                                    onclick="hideRecoverPasswordForm();return false;">Back to
-                                                    Login</a></span>
-                                        </p>
-                                        <p class="close">
-                                            <a href="#" onclick="$.fancybox.close();">Close</a>
-                                        </p>
-                                    </form>
-                                </div>
                             </div>
                             <script>
                                 function showRecoverPasswordForm() {
@@ -379,11 +324,11 @@
                         {% endfor %}
                     </ul>
                 </li>
-                <li class="mega-menu site-nav--has-dropdown" aria-haspopup="true">
+                <!-- <li class="mega-menu site-nav--has-dropdown" aria-haspopup="true">
                     <a href="{% static './collection.html' %}" class="site-nav__link">
                         <span>Shop</span>
                         <span class="icon icon-arrow-down" aria-hidden="true"></span>
-                        <!-- <span class="special_label hot_label"></span> -->
+                        <span class="special_label hot_label"></span>
                     </a>
                     <ul class="site-nav__dropdown megamenu__dropdown megamenu_1">
                         <li class="nav-sampletext grid__item large--one-quarter">
@@ -412,7 +357,7 @@
 
                             </ul>
                         </li>
-                        <!-- <li class="nav-links nav-links02 grid__item large--one-quarter">
+                        <li class="nav-links nav-links02 grid__item large--one-quarter">
                             <ul>
                                 <li class="list-title">2nd Collections</li>
                                 <li class="list-unstyled nav-sub-mega">
@@ -451,15 +396,15 @@
                                     <a href="{% static './wishlist.html' %}">Wishlist</a>
                                 </li>
                             </ul>
-                        </li> -->
+                        </li>
                     </ul>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <a href="/todays-deals" class="site-nav__link">
                         <span>Today's Deals</span>
                         <span class="special_label sale_label">Sale</span>
                     </a>
-                </li>
+                </li> -->
                 <!-- <li>
                     <a href="./blog.html" class="site-nav__link">
                         <span>Blog</span>
@@ -487,6 +432,44 @@
                             <span>จัดการ Dashboard</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="#changeBox" id="login_link" class="site-nav__link">
+                            <span class="name">ปรับเปลี่ยนการเปรียบเทียบ</span>
+                        </a>
+                    </li>
+                    <div id="changeBox" class="loginLightbox" style="display:none;">
+                        <div id="lightboxlogin">
+                            <form method="post" action="changepercentage" id="customer_login"
+                                accept-charset="UTF-8">
+                                {% csrf_token %}
+                                <input type="hidden" value="customer_login" name="form_type"><input type="hidden"
+                                    name="utf8" value="✓">
+                                <div id="bodyBox">
+                                    <h3>การให้น้ำหนักคำ (0-100%)</h3>
+                                        <label for="nameall" >ทั้งสองภาษา</label>
+                                    <div>
+                                        <input type="range" name="name"  style="width: 85%"
+                                        placeholder="ชื่อสินค้า" min="0.0" max="100.0" oninput="this.nextElementSibling.value = this.value"  value="{{namepercent}}" required> <output>{{namepercent}}</output>%</input>
+                                    </div>
+                                    <div>
+                                        <label for="thaiword" >ภาษาไทย</label>
+                                        <input type="range" name="thaiword"  style="width: 85%"
+                                            placeholder="ภาษาไทย" min="0.0" max="100.0" oninput="this.nextElementSibling.value = this.value" value="{{thaipercent}}" required> <output>{{thaipercent}}</output>%</input>
+                                    </div>
+                                    <div>
+                                        <label for="engword" >ภาษาอังกฤษ</label>
+                                        <input type="range" name="engword"  style="width: 85%"
+                                            placeholder="ภาษาอังกฤษ" min="0.0" max="100.0" oninput="this.nextElementSibling.value = this.value" value="{{engpercent}}" required> <output>{{engpercent}}</output>%</input>
+                                    </div>
+                                    <br>
+                                    <input type="submit" class="btn btn2 btn--full" value="ปรับเปลี่ยน">
+                                    <p>
+                                        <a href="#" onclick="$.fancybox.close();">Close</a>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 {% endif %}
             </ul>
             <script>
