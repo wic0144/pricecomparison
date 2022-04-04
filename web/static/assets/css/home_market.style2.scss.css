@@ -1102,7 +1102,7 @@ footer.site-footer .fi-title {
     margin-top: 15px
 }
 .breadcrumb-wrapper {
-    background: url(../images/breadcrumb.jpg) no-repeat;
+    background-image: url(../images/breadcrumb.jpg) no-repeat;
     padding: 60px 0;
     text-align: center
 }

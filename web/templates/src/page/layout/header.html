@@ -70,7 +70,7 @@
                     <form action="/search?sort=relevant" method="get" class="input-group search-bar">
                         {% csrf_token %}
                         <div class="collections-selector">
-                            <select class="single-option-selector" data-option="collection-option"
+                            <select class="single-option-selector " data-option="collection-option"
                                 id="collection-option" name="category" value="{{category_selected}}">
                                 <!-- <select type="submit" name="category" class="btn btn-secondary" value="{{category_selected}}"> -->
                                 <option value="{{category_selected}}" style="display:none" selected>
