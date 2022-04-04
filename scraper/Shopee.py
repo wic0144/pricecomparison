@@ -68,7 +68,7 @@ Category={11044951: 'มือถือและอุปกรณ์เสร�
 
 for keyword_search in Category:
     headers = {'User-Agent': 'Chrome','Referer': '{}search?match_id={}'.format(Shopee_url, keyword_search)}
-    for i in range(1,2):
+    for i in range(1,100):
     # Shopee API request
         url = 'https://shopee.co.th/api/v4/search/search_items?by=relevancy&match_id={}&limit=60&newest=180&order=desc&page_type=search&scenario=PAGE_GLOBAL_SEARCH&version=2&page={}'.format(keyword_search,i)
         r = requests.get(url, headers = headers).json()

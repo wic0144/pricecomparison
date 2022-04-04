@@ -27,67 +27,49 @@ master = "spark://LAPTOP-NKV0VISO.localdomain:7077"
 # In[3]:
 
 
-# Create Spark session
-# spark = SparkSession.builder.appName("example-pyspark-read-and-write").getOrCreate()
+
 spark = SparkSession.builder.config('spark.ui.port','8080').appName(appName).master(master).getOrCreate()
 
 
-# In[12]:
+# In[37]:
 
 
 dfShopee = spark.read.format("csv").option("header", True).option("delimiter",";").load("hdfs://localhost:9000/data_upload/Shopee.csv")
 
 
-# In[5]:
+# In[38]:
 
 
-dfLazada = spark.read.format("csv").option("header", True).option("delimiter",";").load("hdfs://localhost:9000/data_upload/Lazada.csv")
+dfLazada = spark.read.format("csv").option("header", True).option("delimiter",";").load("hdfs://localhost:9000/data_upload/master/Lazada.csv")
 
 
-# In[6]:
+# In[39]:
 
 
-dfJD = spark.read.format("csv").option("header", True).option("delimiter",";").load("hdfs://localhost:9000/data_upload/JdCentral.csv")
+dfJD = spark.read.format("csv").option("header", True).option("delimiter",";").load("hdfs://localhost:9000/data_upload/master/JdCentral.csv")
 
 
-# df_shopee = dfShopee.toPandas()
-# df_shopee = df_shopee.dropna()
-# for index, row in df_shopee.iterrows():
-#     row['URL'] =row['URL'].replace(" ", "-")
-#     row['URL'] =row['URL'].replace("·", "-")
-#     row['URL'] =row['URL'].replace("\t", "-")
-
-# df_Lazada = dfLazada.toPandas()
-# df_Lazada = df_Lazada.dropna()
-# for index, row in df_Lazada.iterrows():
-#     row['Platform'] =row['Platform'].replace(",", "")
-#     row['Platform'] =row['Platform'].replace('""', "")
-
-# dfShopee=spark.createDataFrame(df_shopee)
-# dfLazada=spark.createDataFrame(df_Lazada)
-
-# In[7]:
 
 
 dfShopee.printSchema()
 
 
-# In[8]:
+# In[9]:
 
 
 dfLazada.printSchema()
 
 
-# In[9]:
+# In[10]:
 
 
 dfJD.printSchema()
 
 
-# In[10]:
+# In[40]:
 
 
-# dfLazada = dfLazada.withColumnRenamed("Platform,,,,,,,,,,,,","Platform")
+dfLazada = dfLazada.withColumnRenamed("Platform,,,,,,,,,,,,","Platform")
 dfShopee = dfShopee.withColumnRenamed("Score","Review").withColumnRenamed("rating_star","Score")
 dfLazada = dfLazada.where(col("Price").isNotNull())
 dfJD = dfJD.withColumn("Score", col("Score") / 20)
@@ -95,7 +77,7 @@ dfShopee = dfShopee.where(col("Name").isNotNull())
 dfShopee = dfShopee.where(col("Score").isNotNull())
 
 
-# In[11]:
+# In[41]:
 
 
 dfShopee = dfShopee.select(col("Name"),col("Price"),col("Review"),col("Score"),col("Image"),col("Category"),col("URL"),col("Platform"),col("brand"),col("historical_sold"),col("view_count"),col("shop_location"))
@@ -103,33 +85,33 @@ dfJD = dfJD.select(col("Name"),col("Price"),col("Review"),col("Score"),col("Imag
 dfLazada = dfLazada.select(col("Name"),col("Price"),col("Review"),col("Score"),col("Image"),col("Category"),col("URL"),col("Platform"))
 
 
-# In[12]:
+# In[42]:
 
 
 dfShopee.printSchema()
 
 
-# In[41]:
+# In[43]:
 
 
 dfLazada.printSchema()
 
 
-# In[42]:
+# In[44]:
 
 
 dfJD.printSchema()
 
 
-# In[13]:
+# In[45]:
 
 
-newdf = dfJD.unionByName(dfLazada, allowMissingColumns = True)
-newdf = newdf.unionByName(dfShopee, allowMissingColumns = True)
+newdf = dfShopee.unionByName(dfJD, allowMissingColumns = True)
+newdf = newdf.unionByName(dfLazada, allowMissingColumns = True)
 newdf = newdf.dropDuplicates(['URL'])
 
 
-# In[14]:
+# In[46]:
 
 
 newdf.show()
@@ -147,13 +129,13 @@ newdf.show()
 # newdf = newdf.withColumn("Category", lit(''))
 
 
-# In[24]:
+# In[30]:
 
 
 newdf
 
 
-# In[15]:
+# In[31]:
 
 
 count_df = newdf.select('Category').groupBy('Category').count().sort('count', ascending=False)
@@ -162,10 +144,10 @@ count_df = newdf.select('Category').groupBy('Category').count().sort('count', as
 # df_new = count_df.toPandas()
 # df_new.to_csv('test.csv',encoding='utf-8-sig',index= False)
 
-# In[16]:
+# In[33]:
 
 
-count_df.show()
+count_df.show(100000)
 
 
 # In[50]:
@@ -175,7 +157,7 @@ count_df = count_df.toPandas()
 # count_df.to_csv('CT2.csv',encoding='utf-8-sig',index= False)
 
 
-# In[17]:
+# In[47]:
 
 
 keyword = []
@@ -205,20 +187,20 @@ for row in newdf.rdd.collect():
     numstring = ""
 
 
-# In[18]:
+# In[48]:
 
 
 df_new = newdf.toPandas()
 
 
-# In[19]:
+# In[49]:
 
 
 df_new["enToken"] = keyword
 df_new["thToken"] = thkeyword
 
 
-# In[20]:
+# In[50]:
 
 
 df_new['Score'] = df_new['Score'].fillna(0)
@@ -228,14 +210,20 @@ df_new['enToken'] = df_new['enToken'].replace('' ,'NULL')
 df_new['thToken'] = df_new['thToken'].replace('' ,'NULL')
 
 
-# In[27]:
+# In[51]:
 
 
 for index, row in df_new.iterrows():
     row['Price'] = row['Price'].translate({ ord(c): None for c in '"฿,'  })
 
 
-# In[21]:
+# In[53]:
+
+
+len(df_new)
+
+
+# In[54]:
 
 
 df_new.to_csv('/c/Users/OMEN/airflow/DataPrep/FinalData/JD+Shopee+Lazada.csv',encoding='utf-8-sig',sep=';',index= False)
