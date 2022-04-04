@@ -79,6 +79,10 @@ def search_product(request):
     if(total>150):
         total = 150
     category_all=categoryAll()
+    currentPercent=currentComparePercentage()
+    namepercent = currentPercent[0]
+    thaipercent = currentPercent[1]
+    engpercent = currentPercent[2]
     return render(request,'collection.html',
     {
         'products':data,
@@ -90,7 +94,8 @@ def search_product(request):
         'total':total,
         'category_all':category_all,
         'platform_selected':pf,
-        'title':'Search Product'
+        'title':'Search Product',
+        'thaipercent':thaipercent,'namepercent':namepercent,'engpercent':engpercent
     })
 
 def product(request,product_id): 
@@ -100,6 +105,10 @@ def product(request,product_id):
     main_product_url = response[0]["URL"]
     main_product_url = main_product_url.replace('"', "")
     compares = len(response)
+    currentPercent=currentComparePercentage()
+    namepercent = currentPercent[0]
+    thaipercent = currentPercent[1]
+    engpercent = currentPercent[2]
     return render(request,'product.html',{'pid':product_id,
             'products':response,
             'main_product':main_product,
@@ -107,7 +116,8 @@ def product(request,product_id):
             'compares':compares,'category_selected':"all",
             'platform_selected':"all",
             'category_all':category_all,
-            'title':'Product Compare'
+            'title':'Product Compare',
+            'thaipercent':thaipercent,'namepercent':namepercent,'engpercent':engpercent
             })
 
 def todays_deals(request):
@@ -117,7 +127,11 @@ def todays_deals(request):
         
 def BI_REPORT(request):
     category_all=categoryAll()
-    return render(request,'lookbook.html',{'category_all':category_all,'category_selected':"all",'platform_selected':"all"})
+    currentPercent=currentComparePercentage()
+    namepercent = currentPercent[0]
+    thaipercent = currentPercent[1]
+    engpercent = currentPercent[2]
+    return render(request,'lookbook.html',{'category_all':category_all,'category_selected':"all",'platform_selected':"all",'thaipercent':thaipercent,'namepercent':namepercent,'engpercent':engpercent})
 
 def test(request):
     category_all=categoryAll()

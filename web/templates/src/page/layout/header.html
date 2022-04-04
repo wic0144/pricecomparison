@@ -427,17 +427,17 @@
                             <span>จัดการตาราง</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="https://localhost:5601/app/dashboards#/view/02fd8e50-ab69-11ec-bd4a-21850821f8d7?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))" class="site-nav__link" target="_blank">
+                    <!-- <li>
+                        <a href="" class="site-nav__link" target="_blank">
                             <span>จัดการ Dashboard</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
-                        <a href="#changeBox" id="login_link" class="site-nav__link">
+                        <a href="#changeBox" data-target="#changeBox" data-toggle="modal" id="login_link" class="site-nav__link">
                             <span class="name">ปรับเปลี่ยนการเปรียบเทียบ</span>
                         </a>
                     </li>
-                    <div id="changeBox" class="loginLightbox" style="display:none;">
+                    <div id="changeBox" class="loginLightbox modal" style="display:none;">
                         <div id="lightboxlogin">
                             <form method="post" action="changepercentage" id="customer_login"
                                 accept-charset="UTF-8">
