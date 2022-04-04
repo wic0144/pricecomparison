@@ -352,7 +352,7 @@
 
 	<div id="PageContainer" class="is-moved-by-drawer">
 		<!-- Ads Banner -->
-		<div id="adv-banner">
+		<!-- <div id="adv-banner">
 			<div id="ads-banner" class="grid--full grid--table">
 				<div class="ads-banner-slider owl-carousel">
 					<div class="ads-item">
@@ -366,7 +366,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		{% include "./layout/header.html"%}
 		<main class="main-content">
@@ -470,82 +470,45 @@
 						<div class="main_slideshow_wrapper">
 							<div id="slider" class="flexslider">
 								<ul class="slides">
+
 									<li>
-										<img src="{% static 'assets/images/demo1_885x450.jpg' %}" alt="" />
+										<a href="https://shopee.co.th/collections/1073557" target="_blank">
+											<img src="https://cf.shopee.co.th/file/37e8e317457ffed97d19c2c43c21350e" style="width:885px;height:450px" alt="" />
+										</a>
 									</li>
 									<li>
-										<img src="{% static 'assets/images/demo2_885x450.jpg' %}" alt="" />
+										<a href="https://shopee.co.th/collections/1073557" target="_blank">
+											<img src="https://cf.shopee.co.th/file/37e8e317457ffed97d19c2c43c21350e" style="width:885px;height:450px" alt="" />
+										</a>
+										
 									</li>
 									<li>
-										<img src="{% static 'assets/images/demo3_885x450.jpg' %}" alt="" />
+										<a href="https://www.lazada.co.th/products/huawei-nova-9-se-pre-order-26-2565-108mp-vlog-i3503480183-s13033278529.html?spm=a2o4m.searchlistcategory.card.1.700f5281TRU7rk&search=1&banner_id=3eMR3u&from=onesearch_category_3973" target="_blank">
+											<img src="https://lzd-img-global.slatic.net/g/skyline/i8/6a51eea098b4489ea321c65e88a29755-1360-480.jpg_1200x1200q80.jpg_.webp" style="width:885px;height:450px" alt="" />
+										</a>
+										
 									</li>
 									<li>
-										<img src="{% static 'assets/images/demo4_885x450.jpg' %}" alt="" />
+										<a href="https://www.jd.co.th/promotion/babelth/2vTUdzmSQGVqqunWB8R8zBt1mWiS/index.html?title=realme" target="_blank">
+											<img src="https://img.jd.co.th/babelth/jfs/t7/335/11393835287/191535/f7ca62e8/6246c097N79a0961a.jpg" style="width:885px;height:450px" alt="" />
+										</a>
+										
 									</li>
-									<li>
-										<img src="{% static 'assets/images/demo5_885x450.jpg' %}" alt="" />
-									</li>
-									<li>
-										<img src="{% static 'assets/images/demo6_885x450.jpg' %}" alt="" />
-									</li>
+									
 								</ul>
 							</div>
 							<div id="carousel" class="flexslider">
 								<ul class="slides">
+									{%for col in collection_list.0.collection %}
 									<li>
 										<div>
-											<img src="{% static 'assets/images/demo1_50x50.jpg' %}" alt="">
-											<span class="cr-title"><a href="{% static './collection.html' %}"
-													onclick="location.href = './collection.html'">Opening celebration
-													7th store</a></span>
-											<span class="cr-desc">Sale up to 70% from Nov 1, 2015 to Nov 7, 2015</span>
+											<img src="{{col.data.Image}}" alt="">
+											<span class="cr-title"><a href="/product/{{col.id}}"
+													onclick="location.href = './collection.html'">{{col.data.Name}}</a></span>
+											<span class="cr-desc">Sale up to 70% from April 1, 2022 to April 30, 2022</span>
 										</div>
 									</li>
-									<li>
-										<div>
-											<img src="{% static 'assets/images/demo2_50x50.jpg' %}" alt="">
-											<span class="cr-title"><a href="./collection.html"
-													onclick="location.href = './collection.html'">Beautiful woman
-													2015</a></span>
-											<span class="cr-desc">high-end products cosmetics &amp; mackup</span>
-										</div>
-									</li>
-									<li>
-										<div>
-											<img src="{% static 'assets/images/demo3_50x50.jpg' %}" alt="">
-											<span class="cr-title"><a href="./collection.html"
-													onclick="location.href = './collection.html'">Sony Xperia
-													Z5</a></span>
-											<span class="cr-desc">buy now only today sale 60% for all colour</span>
-										</div>
-									</li>
-									<li>
-										<div>
-											<img src="{% static 'assets/images/demo4_50x50.jpg' %}" alt="">
-											<span class="cr-title"><a href="./collection.html"
-													onclick="location.href = './collection.html'">New Lego
-													collection</a></span>
-											<span class="cr-desc">best seller 2015</span>
-										</div>
-									</li>
-									<li>
-										<div>
-											<img src="{% static 'assets/images/demo5_50x50.jpg' %}" alt="">
-											<span class="cr-title"><a href="./collection.html"
-													onclick="location.href = './collection.html'">Christmas
-													2015</a></span>
-											<span class="cr-desc">Merry Christmas</span>
-										</div>
-									</li>
-									<li>
-										<div>
-											<img src="{% static 'assets/images/demo6_50x50.jpg' %}" alt="">
-											<span class="cr-title"><a href="./collection.html"
-													onclick="location.href = './collection.html'">Happy New
-													Year</a></span>
-											<span class="cr-desc">Happy New Year</span>
-										</div>
-									</li>
+									{% endfor %}
 								</ul>
 							</div>
 						</div>
@@ -827,8 +790,8 @@
 									</ul>
 								</div>
 								<div class="banner-area">
-									<a href="https://shopee.co.th/"><img
-											src="{% static 'assets/images/demo1_banner1_185x345.png' %}" alt=""></a>
+									<a href="/product/{{collection_list.0.collection.0.id}}"><img
+											src="{{collection_list.0.collection.0.data.Image}}" alt=""></a>
 								</div>
 							</div>
 						</div>
@@ -1014,8 +977,8 @@
 									</ul>
 								</div>
 								<div class="banner-area">
-									<a href="./collection.html"><img
-											src="{% static 'assets/images/demo1_banner1_185x345.png' %}" alt=""></a>
+									<a href="/product/{{collection_list.1.collection.1.id}}"><img
+											src="{{collection_list.1.collection.1.data.Image}}" alt=""></a>
 								</div>
 							</div>
 						</div>
@@ -1199,8 +1162,8 @@
 									</ul>
 								</div>
 								<div class="banner-area">
-									<a href="./collection.html"><img
-											src="{% static 'assets/images/demo1_banner1_185x345.png' %}" alt=""></a>
+									<a href="/product/{{collection_list.2.collection.1.id}}"><img
+											src="{{collection_list.2.collection.1.data.Image}}" alt=""></a>
 								</div>
 							</div>
 						</div>
@@ -1384,8 +1347,8 @@
 									</ul>
 								</div>
 								<div class="banner-area">
-									<a href="./collection.html"><img
-											src="{% static 'assets/images/demo1_banner1_185x345.png' %}" alt=""></a>
+									<a href="/product/{{collection_list.3.collection.1.id}}"><img
+											src="{{collection_list.3.collection.1.data.Image}}" alt=""></a>
 								</div>
 							</div>
 						</div>
