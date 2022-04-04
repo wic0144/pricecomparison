@@ -238,6 +238,7 @@ def esearchCompare(id=""):
     data_list = []
     for data in response["hits"]["hits"]:
         data_list.append(data["_source"])
+    data_list = sorted(data_list, key=lambda x: x["Price"], reverse=False)
     return data_list
 
 def product_collection_set(size=10,category=""): 
